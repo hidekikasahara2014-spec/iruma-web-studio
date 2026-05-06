@@ -50,10 +50,10 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-gray-800 mb-10">メニュー・料金</h2>
       <div class="space-y-6">
         {[
-          { category: "✂️ カット", items: [["カット（シャンプーブロー込）", "¥5,500"], ["メンズカット", "¥4,400"]] },
-          { category: "🎨 カラー", items: [["フルカラー", "¥8,800〜"], ["リタッチ", "¥6,600〜"], ["ハイライト", "¥11,000〜"]] },
-          { category: "✨ パーマ・矯正", items: [["デジタルパーマ", "¥15,000〜"], ["縮毛矯正", "¥18,000〜"]] },
-          { category: "💆 トリートメント", items: [["システムトリートメント", "¥3,300〜"], ["TOKIO インカラミ", "¥5,500〜"]] },
+          { category: "カット", items: [["カット（シャンプーブロー込）", "¥5,500"], ["メンズカット", "¥4,400"]] },
+          { category: "カラー", items: [["フルカラー", "¥8,800〜"], ["リタッチ", "¥6,600〜"], ["ハイライト", "¥11,000〜"]] },
+          { category: "パーマ・矯正", items: [["デジタルパーマ", "¥15,000〜"], ["縮毛矯正", "¥18,000〜"]] },
+          { category: "トリートメント", items: [["システムトリートメント", "¥3,300〜"], ["TOKIO インカラミ", "¥5,500〜"]] },
         ].map(({ category, items }) => (
           <div>
             <h3 class="font-bold text-gray-700 mb-3 border-b border-pink-100 pb-2">{category}</h3>
@@ -90,11 +90,13 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black mb-4">ご予約</h2>
       <p class="text-gray-400 mb-8">お電話またはフォームからご予約ください。</p>
       <div class="flex flex-col gap-4 mb-8">
-        <a href="tel:04-0000-0000" class="bg-pink-400 text-white font-bold py-4 rounded-full hover:bg-pink-500 transition-colors text-lg">
-          📞 04-0000-0000（電話予約）
+        <a href="tel:04-0000-0000" class="bg-pink-400 text-white font-bold py-4 rounded-full hover:bg-pink-500 transition-colors text-lg flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          04-0000-0000（電話予約）
         </a>
-        <a href="#" class="bg-green-500 text-white font-bold py-4 rounded-full hover:bg-green-600 transition-colors text-lg">
-          💬 LINEで予約
+        <a href="#" class="bg-green-500 text-white font-bold py-4 rounded-full hover:bg-green-600 transition-colors text-lg flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          LINEで予約
         </a>
       </div>
       <p class="text-gray-500 text-sm">営業時間: 火〜土 10:00〜19:00 | 日 10:00〜17:00 | 月曜定休</p>

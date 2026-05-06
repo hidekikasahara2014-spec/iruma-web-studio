@@ -2,21 +2,73 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { site } from '../config/site';
 ---
+<style>
+  .page-hero { background: var(--color-charcoal); color: var(--color-cream); padding: 80px 80px 72px; position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, var(--color-orange-tint) 0%, transparent 70%); border-radius: 50%; opacity: 0.15; pointer-events: none; }
+  .page-hero-label { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .page-hero-label::before { content: ''; width: 32px; height: 1px; background: var(--color-orange); }
+  .page-hero h1 { font-family: var(--font-serif); font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; margin-bottom: 12px; color: var(--color-cream); }
+  .page-hero p { font-size: 16px; color: var(--color-gray-light); }
+
+  .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .section-label-line { width: 40px; height: 1px; background: var(--color-orange); flex-shrink: 0; }
+  .section-label-text { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; }
+  .section-title { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; }
+
+  .mission-quote {
+    font-family: var(--font-serif); font-size: clamp(22px, 3vw, 36px); font-weight: 700;
+    color: var(--color-charcoal); line-height: 1.6;
+    border-left: 4px solid var(--color-orange); padding-left: 28px; margin-bottom: 24px;
+  }
+  .mission-body { font-size: 16px; color: var(--color-gray); line-height: 1.9; }
+
+  .about-table { width: 100%; border-collapse: collapse; }
+  .about-table tr { border-bottom: 1px solid var(--color-gray-light); }
+  .about-table th { padding: 16px 24px 16px 0; text-align: left; font-size: 13px; font-weight: 600; color: var(--color-gray); width: 160px; vertical-align: top; font-family: var(--font-en); letter-spacing: 0.05em; }
+  .about-table td { padding: 16px 0; font-size: 15px; color: var(--color-charcoal); line-height: 1.7; }
+
+  .president-card {
+    background: var(--color-white); border-radius: var(--radius-lg); border: 1px solid var(--color-gray-light);
+    padding: 48px; display: flex; gap: 48px; align-items: flex-start;
+  }
+  .president-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: var(--color-orange-light); border: 3px solid var(--color-orange);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .president-name { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 4px; }
+  .president-role { font-size: 13px; color: var(--color-gray); margin-bottom: 20px; font-family: var(--font-en); letter-spacing: 0.05em; }
+  .president-body { font-size: 15px; color: var(--color-gray); line-height: 1.9; }
+  .president-body p + p { margin-top: 16px; }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 60px 24px; }
+    .president-card { flex-direction: column; padding: 32px 24px; }
+    .president-avatar { margin: 0 auto; }
+  }
+</style>
+
 <MainLayout title="会社概要" description="いるまウェブ制作所の会社概要・ミッション・代表挨拶をご紹介します。">
 
-  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
-    <h1 class="text-3xl md:text-4xl font-black mb-3">会社概要</h1>
-    <p class="text-blue-200">地域のWebを変える、三位一体のチームです。</p>
+  <div class="page-hero">
+    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+      <p class="page-hero-label">ABOUT</p>
+      <h1>会社概要</h1>
+      <p>地域のWebを変える、三位一体のチームです。</p>
+    </div>
   </div>
 
   <!-- ミッション -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-2xl font-black text-gray-800 mb-6">ミッション</h2>
-      <p class="text-xl text-blue-900 font-bold leading-relaxed mb-6">
-        「地域の小さな会社に、確かなホームページを。」
-      </p>
-      <p class="text-gray-600 leading-loose">
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">MISSION</span>
+      </div>
+      <h2 class="section-title">ミッション</h2>
+      <p class="mission-quote">「地域の小さな会社に、<br>確かなホームページを。」</p>
+      <p class="mission-body">
         埼玉県入間市を中心とした地域の中小企業・個人事業主が、
         Webの力を使って新しい顧客と出会える環境をつくること。
         それが私たちのミッションです。
@@ -25,24 +77,30 @@ import { site } from '../config/site';
   </section>
 
   <!-- 代表挨拶 -->
-  <section class="py-16 px-4 bg-gray-50">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-2xl font-black text-gray-800 mb-8 text-center">代表挨拶</h2>
-      <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm flex flex-col md:flex-row gap-8">
-        <div class="flex-shrink-0">
-          <!-- 代表写真プレースホルダー -->
-          <div class="w-32 h-32 rounded-full bg-blue-100 flex items-center justify-center text-5xl mx-auto">
-            👤
+  <section style="background: var(--color-cream-deep); padding: 100px 80px;">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">MESSAGE</span>
+      </div>
+      <h2 class="section-title">代表挨拶</h2>
+      <div class="president-card">
+        <div style="text-align: center; flex-shrink: 0;">
+          <div class="president-avatar">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E97132" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
           </div>
-          <p class="text-center text-sm font-bold text-gray-800 mt-3">代表 〇〇 〇〇</p>
-          <p class="text-center text-xs text-gray-500">SE出身 / 10年以上のWeb開発経験</p>
+          <p style="margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--color-charcoal);">代表 〇〇 〇〇</p>
+          <p style="font-size: 12px; color: var(--color-gray);">SE出身 / 10年以上のWeb開発経験</p>
         </div>
-        <div class="text-gray-700 leading-loose text-sm">
-          <p class="mb-4">
+        <div class="president-body">
+          <p>
             はじめまして。{site.name}の代表を務めております。
             私はシステムエンジニアとして10年以上、大企業向けのシステム開発に携わってきました。
           </p>
-          <p class="mb-4">
+          <p>
             転機は、身近な個人事業主の方々から「ホームページを作りたいけど高くて…」という声を繰り返し聞いたことです。
             高い技術力があるにもかかわらず、Webに出ていないだけで新規集客できていない事業者が数多くいることに気づきました。
           </p>
@@ -56,24 +114,28 @@ import { site } from '../config/site';
   </section>
 
   <!-- 会社情報 -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-2xl font-black text-gray-800 mb-8 text-center">会社情報</h2>
-      <table class="w-full border-collapse">
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">COMPANY INFO</span>
+      </div>
+      <h2 class="section-title">会社情報</h2>
+      <table class="about-table" style="margin-top: 32px;">
         <tbody>
           {[
             ["社名", site.name],
-            ["所在地", site.address],
+            ["所在地", site.address || "埼玉県入間市"],
             ["設立", "2024年（予定）"],
             ["代表者", "〇〇 〇〇"],
             ["事業内容", "ホームページ制作・Web保守運用・Webコンサルティング"],
             ["対応エリア", "埼玉県入間市を中心に全国対応（オンライン相談可）"],
-            ["連絡先電話", site.tel],
+            ["電話番号", site.tel],
             ["メール", site.email],
           ].map(([label, value]) => (
-            <tr class="border-b border-gray-200">
-              <th class="py-4 pr-6 text-left text-sm font-bold text-gray-500 w-32 md:w-40 align-top">{label}</th>
-              <td class="py-4 text-sm text-gray-800 leading-relaxed">{value}</td>
+            <tr>
+              <th>{label}</th>
+              <td>{value}</td>
             </tr>
           ))}
         </tbody>
@@ -82,12 +144,14 @@ import { site } from '../config/site';
   </section>
 
   <!-- CTA -->
-  <section class="bg-blue-900 text-white py-14 px-4 text-center">
-    <h2 class="text-2xl font-black mb-4">まずは無料相談から</h2>
-    <p class="text-blue-200 mb-8">お電話・メール・オンラインいずれでもご相談いただけます。</p>
-    <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
-      無料相談を申し込む →
-    </a>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px; text-align: center;">
+    <div style="max-width: 640px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずは無料相談から</h2>
+      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">お電話・メール・オンラインいずれでもご相談いただけます。</p>
+      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">
+        無料相談を申し込む →
+      </a>
+    </div>
   </section>
 
 </MainLayout>

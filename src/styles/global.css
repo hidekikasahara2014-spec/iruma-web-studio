@@ -1,11 +1,62 @@
 @import "tailwindcss";
 
+:root {
+  --color-orange: #E97132;
+  --color-orange-deep: #C95A1F;
+  --color-orange-light: #FFF1E6;
+  --color-orange-tint: #FDE5D2;
+  --color-cream: #FAF7F2;
+  --color-cream-deep: #F4EFE6;
+  --color-white: #FFFFFF;
+  --color-charcoal: #2A2520;
+  --color-gray: #6B6259;
+  --color-gray-light: #E8E2DA;
+  --color-sage: #6B8175;
+
+  --font-serif: 'Shippori Mincho', 'YuMincho', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+  --font-en: 'Inter', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 4px 12px rgba(233, 113, 50, 0.15);
+  --shadow-md: 0 4px 16px rgba(233, 113, 50, 0.2);
+  --shadow-lg: 0 8px 24px rgba(233, 113, 50, 0.3);
+  --shadow-card: 0 12px 32px rgba(42, 37, 32, 0.06);
+}
+
 @layer base {
   html {
-    font-family: "Noto Sans JP", system-ui, sans-serif;
-    color: #1F2937;
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background: var(--color-cream);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
   }
-  body { line-height: 1.8; }
-  h1, h2, h3, h4 { line-height: 1.4; font-weight: 700; }
+  body { line-height: 1.7; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

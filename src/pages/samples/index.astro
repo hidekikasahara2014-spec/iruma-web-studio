@@ -3,17 +3,37 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import SampleCard from '../../components/SampleCard.astro';
 import { industries } from '../../config/site';
 ---
+<style>
+  .page-hero { background: var(--color-charcoal); color: var(--color-cream); padding: 80px 80px 72px; position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, var(--color-orange-tint) 0%, transparent 70%); border-radius: 50%; opacity: 0.15; pointer-events: none; }
+  .page-hero-label { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .page-hero-label::before { content: ''; width: 32px; height: 1px; background: var(--color-orange); }
+  .page-hero h1 { font-family: var(--font-serif); font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; margin-bottom: 12px; color: var(--color-cream); }
+  .page-hero p { font-size: 16px; color: var(--color-gray-light); }
+
+  .notice {
+    background: var(--color-cream-deep); border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg); padding: 16px 24px; margin-bottom: 48px;
+    font-size: 13px; color: var(--color-gray); display: flex; align-items: center; gap: 12px;
+  }
+  .notice-dot { width: 8px; height: 8px; background: var(--color-orange); border-radius: 50%; flex-shrink: 0; }
+</style>
+
 <MainLayout title="業種別サンプルサイト" description="飲食店・美容室・整体院・工務店・自動車整備・学習塾・歯科医院の業種別サンプルサイト一覧。">
 
-  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
-    <h1 class="text-3xl md:text-4xl font-black mb-3">業種別サンプルサイト</h1>
-    <p class="text-blue-200">同じ業種のサンプルから、仕上がりイメージをご覧ください。</p>
+  <div class="page-hero">
+    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+      <p class="page-hero-label">SAMPLES</p>
+      <h1>業種別サンプルサイト</h1>
+      <p>同じ業種のサンプルから、仕上がりイメージをご覧ください。</p>
+    </div>
   </div>
 
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-5xl mx-auto">
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-10 text-sm text-amber-800">
-        📌 表示しているのはあくまでサンプルです。実際の制作では、お客様の業態・コンセプトに合わせて調整します。
+  <section style="background: var(--color-white); padding: 80px 80px 100px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="notice">
+        <span class="notice-dot"></span>
+        表示しているのはあくまでサンプルです。実際の制作では、お客様の業態・コンセプトに合わせて調整します。
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {industries.map(i => (
@@ -23,12 +43,16 @@ import { industries } from '../../config/site';
     </div>
   </section>
 
-  <section class="bg-blue-900 text-white py-14 px-4 text-center">
-    <h2 class="text-2xl font-black mb-4">5万円〜で、あなたの業種に最適なサイトを制作します</h2>
-    <p class="text-blue-200 mb-8">まずは無料相談で、どんなサイトが作れるかご確認ください。</p>
-    <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
-      無料相談を申し込む →
-    </a>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px; text-align: center;">
+    <div style="max-width: 640px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">
+        5万円〜で、あなたの業種に<br>最適なサイトを制作します
+      </h2>
+      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">まずは無料相談で、どんなサイトが作れるかご確認ください。</p>
+      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">
+        無料相談を申し込む →
+      </a>
+    </div>
   </section>
 
 </MainLayout>

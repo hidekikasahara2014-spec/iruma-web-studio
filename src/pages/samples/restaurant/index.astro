@@ -23,12 +23,12 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <p class="text-stone-600 leading-loose mb-8">地元農家から仕入れた旬の野菜と、毎朝豊洲から届く新鮮な海の幸。素材の味を活かした調理で、お客様に本物の旨さをお届けします。</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: "🌿", label: "地元野菜", desc: "入間市内の契約農家から直送" },
-          { icon: "🐟", label: "新鮮鮮魚", desc: "毎朝豊洲市場から仕入れ" },
-          { icon: "🍶", label: "地酒", desc: "埼玉県産の日本酒を厳選" },
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`, label: "地元野菜", desc: "入間市内の契約農家から直送" },
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.46-3.44 6-7 6s-7.56-2.54-8.5-6z"/><circle cx="17" cy="12" r="1"/><path d="M6.5 12 2 7.5v9L6.5 12z"/></svg>`, label: "新鮮鮮魚", desc: "毎朝豊洲市場から仕入れ" },
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>`, label: "地酒", desc: "埼玉県産の日本酒を厳選" },
         ].map(({ icon, label, desc }) => (
           <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-sm">
-            <p class="text-4xl mb-3">{icon}</p>
+            <div class="flex justify-center mb-3 text-green-700" set:html={icon}></div>
             <p class="font-bold text-stone-800 mb-1">{label}</p>
             <p class="text-sm text-stone-500">{desc}</p>
           </div>
@@ -85,8 +85,9 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
         </table>
       </div>
       <!-- マップ -->
-      <div class="bg-stone-200 h-48 rounded-xl flex items-center justify-center text-stone-500 text-sm">
-        📍 Googleマップ埋め込み予定
+      <div class="bg-stone-200 h-48 rounded-xl flex items-center justify-center gap-2 text-stone-500 text-sm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Googleマップ埋め込み予定
       </div>
     </div>
   </section>

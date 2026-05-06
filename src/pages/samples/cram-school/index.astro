@@ -5,11 +5,6 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
 
   <!-- ヒーロー -->
   <section class="bg-blue-600 text-white py-20 px-4 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      {Array.from({length: 20}, (_, i) => (
-        <div class="absolute text-6xl opacity-30" style={`top: ${Math.random()*100}%; left: ${Math.random()*100}%; transform: rotate(${Math.random()*360}deg)`}>📚</div>
-      ))}
-    </div>
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <div class="inline-block bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-4">入間市・無料体験授業受付中</div>
       <h1 class="text-4xl md:text-6xl font-black mb-4">青空ゼミナール</h1>
@@ -68,7 +63,9 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
           { name: "田中 先生", subject: "社会・小学生全般", exp: "指導歴8年", career: "元小学校教員。子どもの個性を活かした指導が得意。" },
         ].map(({ name, subject, exp, career }) => (
           <div class="bg-white rounded-xl p-5 border border-blue-100 shadow-sm text-center">
-            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-3">👨‍🏫</div>
+            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-400">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
             <h3 class="font-black text-gray-800 mb-1">{name}</h3>
             <p class="text-xs text-blue-600 font-medium mb-1">{subject}</p>
             <p class="text-xs text-gray-500 mb-3">{exp}</p>
@@ -108,7 +105,10 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
           </button>
         </form>
       </div>
-      <p class="text-blue-200 text-xs mt-4">📞 お電話でも受付: 04-0000-0004（平日14:00〜21:00）</p>
+      <p class="text-blue-200 text-xs mt-4 flex items-center justify-center gap-1">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        お電話でも受付: 04-0000-0004（平日14:00〜21:00）
+      </p>
     </div>
   </section>
 

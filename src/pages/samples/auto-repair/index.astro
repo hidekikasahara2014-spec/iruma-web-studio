@@ -39,16 +39,16 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center mb-10">サービスメニュー・料金</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
-          { icon: "🔍", name: "車検（ユーザー車検代行）", price: "法定費用+22,000円〜", desc: "まるまる込みの安心パック。陸運局への代行申請込み。" },
-          { icon: "🔧", name: "エンジンオイル交換", price: "2,200円〜", desc: "オイル種類・グレードにより価格変動。フィルター交換は+660円。" },
-          { icon: "🛞", name: "タイヤ交換（4本）", price: "3,300円〜", desc: "持込可。バランス調整込み。スタッドレスへの交換も対応。" },
-          { icon: "🚗", name: "鈑金・塗装", price: "要見積もり", desc: "こすり傷から大きなへこみまで。無料見積もりお気軽に。" },
-          { icon: "🔋", name: "バッテリー交換", price: "8,800円〜", desc: "適合バッテリーをご提案。取り付け工賃込み。" },
-          { icon: "❄️", name: "エアコンガス補充", price: "5,500円〜", desc: "エアコンの効きが悪い場合はガス漏れ点検もセットで。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`, name: "車検（ユーザー車検代行）", price: "法定費用+22,000円〜", desc: "まるまる込みの安心パック。陸運局への代行申請込み。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`, name: "エンジンオイル交換", price: "2,200円〜", desc: "オイル種類・グレードにより価格変動。フィルター交換は+660円。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>`, name: "タイヤ交換（4本）", price: "3,300円〜", desc: "持込可。バランス調整込み。スタッドレスへの交換も対応。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17H5M4 17H3a1 1 0 0 1-1-1v-4l2-6h14l2 6v4a1 1 0 0 1-1 1h-1"/><circle cx="9" cy="17" r="2"/><circle cx="15" cy="17" r="2"/></svg>`, name: "鈑金・塗装", price: "要見積もり", desc: "こすり傷から大きなへこみまで。無料見積もりお気軽に。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/></svg>`, name: "バッテリー交換", price: "8,800円〜", desc: "適合バッテリーをご提案。取り付け工賃込み。" },
+          { icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>`, name: "エアコンガス補充", price: "5,500円〜", desc: "エアコンの効きが悪い場合はガス漏れ点検もセットで。" },
         ].map(({ icon, name, price, desc }) => (
           <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
             <div class="flex items-start gap-3">
-              <span class="text-2xl">{icon}</span>
+              <span class="text-orange-400 flex-shrink-0 mt-0.5" set:html={icon}></span>
               <div class="flex-1">
                 <div class="flex items-start justify-between gap-2">
                   <h3 class="font-bold text-white">{name}</h3>
@@ -108,7 +108,8 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
     <div class="max-w-xl mx-auto">
       <h2 class="text-2xl font-black mb-6">ご予約・お見積もり</h2>
       <a href="tel:04-0000-0003" class="flex items-center justify-center gap-3 bg-orange-500 text-white font-black py-5 rounded-xl hover:bg-orange-400 transition-colors text-xl mb-4">
-        📞 04-0000-0003
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        04-0000-0003
       </a>
       <p class="text-gray-400 text-sm mb-2">営業時間: 月〜土 8:30〜18:00 / 日祝 9:00〜17:00</p>
       <p class="text-gray-400 text-sm">〒358-0000 埼玉県入間市○○ 5-6-7</p>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>いるまウェブ制作所 - トップページデザインモックアップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #E97132;
+  --orange-deep: #C95A1F;
+  --orange-light: #FFF1E6;
+  --orange-tint: #FDE5D2;
+  --cream: #FAF7F2;
+  --cream-deep: #F4EFE6;
+  --white: #FFFFFF;
+  --charcoal: #2A2520;
+  --gray: #6B6259;
+  --gray-light: #E8E2DA;
+  --sage: #6B8175;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  color: var(--charcoal);
+  background: var(--cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Shippori Mincho', serif; }
+
+/* ==================== HEADER ==================== */
+header {
+  background: var(--cream);
+  border-bottom: 1px solid var(--gray-light);
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(250, 247, 242, 0.85);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--charcoal);
+  letter-spacing: 0.02em;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  gap: 38px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--charcoal);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+nav a:hover { color: var(--orange); }
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  background: var(--orange-deep);
+  color: var(--white) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 113, 50, 0.25);
+}
+
+/* ==================== HERO ==================== */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  padding: 100px 80px 80px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 60px;
+  align-items: center;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+/* Subtle grain texture overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.91 0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Decorative organic shape behind hero */
+.hero-blob {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--orange-light) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange-deep);
+  letter-spacing: 0.18em;
+  text-transform: none;
+  margin-bottom: 28px;
+  padding: 8px 18px;
+  background: var(--orange-light);
+  border-radius: 999px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+h1.hero-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: clamp(40px, 4.8vw, 64px);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: var(--charcoal);
+  margin-bottom: 28px;
+}
+
+.hero-title .accent {
+  color: var(--orange);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .accent::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--orange-tint);
+  z-index: -1;
+}
+
+.hero-subtitle {
+  font-size: 17px;
+  color: var(--gray);
+  line-height: 1.9;
+  margin-bottom: 40px;
+  max-width: 540px;
+}
+
+.hero-subtitle strong {
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(233, 113, 50, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--orange-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233, 113, 50, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1.5px solid var(--charcoal);
+}
+
+.btn-secondary:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.btn .arrow { transition: transform 0.25s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--gray);
+  align-items: center;
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta-item .check {
+  color: var(--sage);
+  font-weight: 600;
+}
+
+/* ==================== HERO ILLUSTRATION ==================== */
+.hero-illustration {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.illust-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1;
+}
+
+/* Tiny floating decorations */
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.deco-1 {
+  top: 8%; left: 5%;
+  width: 32px; height: 32px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.deco-2 {
+  bottom: 12%; right: 8%;
+  width: 18px; height: 18px;
+  background: var(--sage);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 7s ease-in-out infinite 1s;
+}
+
+.deco-3 {
+  top: 35%; right: 0;
+  width: 50px; height: 50px;
+  border: 2px solid var(--orange-tint);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite 0.5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ==================== Section: Pain Points (preview) ==================== */
+.pain-preview {
+  background: var(--white);
+  padding: 100px 80px;
+  position: relative;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--orange);
+}
+
+.section-label-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 0.25em;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: 38px;
+  margin-bottom: 14px;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.section-subtitle {
+  color: var(--gray);
+  font-size: 16px;
+  margin-bottom: 60px;
+  max-width: 600px;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.pain-card {
+  background: var(--cream);
+  padding: 40px 32px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.pain-card:hover {
+  background: var(--white);
+  border-color: var(--gray-light);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(42, 37, 32, 0.06);
+}
+
+.pain-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--orange-light);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+
+.pain-card:hover .pain-icon {
+  background: var(--orange);
+}
+
+.pain-icon svg { transition: all 0.3s; }
+.pain-card:hover .pain-icon svg path,
+.pain-card:hover .pain-icon svg circle,
+.pain-card:hover .pain-icon svg line { stroke: var(--white); }
+
+.pain-card h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 12px;
+  color: var(--charcoal);
+}
+
+.pain-card p {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.85;
+}
+
+/* ==================== Color Palette Display ==================== */
+.palette-section {
+  background: var(--cream-deep);
+  padding: 80px;
+}
+
+.palette-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: var(--charcoal);
+}
+
+.palette-subtitle {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 16px;
+}
+
+.palette-item {
+  text-align: center;
+}
+
+.palette-swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--gray-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.palette-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+
+.palette-code {
+  font-size: 10px;
+  color: var(--gray);
+  font-family: 'Inter', monospace;
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 32px;
+    text-align: center;
+  }
+  .hero-illustration { max-width: 360px; margin: 0 auto; }
+  .pain-preview, .palette-section { padding: 60px 32px; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .palette-grid { grid-template-columns: repeat(4, 1fr); }
+  nav { display: none; }
+  header { padding: 16px 24px; }
+  .cta-group { justify-content: center; }
+  .hero-meta { justify-content: center; }
+  .section-title { font-size: 28px; }
+}
+
+/* Annotation banner */
+.annotation {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 16px 80px;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.annotation strong { color: var(--orange); }
+
+@media (max-width: 768px) {
+  .annotation { padding: 14px 24px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Annotation -->
+<div class="annotation">
+  📌 デザインモックアップ — <strong>新配色:オレンジ単色主役 + クリーム背景</strong> / 装飾ミニマル / 和文セリフで地元感を演出
+</div>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="16" fill="#E97132"/>
+        <path d="M11 14 L11 22 M14 22 L14 14 L19 22 L19 14 M22 14 L25 22 L28 14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    いるまウェブ制作所
+  </div>
+  <nav>
+    <a href="#">ホーム</a>
+    <a href="#">サービス</a>
+    <a href="#">料金</a>
+    <a href="#">サンプル</a>
+    <a href="#">会社概要</a>
+    <a href="#" class="nav-cta">無料相談</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">SE × デザイナー × 生成AI</div>
+    <h1 class="hero-title serif">
+      地域の<span class="accent">小さな会社</span>に、<br>
+      確かなホームページを。
+    </h1>
+    <p class="hero-subtitle">
+      <strong>5万円から始められる</strong>、入間の地元密着Web制作。<br>
+      安く・速く・安心の、ワンストップサービスです。
+    </p>
+    <div class="cta-group">
+      <a href="#" class="btn btn-primary">
+        料金プランを見る
+        <span class="arrow">→</span>
+      </a>
+      <a href="#" class="btn btn-secondary">
+        サンプルを見る
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="check">✓</span>無料相談・お見積もり</div>
+      <div class="hero-meta-item"><span class="check">✓</span>最短7日で公開</div>
+      <div class="hero-meta-item"><span class="check">✓</span>すべて税抜価格</div>
+    </div>
+  </div>
+
+  <!-- Hero Illustration -->
+  <div class="hero-illustration">
+    <div class="deco deco-1"></div>
+    <div class="deco deco-2"></div>
+    <div class="deco deco-3"></div>
+    <div class="illust-frame">
+      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <!-- Soft background blob -->
+        <ellipse cx="240" cy="260" rx="200" ry="180" fill="#FFF1E6" opacity="0.7"/>
+
+        <!-- Three overlapping organic shapes representing SE × Designer × AI -->
+        <g style="mix-blend-mode: multiply;">
+          <!-- SE (top left) -->
+          <circle cx="180" cy="180" r="100" fill="#E97132" opacity="0.55"/>
+          <!-- Designer (top right) -->
+          <circle cx="300" cy="180" r="100" fill="#F4A574" opacity="0.55"/>
+          <!-- AI (bottom center) -->
+          <circle cx="240" cy="290" r="100" fill="#FDE5D2" opacity="0.85"/>
+        </g>
+
+        <!-- Center label badge -->
+        <g transform="translate(240,230)">
+          <circle r="62" fill="#FFFFFF" stroke="#E97132" stroke-width="2"/>
+          <circle r="62" fill="none" stroke="#E97132" stroke-width="0.5" stroke-dasharray="2 4" transform="scale(1.08)" opacity="0.5"/>
+
+          <!-- Three small icons inside center -->
+          <g transform="translate(0,-18)">
+            <text text-anchor="middle" font-family="Shippori Mincho, serif" font-size="11" font-weight="700" fill="#2A2520" letter-spacing="0.15em">いるま</text>
+            <text text-anchor="middle" y="14" font-family="Shippori Mincho, serif" font-size="11" font-weight="700" fill="#2A2520" letter-spacing="0.15em">ウェブ</text>
+            <text text-anchor="middle" y="28" font-family="Shippori Mincho, serif" font-size="11" font-weight="700" fill="#2A2520" letter-spacing="0.15em">制作所</text>
+          </g>
+
+          <!-- Three dots representing the trio -->
+          <g transform="translate(0,32)">
+            <circle cx="-12" r="2.5" fill="#E97132"/>
+            <circle cx="0" r="2.5" fill="#6B8175"/>
+            <circle cx="12" r="2.5" fill="#C95A1F"/>
+          </g>
+        </g>
+
+        <!-- Labels around the circles -->
+        <g font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#6B6259" letter-spacing="0.15em">
+          <text x="115" y="115" text-anchor="middle">SE</text>
+          <text x="365" y="115" text-anchor="middle">DESIGNER</text>
+          <text x="240" y="395" text-anchor="middle">GENERATIVE AI</text>
+        </g>
+
+        <!-- Connecting lines between labels and circles (subtle) -->
+        <g stroke="#6B6259" stroke-width="0.5" opacity="0.3" fill="none">
+          <line x1="125" y1="120" x2="145" y2="140"/>
+          <line x1="355" y1="120" x2="335" y2="140"/>
+          <line x1="240" y1="385" x2="240" y2="365"/>
+        </g>
+
+        <!-- Decorative organic line at bottom -->
+        <path d="M 60 410 Q 240 440 420 410" stroke="#E97132" stroke-width="1.5" fill="none" opacity="0.3" stroke-linecap="round"/>
+        <path d="M 80 425 Q 240 450 400 425" stroke="#E97132" stroke-width="1" fill="none" opacity="0.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+
+        <!-- Tiny accent dots -->
+        <circle cx="60" cy="100" r="3" fill="#E97132" opacity="0.6"/>
+        <circle cx="420" cy="320" r="2.5" fill="#6B8175" opacity="0.5"/>
+        <circle cx="50" cy="280" r="2" fill="#E97132" opacity="0.4"/>
+        <circle cx="430" cy="100" r="2.5" fill="#E97132" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Pain Points Preview -->
+<section class="pain-preview">
+  <div class="section-label">
+    <span class="section-label-text">YOUR CONCERNS</span>
+  </div>
+  <h2 class="section-title serif">こんなお悩み、<br>ありませんか？</h2>
+  <p class="section-subtitle">
+    多くの地域の事業者さまから、こんな声をよく聞きます。
+  </p>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7" stroke="#E97132" stroke-width="1.8"/>
+          <path d="M21 21L16 16" stroke="#E97132" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>見つけてもらえない</h3>
+      <p>ホームページがなくて、新規のお客さんに見つけてもらえない。紹介や口コミだけでは、もう限界かも…</p>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="3" width="12" height="18" rx="2" stroke="#E97132" stroke-width="1.8"/>
+          <line x1="11" y1="18" x2="13" y2="18" stroke="#E97132" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Webから来ない</h3>
+      <p>Google口コミは高評価なのに、Webから問い合わせが来ない。サイトが古くてスマホに対応していない。</p>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2V22" stroke="#E97132" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M16 6H10C8.5 6 7.5 7 7.5 8.5C7.5 10 8.5 11 10 11H14C15.5 11 16.5 12 16.5 13.5C16.5 15 15.5 16 14 16H7" stroke="#E97132" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>見積もりが高すぎる</h3>
+      <p>制作会社に見積もり依頼したら、50万〜100万円。「うちには必要ないか」と諦めていた…</p>
+    </div>
+  </div>
+</section>
+
+<!-- Color Palette Display -->
+<section class="palette-section">
+  <h3 class="palette-title">使用カラーパレット</h3>
+  <p class="palette-subtitle">主役オレンジ + クリームベース、サブにセージ。原色を抑えて目に優しい配色に。</p>
+  <div class="palette-grid">
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#E97132;"></div>
+      <div class="palette-name">主役オレンジ</div>
+      <div class="palette-code">#E97132</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#C95A1F;"></div>
+      <div class="palette-name">オレンジ濃</div>
+      <div class="palette-code">#C95A1F</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#FFF1E6;"></div>
+      <div class="palette-name">オレンジ淡</div>
+      <div class="palette-code">#FFF1E6</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#FAF7F2;"></div>
+      <div class="palette-name">クリーム</div>
+      <div class="palette-code">#FAF7F2</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#FFFFFF;border:1px solid #E8E2DA;"></div>
+      <div class="palette-name">白</div>
+      <div class="palette-code">#FFFFFF</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#2A2520;"></div>
+      <div class="palette-name">チャコール</div>
+      <div class="palette-code">#2A2520</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#6B6259;"></div>
+      <div class="palette-name">グレー</div>
+      <div class="palette-code">#6B6259</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#6B8175;"></div>
+      <div class="palette-name">セージ</div>
+      <div class="palette-code">#6B8175</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

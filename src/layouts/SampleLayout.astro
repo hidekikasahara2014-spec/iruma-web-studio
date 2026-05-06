@@ -5,10 +5,94 @@ interface Props {
   title: string;
   description?: string;
   industry: string;
-  accentColor?: string;
 }
-const { title, description = title, industry, accentColor = "#1F4E78" } = Astro.props;
+const { title, description = title, industry } = Astro.props;
 ---
+<style>
+  .sample-annotation {
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    padding: 12px 48px;
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .sample-annotation a {
+    color: var(--color-orange);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 16px;
+    transition: opacity 0.2s;
+  }
+  .sample-annotation a:hover { opacity: 0.8; }
+  .sample-cta-footer {
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    padding: 80px 48px;
+    text-align: center;
+  }
+  .sample-cta-title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .sample-cta-sub {
+    font-size: 14px;
+    color: var(--color-gray-light);
+    margin-bottom: 36px;
+    font-family: var(--font-en);
+    letter-spacing: 0.05em;
+  }
+  .sample-cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .sample-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-orange);
+    color: var(--color-white);
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.25s;
+  }
+  .sample-btn-primary:hover {
+    background: var(--color-orange-deep);
+    transform: translateY(-2px);
+  }
+  .sample-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: var(--color-cream);
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.25s;
+  }
+  .sample-btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  @media (max-width: 768px) {
+    .sample-annotation { padding: 12px 16px; font-size: 12px; }
+    .sample-cta-footer { padding: 60px 24px; }
+    .sample-cta-title { font-size: 24px; }
+  }
+</style>
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -19,28 +103,29 @@ const { title, description = title, industry, accentColor = "#1F4E78" } = Astro.
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
-<body class="bg-white text-gray-800 min-h-screen flex flex-col">
-  <!-- サンプル注釈バー -->
-  <div class="bg-amber-400 text-gray-900 text-sm py-2 px-4 text-center font-medium sticky top-0 z-50">
-    📌 これは<strong>サンプルサイト</strong>です。架空の事業者として作成しています。
-    <a href="/samples" class="underline ml-3 font-bold hover:text-blue-900">← サンプル一覧に戻る</a>
-    <a href="/" class="underline ml-3 font-bold hover:text-blue-900">← 制作会社サイトへ</a>
+<body class="min-h-screen flex flex-col">
+
+  <div class="sample-annotation">
+    これは<strong>サンプルサイト</strong>です。架空の事業者として作成しています。
+    <a href="/samples">サンプル一覧 →</a>
+    <a href="/">制作会社サイトへ →</a>
   </div>
 
   <main class="flex-1">
     <slot />
   </main>
 
-  <!-- サンプルフッターCTA -->
-  <div class="bg-blue-900 text-white py-10 px-4 text-center">
-    <p class="text-xl font-bold mb-2">このようなホームページを<span class="text-yellow-400">5万円〜</span>で制作できます</p>
-    <p class="text-blue-200 mb-6 text-sm">いるまウェブ制作所 | SE × デザイナー × 生成AI</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/pricing" class="bg-yellow-400 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-300 transition-colors">料金プランを見る</a>
-      <a href="/contact" class="border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition-colors">無料相談を申し込む</a>
+  <div class="sample-cta-footer">
+    <p class="sample-cta-title">
+      このようなホームページを<span style="color: var(--color-orange);">5万円〜</span>で制作できます
+    </p>
+    <p class="sample-cta-sub">いるまウェブ制作所 — SE × デザイナー × 生成AI</p>
+    <div class="sample-cta-btns">
+      <a href="/pricing" class="sample-btn-primary">料金プランを見る →</a>
+      <a href="/contact" class="sample-btn-secondary">無料相談を申し込む</a>
     </div>
   </div>
 </body>

@@ -17,18 +17,79 @@ const faqItems = [
   { q: "領収書・請求書の発行は対応していますか？", a: "もちろん対応しています。インボイス登録番号も記載した適格請求書（インボイス）を発行します。" },
 ];
 ---
+<style>
+  .page-hero {
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    padding: 80px 80px 72px;
+    position: relative; overflow: hidden;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--color-orange-tint) 0%, transparent 70%);
+    border-radius: 50%; opacity: 0.15; pointer-events: none;
+  }
+  .page-hero-label {
+    font-family: var(--font-en); font-size: 12px; font-weight: 600;
+    color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .page-hero-label::before { content: ''; width: 32px; height: 1px; background: var(--color-orange); }
+  .page-hero h1 { font-family: var(--font-serif); font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; margin-bottom: 12px; color: var(--color-cream); }
+  .page-hero p { font-size: 16px; color: var(--color-gray-light); }
+
+  .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .section-label-line { width: 40px; height: 1px; background: var(--color-orange); flex-shrink: 0; }
+  .section-label-text { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; }
+  .section-title { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; }
+  .section-sub { color: var(--color-gray); font-size: 15px; margin-bottom: 48px; }
+
+  .maintenance-card {
+    background: var(--color-white); border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-light); padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .maintenance-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+  .m-name { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 4px; }
+  .m-price { font-family: var(--font-en); font-size: 28px; font-weight: 600; color: var(--color-orange); margin-bottom: 20px; }
+  .m-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--color-gray); padding: 6px 0; }
+  .m-check { color: var(--color-sage); flex-shrink: 0; margin-top: 2px; }
+
+  .option-card {
+    background: var(--color-cream); border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-md); padding: 16px 20px;
+  }
+  .option-label { font-size: 14px; font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px; }
+  .option-price { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: var(--color-orange); }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 60px 24px; }
+    .section-title { font-size: 24px; }
+  }
+</style>
+
 <MainLayout title="料金プラン" description="5万円〜のシンプル3プランと月額保守プラン。すべて税抜・明朗会計。">
 
-  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
-    <h1 class="text-3xl md:text-4xl font-black mb-3">シンプルでわかりやすい3プラン</h1>
-    <p class="text-blue-200">すべて税抜価格です。無料相談・お見積もりはお気軽に。</p>
+  <div class="page-hero">
+    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+      <p class="page-hero-label">PRICING</p>
+      <h1>シンプルでわかりやすい3プラン</h1>
+      <p>すべて税抜価格です。無料相談・お見積もりはお気軽に。</p>
+    </div>
   </div>
 
   <!-- 制作プラン -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">制作プラン</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">PRODUCTION PLAN</span>
+      </div>
+      <h2 class="section-title">制作プラン</h2>
+      <p class="section-sub">あなたの規模・ご予算に合わせてお選びください。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" style="padding-top: 24px;">
         <PricingCard
           name="Starterプラン"
           price="50,000円"
@@ -81,18 +142,18 @@ const faqItems = [
       </div>
 
       <!-- オプション -->
-      <div class="mt-10 bg-gray-50 rounded-xl p-6">
-        <h3 class="font-bold text-gray-800 mb-4">Professionalプランのオプション例</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700">
+      <div style="margin-top: 48px; background: var(--color-cream-deep); border-radius: var(--radius-lg); padding: 32px 36px;">
+        <h3 style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 20px;">Professionalプランのオプション例</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             ["多言語対応（英語+1言語）", "+100,000円"],
             ["ECショップ機能", "+200,000円〜"],
             ["採用ページ強化", "+50,000円"],
             ["LP制作1本", "+80,000円"],
           ].map(([label, price]) => (
-            <div class="bg-white rounded-lg p-4 border border-gray-200">
-              <p class="font-medium mb-1">{label}</p>
-              <p class="text-blue-900 font-bold">{price}</p>
+            <div class="option-card">
+              <p class="option-label">{label}</p>
+              <p class="option-price">{price}</p>
             </div>
           ))}
         </div>
@@ -101,23 +162,25 @@ const faqItems = [
   </section>
 
   <!-- 保守プラン -->
-  <section class="py-16 px-4 bg-gray-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-3">保守プラン（月額）</h2>
-      <p class="text-center text-gray-500 mb-10">制作後も安心のサポート。制作プランと同時にご契約ください。</p>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">MAINTENANCE PLAN</span>
+      </div>
+      <h2 class="section-title">保守プラン（月額）</h2>
+      <p class="section-sub">制作後も安心のサポート。制作プランと同時にご契約ください。</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {maintenancePlans.map(p => (
-          <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-            <p class="font-black text-lg text-gray-800 mb-1">{p.name}</p>
-            <p class="text-2xl font-bold text-blue-900 mb-4">{p.price}</p>
-            <ul class="space-y-2">
-              {p.features.map(f => (
-                <li class="flex items-start gap-2 text-sm text-gray-700">
-                  <span class="text-green-500 font-bold mt-0.5">✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="maintenance-card">
+            <p class="m-name">{p.name}</p>
+            <p class="m-price">{p.price}</p>
+            {p.features.map(f => (
+              <div class="m-feature">
+                <svg class="m-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12L10 17L20 7"/></svg>
+                <span>{f}</span>
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -125,20 +188,27 @@ const faqItems = [
   </section>
 
   <!-- FAQ -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">料金についてよくある質問</h2>
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">FAQ</span>
+      </div>
+      <h2 class="section-title">料金についてよくある質問</h2>
+      <p class="section-sub" style="margin-bottom: 32px;">お気軽にお問い合わせください。</p>
       <FAQ items={faqItems} />
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="bg-blue-900 text-white py-14 px-4 text-center">
-    <h2 class="text-2xl font-black mb-4">まずは無料相談から</h2>
-    <p class="text-blue-200 mb-8">ご予算・ご要望をお聞きして、最適なプランをご提案します。</p>
-    <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
-      無料相談を申し込む →
-    </a>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px; text-align: center;">
+    <div style="max-width: 640px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずは無料相談から</h2>
+      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">ご予算・ご要望をお聞きして、最適なプランをご提案します。</p>
+      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--color-orange)';this.style.transform='none'">
+        無料相談を申し込む →
+      </a>
+    </div>
   </section>
 
 </MainLayout>

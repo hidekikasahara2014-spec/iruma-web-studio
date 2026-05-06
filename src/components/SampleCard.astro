@@ -6,10 +6,77 @@ interface Props {
   slug: string;
 }
 const { icon, name, desc, slug } = Astro.props;
+
+const svgIcons: Record<string, string> = {
+  restaurant: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2V8C3 9 4 10 5 10V22M9 2V8C9 9 8 10 7 10M5 10V2"/><path d="M19 2C16 2 14 5 14 9C14 11 15 12 16 13L17 22M19 2V13"/></svg>`,
+  "beauty-salon": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`,
+  clinic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12H15M12 9V15M5 22V8L12 3L19 8V22M5 22H19"/></svg>`,
+  construction: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21H21M5 21V10L12 5L19 10V21M9 21V14H15V21"/></svg>`,
+  "auto-repair": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V12L6 7H18L21 12V17H19M5 17V19H8V17M5 17H19M19 17V19H16V17"/><circle cx="7.5" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="16.5" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+  "cram-school": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5C4 18 5 17 6.5 17H20V3H6.5C5 3 4 4 4 5.5V19.5ZM4 19.5C4 21 5 22 6.5 22H20V20"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="16" y2="11"/></svg>`,
+  dental: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C10 22 9 18 9 14C9 12 8 10 6 10C5 10 4 9 4 7C4 4 7 2 12 2C17 2 20 4 20 7C20 9 19 10 18 10C16 10 15 12 15 14C15 18 14 22 12 22Z"/></svg>`,
+};
+const svgMarkup = svgIcons[slug] ?? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>`;
 ---
-<a href={`/samples/${slug}`} class="group flex flex-col items-center text-center p-6 bg-white rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200">
-  <span class="text-5xl mb-4">{icon}</span>
-  <h3 class="font-bold text-gray-800 text-base mb-2 group-hover:text-blue-900 transition-colors">{name}</h3>
-  <p class="text-sm text-gray-500 mb-4 leading-relaxed">{desc}</p>
-  <span class="text-blue-900 text-sm font-medium group-hover:underline">サンプルを見る →</span>
+<style>
+  .sample-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 24px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-light);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+  }
+  .sample-card:hover {
+    border-color: var(--color-orange);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .s-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-orange-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--color-orange);
+    transition: all 0.3s;
+  }
+  .sample-card:hover .s-icon {
+    background: var(--color-orange);
+    color: var(--color-white);
+  }
+  .s-name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin-bottom: 8px;
+  }
+  .s-desc {
+    font-size: 13px;
+    color: var(--color-gray);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .s-link {
+    font-size: 13px;
+    color: var(--color-orange);
+    font-weight: 600;
+    font-family: var(--font-en);
+  }
+</style>
+
+<a href={`/samples/${slug}`} class="sample-card">
+  <div class="s-icon" set:html={svgMarkup}></div>
+  <p class="s-name">{name}</p>
+  <p class="s-desc">{desc}</p>
+  <span class="s-link">サンプルを見る →</span>
 </a>

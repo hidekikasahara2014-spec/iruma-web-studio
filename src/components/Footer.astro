@@ -1,41 +1,119 @@
 ---
 import { site } from '../config/site';
 ---
-<footer class="bg-gray-900 text-gray-300 mt-auto">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<style>
+  .site-footer {
+    background: var(--color-charcoal);
+    color: var(--color-gray-light);
+    padding: 80px 48px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .footer-logo-text {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-cream);
+    letter-spacing: 0.02em;
+  }
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--color-gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  .footer-info {
+    font-size: 13px;
+    color: var(--color-gray);
+    line-height: 2;
+  }
+  .footer-heading {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-cream);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .footer-link {
+    display: block;
+    font-size: 13px;
+    color: var(--color-gray-light);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--color-orange); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 48px;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-gray);
+    font-family: var(--font-en);
+  }
+  @media (max-width: 768px) {
+    .site-footer { padding: 60px 24px 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
       <div>
-        <p class="font-bold text-white text-lg mb-2">{site.name}</p>
-        <p class="text-sm text-gray-400 mb-4">{site.tagline}</p>
-        <p class="text-sm">{site.address}</p>
-        <p class="text-sm">TEL: {site.tel}</p>
-        <p class="text-sm">{site.email}</p>
+        <div class="footer-logo-wrap">
+          <svg viewBox="0 0 36 36" width="28" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="16" fill="#E97132"/>
+            <path d="M11 14 L11 22 M14 22 L14 14 L19 22 L19 14 M22 14 L25 22 L28 14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="footer-logo-text">{site.name}</p>
+        </div>
+        <p class="footer-tagline">{site.tagline}</p>
+        <p class="footer-info">
+          {site.address && <>{site.address}<br /></>}
+          TEL: {site.tel}<br />
+          {site.email}
+        </p>
       </div>
+
       <div>
-        <p class="font-bold text-white mb-3">ページ</p>
-        <ul class="space-y-1 text-sm">
-          {[
-            ["/","ホーム"],["/service","サービス"],["/pricing","料金プラン"],
-            ["/samples","業種別サンプル"],["/about","会社概要"],["/contact","お問い合わせ"],
-            ["/privacy","プライバシーポリシー"]
-          ].map(([href, label]) => (
-            <li><a href={href} class="hover:text-white transition-colors">{label}</a></li>
-          ))}
-        </ul>
+        <p class="footer-heading">ページ</p>
+        {[
+          ["/","ホーム"],["/service","サービス"],["/pricing","料金プラン"],
+          ["/samples","業種別サンプル"],["/about","会社概要"],["/contact","お問い合わせ"],
+          ["/privacy","プライバシーポリシー"]
+        ].map(([href, label]) => (
+          <a href={href} class="footer-link">{label}</a>
+        ))}
       </div>
+
       <div>
-        <p class="font-bold text-white mb-3">業種別サンプル</p>
-        <ul class="space-y-1 text-sm">
-          {[
-            ["飲食店","restaurant"],["美容室","beauty-salon"],["整体・接骨院","clinic"],
-            ["工務店","construction"],["自動車整備","auto-repair"],["学習塾","cram-school"],["歯科医院","dental"]
-          ].map(([label, slug]) => (
-            <li><a href={`/samples/${slug}`} class="hover:text-white transition-colors">{label}</a></li>
-          ))}
-        </ul>
+        <p class="footer-heading">業種別サンプル</p>
+        {[
+          ["飲食店","restaurant"],["美容室","beauty-salon"],["整体・接骨院","clinic"],
+          ["工務店","construction"],["自動車整備","auto-repair"],["学習塾","cram-school"],["歯科医院","dental"]
+        ].map(([label, slug]) => (
+          <a href={`/samples/${slug}`} class="footer-link">{label}</a>
+        ))}
       </div>
     </div>
-    <div class="border-t border-gray-700 mt-8 pt-6 text-center text-xs text-gray-500">
+
+    <div class="footer-bottom">
       <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
     </div>
   </div>

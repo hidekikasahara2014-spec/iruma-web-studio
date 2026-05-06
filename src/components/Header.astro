@@ -6,56 +6,166 @@ const navLinks = [
   { href: "/pricing", label: "料金" },
   { href: "/samples", label: "サンプル" },
   { href: "/about", label: "会社概要" },
-  { href: "/contact", label: "お問い合わせ" },
 ];
 ---
-<header class="bg-white shadow-sm sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-2 font-bold text-blue-900 text-lg">
-      <span class="text-2xl">🌐</span>
-      <span class="hidden sm:inline">{site.name}</span>
+<style>
+  .site-header {
+    background: rgba(250, 247, 242, 0.88);
+    border-bottom: 1px solid var(--color-gray-light);
+    backdrop-filter: blur(10px);
+    padding: 18px 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-text {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-charcoal);
+    letter-spacing: 0.02em;
+  }
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+  .desktop-nav a {
+    text-decoration: none;
+    color: var(--color-charcoal);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .desktop-nav a:hover { color: var(--color-orange); }
+  .nav-cta {
+    background: var(--color-orange) !important;
+    color: var(--color-white) !important;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover {
+    background: var(--color-orange-deep) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  .hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--color-charcoal);
+  }
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--color-cream);
+    z-index: 90;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  .mobile-overlay.open { display: flex; }
+  .mobile-overlay a {
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    transition: color 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .mobile-overlay a:hover { color: var(--color-orange); }
+  .mobile-overlay .mobile-cta {
+    background: var(--color-orange);
+    color: var(--color-white) !important;
+    padding: 14px 40px;
+    border-radius: var(--radius-pill);
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    .site-header { padding: 16px 24px; }
+    .desktop-nav { display: none; }
+    .hamburger-btn { display: block; }
+  }
+</style>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="logo-link">
+      <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="いるまウェブ制作所ロゴ">
+        <circle cx="18" cy="18" r="16" fill="#E97132"/>
+        <path d="M11 14 L11 22 M14 22 L14 14 L19 22 L19 14 M22 14 L25 22 L28 14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text hidden sm:inline">{site.name}</span>
     </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6">
+    <nav class="desktop-nav">
       {navLinks.map(l => (
-        <a href={l.href} class="text-gray-700 hover:text-blue-900 font-medium text-sm transition-colors">{l.label}</a>
+        <a href={l.href}>{l.label}</a>
       ))}
-      <a href="/contact" class="bg-orange-400 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-500 transition-colors text-sm">
-        無料相談
-      </a>
+      <a href="/contact" class="nav-cta">無料相談</a>
     </nav>
 
-    <!-- Mobile hamburger -->
-    <button id="menu-btn" class="md:hidden p-2 rounded text-gray-700" aria-label="メニュー">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    <button id="menu-btn" class="hamburger-btn" aria-label="メニューを開く" aria-expanded="false">
+      <svg id="icon-open" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg id="icon-close" class="hidden" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
   </div>
-
-  <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 pb-4">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col gap-1 pt-2">
-      {navLinks.map(l => (
-        <a href={l.href} class="py-2 text-gray-700 hover:text-blue-900 font-medium border-b border-gray-50">{l.label}</a>
-      ))}
-      <a href="/contact" class="mt-2 bg-orange-400 text-white font-bold px-4 py-3 rounded-lg text-center hover:bg-orange-500 transition-colors">
-        無料相談を申し込む
-      </a>
-    </div>
-  </nav>
 </header>
+
+<div id="mobile-overlay" class="mobile-overlay" role="dialog" aria-label="ナビゲーションメニュー">
+  {navLinks.map(l => (
+    <a href={l.href}>{l.label}</a>
+  ))}
+  <a href="/contact" class="mobile-cta">無料相談</a>
+</div>
 
 <script>
   const btn = document.getElementById('menu-btn')!;
-  const menu = document.getElementById('mobile-menu')!;
+  const overlay = document.getElementById('mobile-overlay')!;
   const iconOpen = document.getElementById('icon-open')!;
   const iconClose = document.getElementById('icon-close')!;
+
   btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('hidden');
-    iconOpen.classList.toggle('hidden', !open);
-    iconClose.classList.toggle('hidden', open);
+    const isOpen = overlay.classList.contains('open');
+    overlay.classList.toggle('open', !isOpen);
+    iconOpen.classList.toggle('hidden', !isOpen);
+    iconClose.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      overlay.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
   });
 </script>

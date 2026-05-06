@@ -1,41 +1,186 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 ---
+<style>
+  .page-hero {
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    padding: 80px 80px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--color-orange-tint) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .page-hero-label {
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-orange);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .page-hero-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--color-orange);
+  }
+  .page-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--color-cream);
+  }
+  .page-hero p {
+    font-size: 16px;
+    color: var(--color-gray-light);
+    max-width: 560px;
+  }
+
+  .section-label {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .section-label-line { width: 40px; height: 1px; background: var(--color-orange); flex-shrink: 0; }
+  .section-label-text {
+    font-family: var(--font-en); font-size: 12px; font-weight: 600;
+    color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--font-serif); font-size: 32px; font-weight: 700;
+    color: var(--color-charcoal); margin-bottom: 12px; line-height: 1.4;
+  }
+  .section-sub { color: var(--color-gray); font-size: 15px; margin-bottom: 48px; }
+
+  /* Process Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 32px; position: relative; padding-bottom: 32px; }
+  .timeline-item:not(:last-child) .timeline-line {
+    position: absolute; left: 22px; top: 48px; bottom: 0; width: 2px;
+    background: var(--color-gray-light);
+  }
+  .timeline-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--color-orange); color: var(--color-white);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-en); font-size: 13px; font-weight: 700;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .timeline-content {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg); padding: 24px 28px; flex: 1;
+  }
+  .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .timeline-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--color-charcoal); }
+  .timeline-duration {
+    font-size: 12px; font-family: var(--font-en);
+    background: var(--color-orange-light); color: var(--color-orange);
+    padding: 4px 12px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0;
+  }
+  .timeline-desc { font-size: 14px; color: var(--color-gray); line-height: 1.85; }
+
+  /* Quality Items */
+  .quality-card {
+    background: var(--color-white); border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-light); padding: 24px; display: flex; gap: 16px;
+    transition: all 0.3s;
+  }
+  .quality-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+  .quality-icon {
+    width: 48px; height: 48px; background: var(--color-orange-light);
+    border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+    color: var(--color-orange); flex-shrink: 0; transition: all 0.3s;
+  }
+  .quality-card:hover .quality-icon { background: var(--color-orange); color: var(--color-white); }
+  .quality-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 4px; }
+  .quality-desc { font-size: 13px; color: var(--color-gray); line-height: 1.7; }
+
+  /* AI Usage */
+  .ai-block {
+    border-left: 3px solid var(--color-orange);
+    padding: 20px 24px;
+    background: var(--color-cream);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .ai-badge {
+    display: inline-block; font-size: 12px; font-family: var(--font-en); font-weight: 600;
+    background: var(--color-orange-light); color: var(--color-orange);
+    padding: 3px 12px; border-radius: var(--radius-pill); margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .ai-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 6px; }
+  .ai-body { font-size: 14px; color: var(--color-gray); line-height: 1.8; }
+
+  /* Industry */
+  .industry-card {
+    background: var(--color-white); border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg); padding: 24px; transition: all 0.3s;
+  }
+  .industry-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+  .industry-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .industry-icon {
+    width: 40px; height: 40px; background: var(--color-orange-light);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+    color: var(--color-orange);
+  }
+  .industry-name { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-charcoal); }
+  .industry-point { font-size: 13px; color: var(--color-gray); padding: 3px 0; display: flex; gap: 8px; }
+  .industry-arrow { color: var(--color-orange); flex-shrink: 0; }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 60px 24px; }
+    .section-title { font-size: 24px; }
+  }
+</style>
+
 <MainLayout title="サービス詳細" description="制作プロセス・品質基準・AIの活用方法・対応業種を詳しく解説します。">
 
-  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
-    <h1 class="text-3xl md:text-4xl font-black mb-3">私たちのサービスについて</h1>
-    <p class="text-blue-200">安心・高品質・低価格を実現する仕組みをご説明します。</p>
+  <div class="page-hero">
+    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+      <p class="page-hero-label">SERVICE</p>
+      <h1>私たちのサービスについて</h1>
+      <p>安心・高品質・低価格を実現する仕組みをご説明します。</p>
+    </div>
   </div>
 
   <!-- 制作プロセス -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-3">制作プロセス</h2>
-      <p class="text-center text-gray-500 mb-12">お問い合わせから公開まで、わかりやすい5ステップ。</p>
-      <div class="flex flex-col gap-0">
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">PROCESS</span>
+      </div>
+      <h2 class="section-title">制作プロセス</h2>
+      <p class="section-sub">お問い合わせから公開まで、わかりやすい5ステップ。</p>
+      <div class="timeline">
         {[
-          { step: "01", title: "お問い合わせ・無料相談", icon: "💬", desc: "オンライン（ビデオ通話）または対面で30分の無料相談を実施。現状のお困りごとやご要望をヒアリングします。", duration: "30分" },
-          { step: "02", title: "プラン決定・お見積もり", icon: "📋", desc: "ヒアリング内容をもとに最適なプランとお見積もりをご提示。ご納得いただいてから正式発注です。", duration: "1〜3日" },
-          { step: "03", title: "ヒアリング・素材ご提供", icon: "📸", desc: "（Standardプラン以上）詳細なヒアリングと、ロゴ・写真・テキスト等の素材をご提供いただきます。", duration: "1〜2週間" },
-          { step: "04", title: "制作・確認", icon: "⚙️", desc: "生成AIを活用しながら高速に制作。仮公開URLで確認いただき、修正を反映します（修正2回まで無料）。", duration: "7日〜4週間" },
-          { step: "05", title: "公開・運用開始", icon: "🚀", desc: "本番サーバーへの公開作業を代行。Google Analytics・Search Console設置後、保守プランへ移行します。", duration: "1〜3日" },
-        ].map(({ step, title, icon, desc, duration }, i) => (
-          <div class="flex gap-4 md:gap-8 relative pb-8">
-            {i < 4 && <div class="absolute left-6 top-14 bottom-0 w-0.5 bg-blue-200 z-0"></div>}
-            <div class="relative z-10 flex-shrink-0">
-              <div class="w-12 h-12 bg-blue-900 text-white rounded-full flex items-center justify-center font-black text-sm">
-                {step}
+          { step: "01", title: "お問い合わせ・無料相談", desc: "オンライン（ビデオ通話）または対面で30分の無料相談を実施。現状のお困りごとやご要望をヒアリングします。", duration: "30分" },
+          { step: "02", title: "プラン決定・お見積もり", desc: "ヒアリング内容をもとに最適なプランとお見積もりをご提示。ご納得いただいてから正式発注です。", duration: "1〜3日" },
+          { step: "03", title: "ヒアリング・素材ご提供", desc: "（Standardプラン以上）詳細なヒアリングと、ロゴ・写真・テキスト等の素材をご提供いただきます。", duration: "1〜2週間" },
+          { step: "04", title: "制作・確認", desc: "生成AIを活用しながら高速に制作。仮公開URLで確認いただき、修正を反映します（修正2回まで無料）。", duration: "7日〜4週間" },
+          { step: "05", title: "公開・運用開始", desc: "本番サーバーへの公開作業を代行。Google Analytics・Search Console設置後、保守プランへ移行します。", duration: "1〜3日" },
+        ].map(({ step, title, desc, duration }, i) => (
+          <div class="timeline-item">
+            <div class="timeline-line"></div>
+            <div class="timeline-num">{step}</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3 class="timeline-title">{title}</h3>
+                <span class="timeline-duration">{duration}</span>
               </div>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-6 flex-1">
-              <div class="flex items-start justify-between mb-2">
-                <h3 class="font-bold text-gray-800 text-lg">
-                  <span class="mr-2">{icon}</span>{title}
-                </h3>
-                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full ml-2 whitespace-nowrap">{duration}</span>
-              </div>
-              <p class="text-gray-600 text-sm leading-relaxed">{desc}</p>
+              <p class="timeline-desc">{desc}</p>
             </div>
           </div>
         ))}
@@ -44,24 +189,28 @@ import MainLayout from '../layouts/MainLayout.astro';
   </section>
 
   <!-- 品質・技術 -->
-  <section class="py-16 px-4 bg-gray-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-3">技術と品質の担保</h2>
-      <p class="text-center text-gray-500 mb-10">すべてのプランで標準対応する品質基準です。</p>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">QUALITY</span>
+      </div>
+      <h2 class="section-title">技術と品質の担保</h2>
+      <p class="section-sub">すべてのプランで標準対応する品質基準です。</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
-          { icon: "🔒", title: "HTTPS（SSL）標準対応", desc: "全サイト無料SSL証明書を設定。検索エンジン評価と安心感を両立。" },
-          { icon: "📱", title: "スマートフォン完全対応", desc: "レスポンシブデザインで全デバイスで快適に表示されます。" },
-          { icon: "📊", title: "Google Analytics設置", desc: "Standard以上で設置。アクセス状況をデータで把握できます。" },
-          { icon: "⚡", title: "表示速度最適化", desc: "Lighthouse90点以上を目標に画像圧縮・コード最適化を実施。" },
-          { icon: "🔍", title: "基本SEO設定", desc: "タイトル・メタディスクリプション・構造化データを適切に設定。" },
-          { icon: "🛡️", title: "セキュリティ対策", desc: "（Proプラン）WAF・定期バックアップ・脆弱性スキャンを実施。" },
-        ].map(({ icon, title, desc }) => (
-          <div class="bg-white rounded-xl p-5 border border-gray-200 flex gap-4">
-            <span class="text-2xl flex-shrink-0">{icon}</span>
+          { title: "HTTPS（SSL）標準対応", desc: "全サイト無料SSL証明書を設定。検索エンジン評価と安心感を両立。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M8 11V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V11"/></svg>` },
+          { title: "スマートフォン完全対応", desc: "レスポンシブデザインで全デバイスで快適に表示されます。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>` },
+          { title: "Google Analytics設置", desc: "Standard以上で設置。アクセス状況をデータで把握できます。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>` },
+          { title: "表示速度最適化", desc: "Lighthouse90点以上を目標に画像圧縮・コード最適化を実施。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>` },
+          { title: "基本SEO設定", desc: "タイトル・メタディスクリプション・構造化データを適切に設定。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21L16 16"/></svg>` },
+          { title: "セキュリティ対策", desc: "（Proプラン）WAF・定期バックアップ・脆弱性スキャンを実施。", svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 6V12C3 17 6.5 21 12 22C17.5 21 21 17 21 12V6L12 2Z"/><path d="M9 12L11 14L15 10"/></svg>` },
+        ].map(({ title, desc, svg }) => (
+          <div class="quality-card">
+            <div class="quality-icon" set:html={svg}></div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">{title}</h3>
-              <p class="text-sm text-gray-600">{desc}</p>
+              <h3 class="quality-title">{title}</h3>
+              <p class="quality-desc">{desc}</p>
             </div>
           </div>
         ))}
@@ -70,23 +219,25 @@ import MainLayout from '../layouts/MainLayout.astro';
   </section>
 
   <!-- AIの活用方法 -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-2">AIで効率化、人で品質担保</h2>
-      <p class="text-center text-gray-500 mb-10">生成AIをどのように活用しているかを透明性を持ってお伝えします。</p>
-      <div class="space-y-4">
+  <section style="background: var(--color-white); padding: 100px 80px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">AI USAGE</span>
+      </div>
+      <h2 class="section-title">AIで効率化、人で品質担保</h2>
+      <p class="section-sub">生成AIをどのように活用しているかを透明性を持ってお伝えします。</p>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
         {[
-          { title: "文章・構成にAI活用", badge: "✅ AI使用", body: "文章ドラフト・構成案作成にAIを使用し、その後デザイナー/SEが必ずレビュー・編集します。" },
-          { title: "画像素材にAI生成を活用", badge: "✅ AI使用", body: "AI生成画像とストックフォトを組み合わせて使用。プロ品質の画像を低コストで提供できます。" },
-          { title: "コーディングにAI補助を活用", badge: "✅ AI補助", body: "コーディング補助にAIを使用し、必ず動作確認・セキュリティチェックを実施します。" },
-          { title: "お客様データは学習に使用しない", badge: "🔒 プライバシー保護", body: "ご提供いただいた情報・素材はAIの学習データとして使用されない設定で運用します。" },
+          { title: "文章・構成にAI活用", badge: "AI使用", body: "文章ドラフト・構成案作成にAIを使用し、その後デザイナー/SEが必ずレビュー・編集します。" },
+          { title: "画像素材にAI生成を活用", badge: "AI使用", body: "AI生成画像とストックフォトを組み合わせて使用。プロ品質の画像を低コストで提供できます。" },
+          { title: "コーディングにAI補助を活用", badge: "AI補助", body: "コーディング補助にAIを使用し、必ず動作確認・セキュリティチェックを実施します。" },
+          { title: "お客様データは学習に使用しない", badge: "プライバシー保護", body: "ご提供いただいた情報・素材はAIの学習データとして使用されない設定で運用します。" },
         ].map(({ title, badge, body }) => (
-          <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">{badge}</span>
-              <h3 class="font-bold text-gray-800">{title}</h3>
-            </div>
-            <p class="text-sm text-gray-600">{body}</p>
+          <div class="ai-block">
+            <span class="ai-badge">{badge}</span>
+            <h3 class="ai-title">{title}</h3>
+            <p class="ai-body">{body}</p>
           </div>
         ))}
       </div>
@@ -94,27 +245,44 @@ import MainLayout from '../layouts/MainLayout.astro';
   </section>
 
   <!-- 対応業種 -->
-  <section class="py-16 px-4 bg-gray-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">こんな業種に強い</h2>
+  <section style="background: var(--color-cream-deep); padding: 100px 80px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">INDUSTRIES</span>
+      </div>
+      <h2 class="section-title">こんな業種に強い</h2>
+      <p class="section-sub">地域密着型の7業種に特化したテンプレートを用意しています。</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
-          { icon: "🍽️", name: "飲食店・カフェ", points: ["メニュー・営業時間の見やすい表示","Googleマップ埋め込み","予約・問い合わせフォーム"] },
-          { icon: "✂️", name: "美容室・理容室", points: ["スタイリスト紹介・ポートフォリオ","料金表の見やすいレイアウト","ホットペッパービューティー連携サポート"] },
-          { icon: "🏥", name: "整体・接骨院", points: ["施術メニュー・症状別のわかりやすい説明","院長・スタッフ紹介で信頼感UP","EAT対応（専門性の訴求）"] },
-          { icon: "🏗️", name: "工務店・リフォーム", points: ["施工事例ギャラリー","お見積もり相談フォーム","地域密着・実績の訴求"] },
-          { icon: "🚗", name: "自動車整備工場", points: ["車検・整備メニューの料金表","予約フォーム","設備・工場紹介"] },
-          { icon: "📚", name: "学習塾", points: ["コース・料金の明示","体験授業申し込みフォーム","合格実績・講師紹介"] },
-          { icon: "🦷", name: "歯科医院", points: ["診療科目・治療内容の説明","初診予約フォーム","衛生管理・設備のアピール"] },
-        ].map(({ icon, name, points }) => (
-          <div class="bg-white rounded-xl p-5 border border-gray-200">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-2xl">{icon}</span>
-              <h3 class="font-bold text-gray-800">{name}</h3>
+          { name: "飲食店・カフェ", points: ["メニュー・営業時間の見やすい表示","Googleマップ埋め込み","予約・問い合わせフォーム"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2V8C3 9 4 10 5 10V22M9 2V8C9 9 8 10 7 10M5 10V2"/><path d="M19 2C16 2 14 5 14 9C14 11 15 12 16 13L17 22M19 2V13"/></svg>` },
+          { name: "美容室・理容室", points: ["スタイリスト紹介・ポートフォリオ","料金表の見やすいレイアウト","ホットペッパービューティー連携サポート"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>` },
+          { name: "整体・接骨院", points: ["施術メニュー・症状別のわかりやすい説明","院長・スタッフ紹介で信頼感UP","EAT対応（専門性の訴求）"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12H15M12 9V15M5 22V8L12 3L19 8V22M5 22H19"/></svg>` },
+          { name: "工務店・リフォーム", points: ["施工事例ギャラリー","お見積もり相談フォーム","地域密着・実績の訴求"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21H21M5 21V10L12 5L19 10V21M9 21V14H15V21"/></svg>` },
+          { name: "自動車整備工場", points: ["車検・整備メニューの料金表","予約フォーム","設備・工場紹介"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V12L6 7H18L21 12V17H19M5 17V19H8V17M5 17H19M19 17V19H16V17"/><circle cx="7.5" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="16.5" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg>` },
+          { name: "学習塾", points: ["コース・料金の明示","体験授業申し込みフォーム","合格実績・講師紹介"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5C4 18 5 17 6.5 17H20V3H6.5C5 3 4 4 4 5.5V19.5ZM4 19.5C4 21 5 22 6.5 22H20V20"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="16" y2="11"/></svg>` },
+          { name: "歯科医院", points: ["診療科目・治療内容の説明","初診予約フォーム","衛生管理・設備のアピール"],
+            svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C10 22 9 18 9 14C9 12 8 10 6 10C5 10 4 9 4 7C4 4 7 2 12 2C17 2 20 4 20 7C20 9 19 10 18 10C16 10 15 12 15 14C15 18 14 22 12 22Z"/></svg>` },
+        ].map(({ name, points, svg }) => (
+          <div class="industry-card">
+            <div class="industry-header">
+              <div class="industry-icon" set:html={svg}></div>
+              <h3 class="industry-name">{name}</h3>
             </div>
-            <ul class="space-y-1">
-              {points.map(p => <li class="text-sm text-gray-600 flex gap-2"><span class="text-blue-500">→</span>{p}</li>)}
-            </ul>
+            <div>
+              {points.map(p => (
+                <div class="industry-point">
+                  <span class="industry-arrow">→</span>
+                  <span>{p}</span>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -122,12 +290,16 @@ import MainLayout from '../layouts/MainLayout.astro';
   </section>
 
   <!-- CTA -->
-  <section class="bg-blue-900 text-white py-14 px-4 text-center">
-    <h2 class="text-2xl font-black mb-8">気になったら、まずご相談ください</h2>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/pricing" class="bg-orange-400 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-500 transition-colors text-lg">料金を見る</a>
-      <a href="/samples" class="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors text-lg">サンプルを見る</a>
-      <a href="/contact" class="border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-white hover:text-blue-900 transition-colors text-lg">無料相談</a>
+  <section style="background: var(--color-charcoal); color: var(--color-cream); padding: 100px 80px; text-align: center;">
+    <div style="max-width: 640px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; margin-bottom: 16px;">気になったら、まずご相談ください</h2>
+      <p style="color: var(--color-gray-light); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">
+        料金・サンプルをご覧いただいてから、お気軽にご相談ください。
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="/pricing" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 16px 36px; border-radius: var(--radius-pill); text-decoration: none; font-size: 15px; transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">料金を見る →</a>
+        <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(255,255,255,0.4); color: var(--color-cream); font-weight: 600; padding: 16px 36px; border-radius: var(--radius-pill); text-decoration: none; font-size: 15px; transition: all 0.25s;">無料相談</a>
+      </div>
     </div>
   </section>
 
