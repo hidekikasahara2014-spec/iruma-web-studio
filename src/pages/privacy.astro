@@ -1,0 +1,49 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { site } from '../config/site';
+---
+<MainLayout title="プライバシーポリシー" description="個人情報の取り扱いに関するプライバシーポリシーです。">
+
+  <div class="bg-gray-100 py-10 px-4 text-center">
+    <h1 class="text-2xl font-black text-gray-800">プライバシーポリシー</h1>
+  </div>
+
+  <section class="py-14 px-4">
+    <div class="max-w-3xl mx-auto prose prose-gray text-sm leading-loose text-gray-700">
+      <p class="text-gray-500 mb-8">最終更新日: 2024年○月○日（後日差し替え）</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">1. 個人情報の取得</h2>
+      <p>{site.name}（以下「当社」）は、お問い合わせ・サービス提供にあたり、お名前・メールアドレス・電話番号等の個人情報を取得することがあります。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">2. 個人情報の利用目的</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>お問い合わせ・ご相談への回答</li>
+        <li>サービス提供・契約の履行</li>
+        <li>請求書・領収書等の発行</li>
+        <li>重要なお知らせの送付</li>
+      </ul>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">3. 第三者への提供</h2>
+      <p>当社は、法令に基づく場合を除き、お客様の同意なく第三者に個人情報を提供しません。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">4. 安全管理</h2>
+      <p>個人情報の漏えい・滅失・毀損を防ぐため、適切なセキュリティ対策を実施します。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">5. 開示・訂正・削除</h2>
+      <p>ご本人からの個人情報の開示・訂正・削除のご要請には、合理的な期間内に対応します。お問い合わせは <a href="/contact" class="text-blue-700 hover:underline">こちら</a> からお願いします。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">6. クッキー（Cookie）について</h2>
+      <p>本サイトではGoogle Analytics等の解析ツールを使用しており、クッキーを利用する場合があります。クッキーの収集を望まない場合はブラウザの設定で無効化できます。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">7. AIツールの利用について</h2>
+      <p>当社はサービス提供にあたり生成AIツールを使用していますが、お客様からご提供いただいた個人情報・機密情報はAIの学習データとして使用されない設定で運用します。</p>
+
+      <h2 class="text-lg font-bold text-gray-800 mt-8 mb-3">8. お問い合わせ窓口</h2>
+      <p>個人情報の取り扱いに関するお問い合わせは以下までご連絡ください。</p>
+      <p>{site.name}<br />所在地: {site.address}<br />Email: {site.email}</p>
+
+      <p class="mt-10 text-gray-400 text-xs">※ このプライバシーポリシーは予告なく変更される場合があります。</p>
+    </div>
+  </section>
+
+</MainLayout>

@@ -1,0 +1,34 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import SampleCard from '../../components/SampleCard.astro';
+import { industries } from '../../config/site';
+---
+<MainLayout title="業種別サンプルサイト" description="飲食店・美容室・整体院・工務店・自動車整備・学習塾・歯科医院の業種別サンプルサイト一覧。">
+
+  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-black mb-3">業種別サンプルサイト</h1>
+    <p class="text-blue-200">同じ業種のサンプルから、仕上がりイメージをご覧ください。</p>
+  </div>
+
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-10 text-sm text-amber-800">
+        📌 表示しているのはあくまでサンプルです。実際の制作では、お客様の業態・コンセプトに合わせて調整します。
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {industries.map(i => (
+          <SampleCard icon={i.icon} name={i.name} desc={i.desc} slug={i.slug} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-blue-900 text-white py-14 px-4 text-center">
+    <h2 class="text-2xl font-black mb-4">5万円〜で、あなたの業種に最適なサイトを制作します</h2>
+    <p class="text-blue-200 mb-8">まずは無料相談で、どんなサイトが作れるかご確認ください。</p>
+    <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
+      無料相談を申し込む →
+    </a>
+  </section>
+
+</MainLayout>

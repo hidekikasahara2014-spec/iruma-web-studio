@@ -1,0 +1,118 @@
+---
+import SampleLayout from '../../../layouts/SampleLayout.astro';
+---
+<SampleLayout title="いるまカーサービス | 入間市の自動車整備工場" industry="auto-repair">
+
+  <!-- ヒーロー -->
+  <section class="bg-gray-950 text-white py-20 px-4 relative overflow-hidden">
+    <div class="absolute right-0 top-0 w-1/2 h-full opacity-15 hidden md:block" style="background-image: url('https://placehold.co/600x500/111/ff6600?text=車'); background-size: cover;"></div>
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded mb-4">入間市の地元整備工場</div>
+      <h1 class="text-4xl md:text-6xl font-black mb-3">いるまカーサービス</h1>
+      <p class="text-2xl text-orange-400 font-bold mb-4">車検・整備、地元の確かな技術で。</p>
+      <p class="text-gray-300 leading-relaxed mb-8 max-w-lg">国家整備士が常駐。車検から鈑金・塗装・タイヤ交換まで、あらゆる車のトラブルに対応します。代車無料貸出。</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="bg-orange-500 text-white font-black px-8 py-4 rounded-lg hover:bg-orange-400 transition-colors text-lg">
+          車検・見積もり予約
+        </a>
+        <a href="#menu" class="border-2 border-orange-500 text-orange-400 font-bold px-8 py-4 rounded-lg hover:bg-orange-500 hover:text-white transition-colors">
+          料金一覧
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安心ポイント -->
+  <section class="py-12 px-4 bg-orange-500">
+    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-white text-center">
+      {["国家整備士在籍","代車無料","最短1日車検","明朗会計"].map(p => (
+        <div class="bg-white/20 rounded-xl p-4">
+          <p class="font-black text-sm">{p}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- サービスメニュー・料金 -->
+  <section id="menu" class="py-14 px-4 bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center mb-10">サービスメニュー・料金</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { icon: "🔍", name: "車検（ユーザー車検代行）", price: "法定費用+22,000円〜", desc: "まるまる込みの安心パック。陸運局への代行申請込み。" },
+          { icon: "🔧", name: "エンジンオイル交換", price: "2,200円〜", desc: "オイル種類・グレードにより価格変動。フィルター交換は+660円。" },
+          { icon: "🛞", name: "タイヤ交換（4本）", price: "3,300円〜", desc: "持込可。バランス調整込み。スタッドレスへの交換も対応。" },
+          { icon: "🚗", name: "鈑金・塗装", price: "要見積もり", desc: "こすり傷から大きなへこみまで。無料見積もりお気軽に。" },
+          { icon: "🔋", name: "バッテリー交換", price: "8,800円〜", desc: "適合バッテリーをご提案。取り付け工賃込み。" },
+          { icon: "❄️", name: "エアコンガス補充", price: "5,500円〜", desc: "エアコンの効きが悪い場合はガス漏れ点検もセットで。" },
+        ].map(({ icon, name, price, desc }) => (
+          <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">{icon}</span>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-bold text-white">{name}</h3>
+                  <p class="text-orange-400 font-bold text-sm flex-shrink-0">{price}</p>
+                </div>
+                <p class="text-gray-400 text-xs mt-1">{desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-gray-500 text-xs text-center mt-4">※すべて税込。詳細はお問い合わせください。</p>
+    </div>
+  </section>
+
+  <!-- 設備紹介 -->
+  <section class="py-14 px-4 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">工場設備</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { img: "https://placehold.co/400x250/333/ff6600?text=整備リフト", label: "リフトアップ整備" },
+          { img: "https://placehold.co/400x250/444/ff6600?text=車検ライン", label: "自社車検ライン" },
+          { img: "https://placehold.co/400x250/555/ff6600?text=鈑金塗装", label: "鈑金塗装ブース" },
+        ].map(({ img, label }) => (
+          <div class="rounded-xl overflow-hidden shadow-sm">
+            <img src={img} alt={label} class="w-full h-40 object-cover" />
+            <p class="bg-white p-3 font-bold text-sm text-center text-gray-800">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="py-14 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">お客様の声</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { body: "車検費用がディーラーより3万円以上安かった！説明も丁寧で安心して任せられます。", name: "T.Y. 様", label: "40代・入間市" },
+          { body: "当日持ち込みでタイヤ交換してもらえました。スタッフの方が親切で、また来ます。", name: "A.S. 様", label: "30代・飯能市" },
+          { body: "急なバッテリー上がりで困っていたら、すぐ来てくれました。地元の業者さんは頼りになる。", name: "K.O. 様", label: "50代・所沢市" },
+        ].map(({ body, name, label }) => (
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <div class="flex gap-0.5 text-yellow-400 mb-3">{'★★★★★'.split('').map(s => <span>{s}</span>)}</div>
+            <p class="text-sm text-gray-700 mb-3">「{body}」</p>
+            <p class="text-xs font-bold text-gray-500">{name} ({label})</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 予約・アクセス -->
+  <section id="contact" class="py-14 px-4 bg-gray-950 text-white text-center">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-2xl font-black mb-6">ご予約・お見積もり</h2>
+      <a href="tel:04-0000-0003" class="flex items-center justify-center gap-3 bg-orange-500 text-white font-black py-5 rounded-xl hover:bg-orange-400 transition-colors text-xl mb-4">
+        📞 04-0000-0003
+      </a>
+      <p class="text-gray-400 text-sm mb-2">営業時間: 月〜土 8:30〜18:00 / 日祝 9:00〜17:00</p>
+      <p class="text-gray-400 text-sm">〒358-0000 埼玉県入間市○○ 5-6-7</p>
+    </div>
+  </section>
+
+</SampleLayout>

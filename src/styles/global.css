@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    color: #1F2937;
+    scroll-behavior: smooth;
+  }
+  body { line-height: 1.8; }
+  h1, h2, h3, h4 { line-height: 1.4; font-weight: 700; }
+}

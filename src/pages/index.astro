@@ -1,0 +1,186 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import FAQ from '../components/FAQ.astro';
+import PricingCard from '../components/PricingCard.astro';
+import SampleCard from '../components/SampleCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { industries } from '../config/site';
+
+const faqItems = [
+  { q: "制作期間はどのくらいですか？", a: "Starterプランは最短7日、Standardプランは2〜3週間、Professionalプランは1〜2ヶ月が目安です。お客様からのご素材提供が早いほど短期間で完成します。" },
+  { q: "自分でも更新できますか？", a: "Professionalプランではお客様自身で更新できるCMSを標準実装します。Starter・Standardプランでは保守プランをご契約いただくことで、月に1〜3回の更新作業を代行します。" },
+  { q: "ドメインやサーバーの契約はどうなりますか？", a: "ドメイン（年間約1,000〜3,000円）とサーバー（月額約500〜1,500円）は別途お客様名義でご契約いただきます。設定・移管サポートは全プランで無料対応しています。" },
+  { q: "既存のホームページのリニューアルは対応できますか？", a: "はい、対応しています。既存サイトのデザイン・コンテンツを活かしながらリニューアルするプランもご相談ください。Standardプラン以上でのご対応になります。" },
+  { q: "入間市以外でも依頼できますか？", a: "もちろんです。全国対応しております。オンライン（ビデオ通話）でのご相談・ヒアリングも可能です。埼玉県内は対面での訪問打ち合わせにも対応しています。" },
+  { q: "個人事業主でも依頼できますか？", a: "はい、歓迎しております。むしろ個人事業主のお客様が多数いらっしゃいます。開業準備中の方や、副業からホームページが必要になった方など、お気軽にご相談ください。" },
+  { q: "解約や変更は可能ですか？", a: "保守プランは月単位でご契約いただいており、1ヶ月前のご連絡でいつでも解約できます。解約手数料はありません。制作プランのキャンセルについては、進捗状況に応じてご相談ください。" },
+];
+
+const testimonials = [
+  { body: "見積もりを依頼したら驚くほどリーズナブルで、仕上がりも想像以上。飲食店向けのサンプルを見せてもらってすぐに決めました。公開後、Googleからの問い合わせが月3〜5件増えています。", name: "田中 幸子 様", role: "飲食店オーナー（40代・入間市）" },
+  { body: "以前の制作会社には高額な見積もりを出されて断念していたので半信半疑でしたが、打ち合わせから公開まで本当にスピーディーで丁寧でした。スマホ対応や検索対策も標準でやってもらえて大満足です。", name: "鈴木 美咲 様", role: "美容室オーナー（30代・所沢市）" },
+  { body: "整体院を開業するにあたり、開業と同時にホームページも公開できました。AIを使っているとは思えないクオリティで、患者さんから『サイト見ました』という声が増えています。", name: "山本 雅人 様", role: "整体院院長（50代・狭山市）" },
+];
+---
+<MainLayout title="ホーム" description="SE × デザイナー × 生成AI で実現する、5万円からのホームページ制作。埼玉県入間市の中小企業・個人事業主を支援します。">
+
+  <!-- ① ヒーローセクション -->
+  <section class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20 md:py-28 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="20" r="30" fill="white"/>
+        <circle cx="10" cy="80" r="20" fill="white"/>
+        <rect x="60" y="60" width="40" height="40" fill="white" rx="5"/>
+      </svg>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <p class="text-yellow-300 font-medium text-sm mb-4 tracking-wider uppercase">SE × デザイナー × 生成AI</p>
+      <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+        地域の小さな会社に、<br />確かなホームページを。
+      </h1>
+      <p class="text-lg md:text-xl text-blue-100 mb-10 leading-relaxed">
+        <span class="font-bold text-white">5万円から</span>の公式サイト制作。<br class="md:hidden" />
+        安い・高品質・制作後も安心のワンストップサービス。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/pricing" class="bg-orange-400 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-500 transition-colors text-lg shadow-lg">
+          料金プランを見る
+        </a>
+        <a href="/samples" class="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors text-lg shadow-lg">
+          サンプルを見る
+        </a>
+      </div>
+      <p class="mt-8 text-blue-200 text-sm">※ すべて税抜価格 | 無料相談・お見積もり実施中</p>
+    </div>
+  </section>
+
+  <!-- ② こんなお悩みありませんか？ -->
+  <section class="bg-gray-50 py-16 md:py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">こんなお悩みありませんか？</h2>
+      <p class="text-center text-gray-500 mb-10">多くの地域の事業者さまから、こんな声をよく聞きます。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { icon: "🔍", title: "見つけてもらえない", body: "ホームページがなくて、新規のお客さんに見つけてもらえない。紹介や口コミだけでは限界を感じている。" },
+          { icon: "📱", title: "Webから来ない", body: "Google口コミは高評価なのに、Webから問い合わせが来ない。サイトが古くてスマホに対応していない。" },
+          { icon: "💰", title: "高すぎて断念", body: "制作会社に見積もり依頼したら、50万〜100万円。「うちには必要ないか」と諦めていた…" },
+        ].map(({ icon, title, body }) => (
+          <div class="bg-white rounded-xl border-l-4 border-orange-400 p-6 shadow-sm">
+            <p class="text-3xl mb-3">{icon}</p>
+            <h3 class="font-bold text-gray-800 mb-2">「{title}…」</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 3つの強み -->
+  <section class="py-16 md:py-20 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">私たちの解決策 — 3つの強み</h2>
+      <p class="text-center text-gray-500 mb-12">地域の事業者に特化した、三位一体のサービスです。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { icon: "💰", color: "bg-green-50 border-green-200", iconBg: "bg-green-100", title: "① 安い", sub: "5万円〜、最短7日で公開", body: "生成AIをフル活用し、従来の制作会社の1/3〜1/5の価格を実現。テンプレートプランなら5万円で、必要十分なサイトが作れます。" },
+          { icon: "🛡️", color: "bg-blue-50 border-blue-200", iconBg: "bg-blue-100", title: "② 高品質・セキュア", sub: "現役SEがインフラを設計", body: "SSL、サーバー設定、脆弱性対策まで標準対応。デザイナーが業種別に最適化したテンプレートで、見た目も実用性も妥協なし。" },
+          { icon: "🔧", color: "bg-orange-50 border-orange-200", iconBg: "bg-orange-100", title: "③ 制作後も安心", sub: "月額3,300円〜の保守プラン", body: "「作って終わり」ではない地元の伴走型パートナー。軽微な修正・トラブル対応を月額固定でおまかせいただけます。" },
+        ].map(({ icon, color, iconBg, title, sub, body }) => (
+          <div class={`rounded-xl border p-8 ${color}`}>
+            <div class={`w-14 h-14 ${iconBg} rounded-full flex items-center justify-center text-3xl mb-4`}>{icon}</div>
+            <h3 class="font-black text-lg text-gray-800 mb-1">{title}</h3>
+            <p class="text-blue-700 font-medium text-sm mb-3">{sub}</p>
+            <p class="text-gray-600 text-sm leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 業種別サンプル -->
+  <section class="py-16 md:py-20 px-4 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">業種別サンプルサイト</h2>
+      <p class="text-center text-gray-500 mb-10">あなたの業種に合った仕上がりイメージをご覧ください。</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {industries.map(i => (
+          <SampleCard icon={i.icon} name={i.name} desc={i.desc} slug={i.slug} />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/samples" class="inline-block border-2 border-blue-900 text-blue-900 font-bold px-8 py-3 rounded-xl hover:bg-blue-900 hover:text-white transition-colors">
+          サンプル一覧を見る
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 料金プラン概要 -->
+  <section class="py-16 md:py-20 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">料金プラン</h2>
+      <p class="text-center text-gray-500 mb-12">シンプルでわかりやすい3プラン。すべて税抜価格です。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <PricingCard
+          name="Starterプラン"
+          price="50,000円"
+          features={["業種別テンプレート適用","5ページまで","お問い合わせフォーム","スマートフォン対応","SSL（HTTPS）対応","最短7日納期"]}
+          note="ヒアリングなし・シンプル重視の方向け"
+        />
+        <PricingCard
+          name="Standardプラン"
+          price="100,000円"
+          popular={true}
+          features={["Starterの内容すべて","10ページまで","初回ヒアリング（60分）","カスタマイズ（色・写真・レイアウト）","お客様の声・事例ページ","Google Analytics設置","基本SEO設定","2〜3週間納期"]}
+          note="中小企業・個人事業主に最適"
+        />
+        <PricingCard
+          name="Professionalプラン"
+          price="300,000円〜"
+          features={["Standardの内容すべて","フルカスタムデザイン","AIチャットボット実装","CMS構築（社内更新可）","本格SEO対策","月次レポート3ヶ月付き","20ページまで","1〜2ヶ月納期"]}
+          note="本気で集客したい事業者向け"
+        />
+      </div>
+      <div class="text-center mt-8">
+        <a href="/pricing" class="text-blue-900 font-bold hover:underline">→ 詳しい料金・保守プランを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ お客様の声 -->
+  <section class="py-16 md:py-20 px-4 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">お客様の声</h2>
+      <p class="text-center text-gray-500 mb-10">実際にご利用いただいたお客様からの声です。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {testimonials.map(t => (
+          <Testimonial body={t.body} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ FAQ -->
+  <section class="py-16 md:py-20 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black text-center text-gray-800 mb-3">よくある質問</h2>
+      <p class="text-center text-gray-500 mb-10">お気軽にお問い合わせください。</p>
+      <FAQ items={faqItems} />
+    </div>
+  </section>
+
+  <!-- ⑧ フッターCTA -->
+  <section class="bg-blue-900 text-white py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black mb-4">まずは無料相談から。</h2>
+      <p class="text-blue-200 mb-8 leading-relaxed">
+        ご相談・お見積もりは完全無料です。<br />
+        お電話、メール、オンラインいずれでも対応しています。
+      </p>
+      <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
+        無料相談を申し込む →
+      </a>
+    </div>
+  </section>
+
+</MainLayout>

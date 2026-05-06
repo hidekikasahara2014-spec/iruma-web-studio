@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  industry: string;
+  accentColor?: string;
+}
+const { title, description = title, industry, accentColor = "#1F4E78" } = Astro.props;
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="bg-white text-gray-800 min-h-screen flex flex-col">
+  <!-- サンプル注釈バー -->
+  <div class="bg-amber-400 text-gray-900 text-sm py-2 px-4 text-center font-medium sticky top-0 z-50">
+    📌 これは<strong>サンプルサイト</strong>です。架空の事業者として作成しています。
+    <a href="/samples" class="underline ml-3 font-bold hover:text-blue-900">← サンプル一覧に戻る</a>
+    <a href="/" class="underline ml-3 font-bold hover:text-blue-900">← 制作会社サイトへ</a>
+  </div>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- サンプルフッターCTA -->
+  <div class="bg-blue-900 text-white py-10 px-4 text-center">
+    <p class="text-xl font-bold mb-2">このようなホームページを<span class="text-yellow-400">5万円〜</span>で制作できます</p>
+    <p class="text-blue-200 mb-6 text-sm">いるまウェブ制作所 | SE × デザイナー × 生成AI</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/pricing" class="bg-yellow-400 text-gray-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-300 transition-colors">料金プランを見る</a>
+      <a href="/contact" class="border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition-colors">無料相談を申し込む</a>
+    </div>
+  </div>
+</body>
+</html>

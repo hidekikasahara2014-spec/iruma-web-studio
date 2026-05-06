@@ -1,0 +1,134 @@
+---
+import SampleLayout from '../../../layouts/SampleLayout.astro';
+---
+<SampleLayout title="いるま整体院 | 入間市の整体・整骨院" industry="clinic">
+
+  <!-- ヒーロー -->
+  <section class="bg-teal-800 text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-teal-200 text-sm mb-3">埼玉県入間市 / 完全予約制</p>
+        <h1 class="text-3xl md:text-5xl font-black mb-4">いるま整体院</h1>
+        <p class="text-xl text-teal-100 mb-6">あなたの不調、根本から見直します。</p>
+        <p class="text-teal-200 text-sm leading-relaxed mb-8">腰痛・肩こり・頭痛・姿勢の悩み。薬に頼らず、身体本来の回復力を引き出す施術で、根本改善を目指します。</p>
+        <a href="#booking" class="bg-yellow-400 text-gray-900 font-black px-8 py-4 rounded-lg hover:bg-yellow-300 transition-colors text-lg">
+          ご予約はこちら
+        </a>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://placehold.co/400x350/0d9488/ffffff?text=施術イメージ" alt="施術イメージ" class="rounded-2xl shadow-xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 症状・施術メニュー -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">こんな症状でお困りの方へ</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        {["腰痛・ぎっくり腰", "肩こり・首こり", "頭痛・偏頭痛", "膝の痛み", "姿勢改善", "産後骨盤矯正", "スポーツ障害", "慢性疲労"].map(s => (
+          <div class="bg-white rounded-xl p-4 text-center border border-teal-100 shadow-sm">
+            <p class="text-sm font-bold text-gray-700">{s}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">施術メニュー・料金</h2>
+      <div class="space-y-4">
+        {[
+          { name: "初回体験コース", price: "2,980円", time: "60分", desc: "お身体の状態確認・カウンセリング込み。初めての方はこちらから。" },
+          { name: "整体コース（全身）", price: "6,600円", time: "60分", desc: "全身の筋肉・関節のバランスを整える基本コース。" },
+          { name: "骨盤矯正コース", price: "8,800円", time: "75分", desc: "骨盤の歪みを根本から整える人気コース。" },
+          { name: "ヘッドスパ＋首肩集中", price: "5,500円", time: "45分", desc: "頭痛・眼精疲労・肩こりに特化したコース。" },
+        ].map(({ name, price, time, desc }) => (
+          <div class="bg-white rounded-xl p-5 border border-gray-200 flex flex-col md:flex-row md:items-center gap-3">
+            <div class="flex-1">
+              <p class="font-bold text-gray-800 mb-1">{name}</p>
+              <p class="text-sm text-gray-500">{desc}</p>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <p class="text-teal-700 font-black text-xl">{price}</p>
+              <p class="text-xs text-gray-400">{time}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 院長紹介 -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">院長紹介</h2>
+      <div class="flex flex-col md:flex-row gap-8 bg-teal-50 rounded-2xl p-8 border border-teal-100">
+        <img src="https://placehold.co/180x220/0d9488/ffffff?text=院長" alt="院長" class="rounded-xl mx-auto md:mx-0 w-44 object-cover flex-shrink-0" />
+        <div>
+          <p class="text-teal-600 text-sm mb-1">院長 / 柔道整復師</p>
+          <h3 class="text-2xl font-black text-gray-800 mb-3">田中 誠一</h3>
+          <p class="text-sm text-gray-600 leading-loose mb-4">柔道整復師・鍼灸師の国家資格を持ち、都内接骨院での10年以上の経験を経て入間市にて開院。「薬や手術に頼らず、身体の自然治癒力を引き出す」をモットーに施術しています。</p>
+          <div class="flex flex-wrap gap-2">
+            {["柔道整復師（国家資格）", "鍼灸師（国家資格）", "スポーツトレーナー認定"].map(q => (
+              <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full">{q}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">お客様の声</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { body: "10年以上悩まされた腰痛が、5回の施術でほぼ気にならなくなりました。もっと早く来ればよかった！", name: "M.S. 様", label: "40代・入間市" },
+          { body: "産後の骨盤矯正でお世話になりました。丁寧なカウンセリングと説明で安心して通えました。", name: "K.T. 様", label: "30代・所沢市" },
+          { body: "デスクワークで肩こりがひどかったのですが、整体コースを月1回受けてから肩が楽になりました。", name: "R.N. 様", label: "50代・狭山市" },
+        ].map(({ body, name, label }) => (
+          <div class="bg-white rounded-xl p-5 border border-gray-200">
+            <div class="flex gap-0.5 text-yellow-400 mb-3">{'★★★★★'.split('').map(s => <span>{s}</span>)}</div>
+            <p class="text-sm text-gray-700 mb-3">「{body}」</p>
+            <p class="text-xs font-bold text-gray-500">{name} ({label})</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス・予約 -->
+  <section id="booking" class="py-16 px-4 bg-teal-800 text-white">
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-xl font-black mb-4">診療時間・アクセス</h2>
+        <table class="text-sm w-full">
+          <tbody>
+            {[["住所","埼玉県入間市○○ 2-3-4"],["電話","04-0000-0001"],["受付時間","9:00〜20:00（最終受付19:00）"],["定休日","毎週水曜日・第2日曜日"]].map(([l,v]) => (
+              <tr class="border-b border-teal-700">
+                <th class="py-2 pr-4 text-left text-teal-300 font-normal">{l}</th>
+                <td class="py-2">{v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2 class="text-xl font-black mb-4">ご予約</h2>
+        <div class="space-y-3">
+          <a href="tel:04-0000-0001" class="flex items-center gap-3 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-colors">
+            <span class="text-2xl">📞</span>
+            <div>
+              <p class="font-bold">お電話でご予約</p>
+              <p class="text-teal-200 text-sm">04-0000-0001</p>
+            </div>
+          </a>
+          <button onclick="return false;" class="w-full flex items-center gap-3 bg-yellow-400 text-gray-900 rounded-xl p-4 hover:bg-yellow-300 transition-colors">
+            <span class="text-2xl">📝</span>
+            <p class="font-bold">フォームからご予約（サンプル）</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</SampleLayout>

@@ -1,0 +1,93 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { site } from '../config/site';
+---
+<MainLayout title="会社概要" description="いるまウェブ制作所の会社概要・ミッション・代表挨拶をご紹介します。">
+
+  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-black mb-3">会社概要</h1>
+    <p class="text-blue-200">地域のWebを変える、三位一体のチームです。</p>
+  </div>
+
+  <!-- ミッション -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-black text-gray-800 mb-6">ミッション</h2>
+      <p class="text-xl text-blue-900 font-bold leading-relaxed mb-6">
+        「地域の小さな会社に、確かなホームページを。」
+      </p>
+      <p class="text-gray-600 leading-loose">
+        埼玉県入間市を中心とした地域の中小企業・個人事業主が、
+        Webの力を使って新しい顧客と出会える環境をつくること。
+        それが私たちのミッションです。
+      </p>
+    </div>
+  </section>
+
+  <!-- 代表挨拶 -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-black text-gray-800 mb-8 text-center">代表挨拶</h2>
+      <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm flex flex-col md:flex-row gap-8">
+        <div class="flex-shrink-0">
+          <!-- 代表写真プレースホルダー -->
+          <div class="w-32 h-32 rounded-full bg-blue-100 flex items-center justify-center text-5xl mx-auto">
+            👤
+          </div>
+          <p class="text-center text-sm font-bold text-gray-800 mt-3">代表 〇〇 〇〇</p>
+          <p class="text-center text-xs text-gray-500">SE出身 / 10年以上のWeb開発経験</p>
+        </div>
+        <div class="text-gray-700 leading-loose text-sm">
+          <p class="mb-4">
+            はじめまして。{site.name}の代表を務めております。
+            私はシステムエンジニアとして10年以上、大企業向けのシステム開発に携わってきました。
+          </p>
+          <p class="mb-4">
+            転機は、身近な個人事業主の方々から「ホームページを作りたいけど高くて…」という声を繰り返し聞いたことです。
+            高い技術力があるにもかかわらず、Webに出ていないだけで新規集客できていない事業者が数多くいることに気づきました。
+          </p>
+          <p>
+            そこで、SE・デザイナー・生成AIの三位一体で、地域の事業者に寄り添ったWebサービスを提供したいと考え、この事業を立ち上げました。
+            「作って終わり」ではなく、長く伴走できるパートナーでありたいと思っています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 会社情報 -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-black text-gray-800 mb-8 text-center">会社情報</h2>
+      <table class="w-full border-collapse">
+        <tbody>
+          {[
+            ["社名", site.name],
+            ["所在地", site.address],
+            ["設立", "2024年（予定）"],
+            ["代表者", "〇〇 〇〇"],
+            ["事業内容", "ホームページ制作・Web保守運用・Webコンサルティング"],
+            ["対応エリア", "埼玉県入間市を中心に全国対応（オンライン相談可）"],
+            ["連絡先電話", site.tel],
+            ["メール", site.email],
+          ].map(([label, value]) => (
+            <tr class="border-b border-gray-200">
+              <th class="py-4 pr-6 text-left text-sm font-bold text-gray-500 w-32 md:w-40 align-top">{label}</th>
+              <td class="py-4 text-sm text-gray-800 leading-relaxed">{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-blue-900 text-white py-14 px-4 text-center">
+    <h2 class="text-2xl font-black mb-4">まずは無料相談から</h2>
+    <p class="text-blue-200 mb-8">お電話・メール・オンラインいずれでもご相談いただけます。</p>
+    <a href="/contact" class="inline-block bg-orange-400 text-white font-black px-10 py-5 rounded-xl hover:bg-orange-500 transition-colors text-xl shadow-lg">
+      無料相談を申し込む →
+    </a>
+  </section>
+
+</MainLayout>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  icon: string;
+  name: string;
+  desc: string;
+  slug: string;
+}
+const { icon, name, desc, slug } = Astro.props;
+---
+<a href={`/samples/${slug}`} class="group flex flex-col items-center text-center p-6 bg-white rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200">
+  <span class="text-5xl mb-4">{icon}</span>
+  <h3 class="font-bold text-gray-800 text-base mb-2 group-hover:text-blue-900 transition-colors">{name}</h3>
+  <p class="text-sm text-gray-500 mb-4 leading-relaxed">{desc}</p>
+  <span class="text-blue-900 text-sm font-medium group-hover:underline">サンプルを見る →</span>
+</a>

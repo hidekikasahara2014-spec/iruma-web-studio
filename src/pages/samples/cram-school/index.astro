@@ -1,0 +1,115 @@
+---
+import SampleLayout from '../../../layouts/SampleLayout.astro';
+---
+<SampleLayout title="青空ゼミナール | 入間市の学習塾" industry="cram-school">
+
+  <!-- ヒーロー -->
+  <section class="bg-blue-600 text-white py-20 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      {Array.from({length: 20}, (_, i) => (
+        <div class="absolute text-6xl opacity-30" style={`top: ${Math.random()*100}%; left: ${Math.random()*100}%; transform: rotate(${Math.random()*360}deg)`}>📚</div>
+      ))}
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="inline-block bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-4">入間市・無料体験授業受付中</div>
+      <h1 class="text-4xl md:text-6xl font-black mb-4">青空ゼミナール</h1>
+      <p class="text-xl text-blue-100 mb-8">子どもの「わかった！」を地域で支える</p>
+      <p class="text-blue-200 mb-10 text-sm max-w-lg mx-auto">小学生〜高校生対応。個別指導で一人ひとりのペースに合わせ、確かな学力と自信を育てます。</p>
+      <a href="#trial" class="bg-yellow-400 text-gray-900 font-black px-10 py-4 rounded-full hover:bg-yellow-300 transition-colors text-lg shadow-lg">
+        無料体験授業に申し込む
+      </a>
+    </div>
+  </section>
+
+  <!-- 数字で見る実績 -->
+  <section class="py-10 px-4 bg-yellow-400">
+    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-4 text-center">
+      {[["98%","志望校合格率"],["創業15年","地域密着の実績"],["小・中・高","全学年対応"]].map(([n, l]) => (
+        <div>
+          <p class="text-3xl font-black text-gray-900">{n}</p>
+          <p class="text-xs text-gray-700 mt-1">{l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 指導コース・料金 -->
+  <section class="py-14 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">指導コース・料金</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { name: "小学生コース", price: "月8,800円〜", badge: "基礎から丁寧に", features: ["算数・国語を中心に指導","中学受験対応コースあり","週2回〜（要相談）"] },
+          { name: "中学生コース", price: "月13,200円〜", badge: "高校受験対策", features: ["5教科対応","定期テスト対策","高校受験本番サポート"] },
+          { name: "高校生コース", price: "月16,500円〜", badge: "大学受験対策", features: ["大学受験・推薦対策","英語・数学・理科に強み","模試解説・志望校分析"] },
+        ].map(({ name, price, badge, features }) => (
+          <div class="border-2 border-blue-100 rounded-2xl p-6">
+            <div class="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded mb-3">{badge}</div>
+            <h3 class="font-black text-gray-800 text-lg mb-1">{name}</h3>
+            <p class="text-2xl font-bold text-blue-600 mb-4">{price}</p>
+            <ul class="space-y-2">
+              {features.map(f => <li class="text-sm text-gray-600 flex gap-2"><span class="text-blue-500">✓</span>{f}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-gray-400 text-center mt-4">※ 月額料金は週1回授業の場合。入会金11,000円（初回のみ）。</p>
+    </div>
+  </section>
+
+  <!-- 講師紹介 -->
+  <section class="py-14 px-4 bg-blue-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-8">講師紹介</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { name: "鈴木 先生", subject: "数学・理科担当", exp: "指導歴18年", career: "理学部卒。高校・予備校での指導経験を持つ数学のプロ。" },
+          { name: "佐藤 先生", subject: "英語・国語担当", exp: "指導歴12年", career: "TOEIC950点。英検1級保有。わかりやすい説明で人気の講師。" },
+          { name: "田中 先生", subject: "社会・小学生全般", exp: "指導歴8年", career: "元小学校教員。子どもの個性を活かした指導が得意。" },
+        ].map(({ name, subject, exp, career }) => (
+          <div class="bg-white rounded-xl p-5 border border-blue-100 shadow-sm text-center">
+            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-3">👨‍🏫</div>
+            <h3 class="font-black text-gray-800 mb-1">{name}</h3>
+            <p class="text-xs text-blue-600 font-medium mb-1">{subject}</p>
+            <p class="text-xs text-gray-500 mb-3">{exp}</p>
+            <p class="text-xs text-gray-600 leading-relaxed">{career}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 合格実績 -->
+  <section class="py-14 px-4 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-black text-gray-800 mb-8">2023年度 主な合格実績（架空）</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {["浦和高校","所沢北高校","入間向陽高校","早稲田大学","明治大学","立教大学","埼玉大学","私立中学多数"].map(s => (
+          <div class="bg-blue-50 rounded-lg p-3 text-sm font-bold text-blue-800">{s}</div>
+        ))}
+      </div>
+      <p class="text-xs text-gray-400 mt-4">※ 実績はすべて架空です。</p>
+    </div>
+  </section>
+
+  <!-- 体験申込 -->
+  <section id="trial" class="py-14 px-4 bg-blue-600 text-white text-center">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-2xl font-black mb-3">無料体験授業を受けてみよう</h2>
+      <p class="text-blue-200 mb-8 text-sm">まずは1回、お子様と一緒に教室の雰囲気を体験してください。</p>
+      <div class="bg-white rounded-2xl p-6 text-gray-800">
+        <form class="space-y-3" onsubmit="return false;">
+          <input type="text" placeholder="保護者のお名前 *" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none" />
+          <input type="text" placeholder="お子様の学年 *" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none" />
+          <input type="tel" placeholder="電話番号 *" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none" />
+          <input type="email" placeholder="メールアドレス" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none" />
+          <button type="submit" class="w-full bg-blue-600 text-white font-black py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            体験授業を申し込む（サンプル）
+          </button>
+        </form>
+      </div>
+      <p class="text-blue-200 text-xs mt-4">📞 お電話でも受付: 04-0000-0004（平日14:00〜21:00）</p>
+    </div>
+  </section>
+
+</SampleLayout>

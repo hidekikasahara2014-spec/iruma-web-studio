@@ -1,0 +1,134 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+<MainLayout title="サービス詳細" description="制作プロセス・品質基準・AIの活用方法・対応業種を詳しく解説します。">
+
+  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-14 px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-black mb-3">私たちのサービスについて</h1>
+    <p class="text-blue-200">安心・高品質・低価格を実現する仕組みをご説明します。</p>
+  </div>
+
+  <!-- 制作プロセス -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-3">制作プロセス</h2>
+      <p class="text-center text-gray-500 mb-12">お問い合わせから公開まで、わかりやすい5ステップ。</p>
+      <div class="flex flex-col gap-0">
+        {[
+          { step: "01", title: "お問い合わせ・無料相談", icon: "💬", desc: "オンライン（ビデオ通話）または対面で30分の無料相談を実施。現状のお困りごとやご要望をヒアリングします。", duration: "30分" },
+          { step: "02", title: "プラン決定・お見積もり", icon: "📋", desc: "ヒアリング内容をもとに最適なプランとお見積もりをご提示。ご納得いただいてから正式発注です。", duration: "1〜3日" },
+          { step: "03", title: "ヒアリング・素材ご提供", icon: "📸", desc: "（Standardプラン以上）詳細なヒアリングと、ロゴ・写真・テキスト等の素材をご提供いただきます。", duration: "1〜2週間" },
+          { step: "04", title: "制作・確認", icon: "⚙️", desc: "生成AIを活用しながら高速に制作。仮公開URLで確認いただき、修正を反映します（修正2回まで無料）。", duration: "7日〜4週間" },
+          { step: "05", title: "公開・運用開始", icon: "🚀", desc: "本番サーバーへの公開作業を代行。Google Analytics・Search Console設置後、保守プランへ移行します。", duration: "1〜3日" },
+        ].map(({ step, title, icon, desc, duration }, i) => (
+          <div class="flex gap-4 md:gap-8 relative pb-8">
+            {i < 4 && <div class="absolute left-6 top-14 bottom-0 w-0.5 bg-blue-200 z-0"></div>}
+            <div class="relative z-10 flex-shrink-0">
+              <div class="w-12 h-12 bg-blue-900 text-white rounded-full flex items-center justify-center font-black text-sm">
+                {step}
+              </div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-6 flex-1">
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="font-bold text-gray-800 text-lg">
+                  <span class="mr-2">{icon}</span>{title}
+                </h3>
+                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full ml-2 whitespace-nowrap">{duration}</span>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 品質・技術 -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-3">技術と品質の担保</h2>
+      <p class="text-center text-gray-500 mb-10">すべてのプランで標準対応する品質基準です。</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { icon: "🔒", title: "HTTPS（SSL）標準対応", desc: "全サイト無料SSL証明書を設定。検索エンジン評価と安心感を両立。" },
+          { icon: "📱", title: "スマートフォン完全対応", desc: "レスポンシブデザインで全デバイスで快適に表示されます。" },
+          { icon: "📊", title: "Google Analytics設置", desc: "Standard以上で設置。アクセス状況をデータで把握できます。" },
+          { icon: "⚡", title: "表示速度最適化", desc: "Lighthouse90点以上を目標に画像圧縮・コード最適化を実施。" },
+          { icon: "🔍", title: "基本SEO設定", desc: "タイトル・メタディスクリプション・構造化データを適切に設定。" },
+          { icon: "🛡️", title: "セキュリティ対策", desc: "（Proプラン）WAF・定期バックアップ・脆弱性スキャンを実施。" },
+        ].map(({ icon, title, desc }) => (
+          <div class="bg-white rounded-xl p-5 border border-gray-200 flex gap-4">
+            <span class="text-2xl flex-shrink-0">{icon}</span>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1">{title}</h3>
+              <p class="text-sm text-gray-600">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AIの活用方法 -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-2">AIで効率化、人で品質担保</h2>
+      <p class="text-center text-gray-500 mb-10">生成AIをどのように活用しているかを透明性を持ってお伝えします。</p>
+      <div class="space-y-4">
+        {[
+          { title: "文章・構成にAI活用", badge: "✅ AI使用", body: "文章ドラフト・構成案作成にAIを使用し、その後デザイナー/SEが必ずレビュー・編集します。" },
+          { title: "画像素材にAI生成を活用", badge: "✅ AI使用", body: "AI生成画像とストックフォトを組み合わせて使用。プロ品質の画像を低コストで提供できます。" },
+          { title: "コーディングにAI補助を活用", badge: "✅ AI補助", body: "コーディング補助にAIを使用し、必ず動作確認・セキュリティチェックを実施します。" },
+          { title: "お客様データは学習に使用しない", badge: "🔒 プライバシー保護", body: "ご提供いただいた情報・素材はAIの学習データとして使用されない設定で運用します。" },
+        ].map(({ title, badge, body }) => (
+          <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">{badge}</span>
+              <h3 class="font-bold text-gray-800">{title}</h3>
+            </div>
+            <p class="text-sm text-gray-600">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 対応業種 -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">こんな業種に強い</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { icon: "🍽️", name: "飲食店・カフェ", points: ["メニュー・営業時間の見やすい表示","Googleマップ埋め込み","予約・問い合わせフォーム"] },
+          { icon: "✂️", name: "美容室・理容室", points: ["スタイリスト紹介・ポートフォリオ","料金表の見やすいレイアウト","ホットペッパービューティー連携サポート"] },
+          { icon: "🏥", name: "整体・接骨院", points: ["施術メニュー・症状別のわかりやすい説明","院長・スタッフ紹介で信頼感UP","EAT対応（専門性の訴求）"] },
+          { icon: "🏗️", name: "工務店・リフォーム", points: ["施工事例ギャラリー","お見積もり相談フォーム","地域密着・実績の訴求"] },
+          { icon: "🚗", name: "自動車整備工場", points: ["車検・整備メニューの料金表","予約フォーム","設備・工場紹介"] },
+          { icon: "📚", name: "学習塾", points: ["コース・料金の明示","体験授業申し込みフォーム","合格実績・講師紹介"] },
+          { icon: "🦷", name: "歯科医院", points: ["診療科目・治療内容の説明","初診予約フォーム","衛生管理・設備のアピール"] },
+        ].map(({ icon, name, points }) => (
+          <div class="bg-white rounded-xl p-5 border border-gray-200">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">{icon}</span>
+              <h3 class="font-bold text-gray-800">{name}</h3>
+            </div>
+            <ul class="space-y-1">
+              {points.map(p => <li class="text-sm text-gray-600 flex gap-2"><span class="text-blue-500">→</span>{p}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-blue-900 text-white py-14 px-4 text-center">
+    <h2 class="text-2xl font-black mb-8">気になったら、まずご相談ください</h2>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/pricing" class="bg-orange-400 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-500 transition-colors text-lg">料金を見る</a>
+      <a href="/samples" class="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition-colors text-lg">サンプルを見る</a>
+      <a href="/contact" class="border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-white hover:text-blue-900 transition-colors text-lg">無料相談</a>
+    </div>
+  </section>
+
+</MainLayout>

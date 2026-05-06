@@ -1,0 +1,35 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  period?: string;
+  popular?: boolean;
+  features: string[];
+  cta?: string;
+  ctaHref?: string;
+  note?: string;
+}
+const { name, price, period = "（税抜）", popular = false, features, cta = "無料相談を申し込む", ctaHref = "/contact", note } = Astro.props;
+---
+<div class={`relative flex flex-col rounded-2xl border-2 p-8 ${popular ? 'border-orange-400 shadow-xl scale-105' : 'border-gray-200'}`}>
+  {popular && (
+    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-400 text-white text-xs font-bold px-4 py-1 rounded-full">
+      人気 No.1
+    </div>
+  )}
+  <p class="text-lg font-bold text-gray-800 mb-1">{name}</p>
+  <p class="text-4xl font-bold text-blue-900 mb-1">{price}</p>
+  <p class="text-sm text-gray-500 mb-6">{period}</p>
+  <ul class="space-y-2 mb-8 flex-1">
+    {features.map(f => (
+      <li class="flex items-start gap-2 text-sm text-gray-700">
+        <span class="text-green-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+        <span>{f}</span>
+      </li>
+    ))}
+  </ul>
+  {note && <p class="text-xs text-gray-500 mb-4">{note}</p>}
+  <a href={ctaHref} class={`text-center font-bold px-6 py-3 rounded-lg transition-colors ${popular ? 'bg-orange-400 text-white hover:bg-orange-500' : 'border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white'}`}>
+    {cta}
+  </a>
+</div>

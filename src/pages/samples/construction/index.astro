@@ -1,0 +1,97 @@
+---
+import SampleLayout from '../../../layouts/SampleLayout.astro';
+---
+<SampleLayout title="武蔵野工務店 | 入間市の工務店・リフォーム" industry="construction">
+
+  <!-- ヒーロー -->
+  <section class="bg-stone-900 text-white py-24 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-25" style="background-image: url('https://placehold.co/1200x600/3d2b1f/ffffff?text=施工現場'); background-size: cover;"></div>
+    <div class="max-w-4xl mx-auto relative z-10">
+      <p class="text-orange-300 text-sm mb-3 tracking-wider">創業40年 / 地元密着</p>
+      <h1 class="text-4xl md:text-6xl font-black mb-4">武蔵野工務店</h1>
+      <p class="text-2xl text-stone-200 mb-6">100年住める家を、地元で。</p>
+      <p class="text-stone-300 leading-relaxed mb-8 max-w-lg">入間市・所沢市・狭山市を中心に、新築・リフォーム・増改築を手がける地元の工務店です。職人の技と最新技術で、お客様の夢の家を実現します。</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="bg-orange-500 text-white font-black px-8 py-4 rounded-lg hover:bg-orange-400 transition-colors">無料見積もり相談</a>
+        <a href="#works" class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-stone-900 transition-colors">施工事例を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強み -->
+  <section class="py-14 px-4 bg-amber-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-stone-800 mb-10">武蔵野工務店の強み</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { icon: "🏠", title: "自社施工・直接対応", desc: "下請けに出さず、自社の職人が責任を持って施工。中間マージンがない分、コストを抑えられます。" },
+          { icon: "🔧", title: "創業40年の実績", desc: "地元で40年以上の実績。リフォームから新築まで、あらゆる住宅工事に対応しています。" },
+          { icon: "💬", title: "10年保証・アフター対応", desc: "施工後も地元の業者として長くお付き合い。困った時にすぐ駆けつけます。" },
+        ].map(({ icon, title, desc }) => (
+          <div class="bg-white rounded-xl p-6 border border-amber-200 shadow-sm text-center">
+            <p class="text-4xl mb-4">{icon}</p>
+            <h3 class="font-black text-stone-800 mb-2">{title}</h3>
+            <p class="text-sm text-stone-600">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 施工事例 -->
+  <section id="works" class="py-14 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-stone-800 mb-10">施工事例</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { title: "戸建て新築工事", loc: "入間市", img: "https://placehold.co/600x350/5d4e37/ffffff?text=新築工事", desc: "4LDK木造2階建て。自然素材にこだわった、家族の温もりあふれる家。" },
+          { title: "キッチン・浴室リフォーム", loc: "所沢市", img: "https://placehold.co/600x350/7a6248/ffffff?text=リフォーム", desc: "築30年のお宅をフルリノベーション。使い勝手を大幅に改善しました。" },
+          { title: "外壁塗装・屋根工事", loc: "狭山市", img: "https://placehold.co/600x350/8a7258/ffffff?text=外壁塗装", desc: "雨漏り修繕と外壁塗装を同時施工。耐久性の高い塗料で15年保証。" },
+          { title: "2世帯住宅へのリフォーム", loc: "入間市", img: "https://placehold.co/600x350/9a8268/ffffff?text=2世帯リフォーム", desc: "親世帯・子世帯の動線を分けた、完全分離型の2世帯住宅に改築。" },
+        ].map(({ title, loc, img, desc }) => (
+          <div class="rounded-xl overflow-hidden border border-stone-200 shadow-sm">
+            <img src={img} alt={title} class="w-full h-44 object-cover" />
+            <div class="p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-0.5 rounded">{loc}</span>
+                <h3 class="font-bold text-stone-800">{title}</h3>
+              </div>
+              <p class="text-sm text-stone-600">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- リフォームメニュー -->
+  <section class="py-14 px-4 bg-stone-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-stone-800 mb-8">工事・リフォームメニュー</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {["新築工事","増改築","外壁塗装","屋根工事","水回りリフォーム","内装リフォーム","バリアフリー化","耐震補強"].map(m => (
+          <div class="bg-white rounded-lg p-4 text-center border border-stone-200 text-sm font-bold text-stone-700">
+            {m}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 見積もりCTA -->
+  <section id="contact" class="py-14 px-4 bg-stone-900 text-white text-center">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-2xl font-black mb-4">まずは無料見積もり相談から</h2>
+      <p class="text-stone-300 mb-8 text-sm">現地調査・お見積もりは完全無料。お気軽にご相談ください。</p>
+      <div class="space-y-3">
+        <a href="tel:04-0000-0002" class="flex items-center justify-center gap-2 bg-orange-500 text-white font-bold py-4 rounded-lg hover:bg-orange-400 transition-colors text-lg">
+          📞 04-0000-0002
+        </a>
+        <button onclick="return false;" class="w-full border-2 border-white text-white font-bold py-4 rounded-lg hover:bg-white hover:text-stone-900 transition-colors">
+          📝 フォームから相談（サンプル）
+        </button>
+      </div>
+    </div>
+  </section>
+
+</SampleLayout>

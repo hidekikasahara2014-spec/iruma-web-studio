@@ -1,0 +1,224 @@
+---
+import SampleLayout from '../../../layouts/SampleLayout.astro';
+---
+<SampleLayout title="いるまの森デンタルクリニック | 入間市の歯科医院" industry="dental">
+
+  <!-- ヒーロー -->
+  <section class="bg-sky-600 text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <div class="inline-block bg-white text-sky-600 text-xs font-bold px-3 py-1 rounded-full mb-4">入間市・初診受付中</div>
+        <h1 class="text-3xl md:text-5xl font-black mb-4">いるまの森<br/>デンタルクリニック</h1>
+        <p class="text-xl text-sky-100 mb-4">お子さまから大人まで<br/>安心して通える歯医者</p>
+        <p class="text-sky-200 text-sm leading-relaxed mb-8">虫歯・歯周病の治療から、小児歯科・矯正・ホワイトニングまで。痛みの少ない治療と丁寧な説明で、地域の皆さまのお口の健康を支えます。</p>
+        <a href="#booking" class="bg-white text-sky-600 font-black px-8 py-4 rounded-full hover:bg-sky-50 transition-colors text-lg shadow-lg">
+          初診のご予約はこちら
+        </a>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://placehold.co/400x350/0284c7/ffffff?text=診療室イメージ" alt="診療室イメージ" class="rounded-2xl shadow-xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 安心ポイント -->
+  <section class="py-10 px-4 bg-white border-b border-sky-100">
+    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      {[["痛みの少ない治療","麻酔・レーザー活用"],["完全個室ユニット","プライバシー重視"],["小児歯科対応","キッズスペースあり"],["駐車場完備","10台分無料"]].map(([t, s]) => (
+        <div class="bg-sky-50 rounded-xl p-4 border border-sky-100">
+          <p class="font-black text-sky-700 text-sm">{t}</p>
+          <p class="text-xs text-sky-500 mt-1">{s}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 診療科目 -->
+  <section class="py-14 px-4 bg-sky-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">診療科目</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {[
+          { icon: "🦷", name: "一般歯科", desc: "虫歯・歯周病の治療。定期検診・クリーニング。" },
+          { icon: "👶", name: "小児歯科", desc: "お子さまの歯の発育サポート。フッ素塗布・シーラント。" },
+          { icon: "✨", name: "審美・ホワイトニング", desc: "歯のくすみ・黄ばみをケア。ランプ照射ホワイトニング。" },
+          { icon: "📐", name: "矯正歯科", desc: "ワイヤー矯正・マウスピース矯正（インビザライン）。" },
+          { icon: "🔩", name: "インプラント", desc: "第二の永久歯。自然な噛み心地を取り戻す。" },
+          { icon: "🛡️", name: "予防歯科", desc: "PMTC・歯磨き指導で虫歯・歯周病を予防。" },
+        ].map(({ icon, name, desc }) => (
+          <div class="bg-white rounded-xl p-5 border border-sky-100 shadow-sm text-center">
+            <p class="text-3xl mb-3">{icon}</p>
+            <h3 class="font-black text-gray-800 mb-2">{name}</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 院長・スタッフ紹介 -->
+  <section class="py-14 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">院長・スタッフ紹介</h2>
+
+      <!-- 院長 -->
+      <div class="flex flex-col md:flex-row gap-8 bg-sky-50 rounded-2xl p-8 border border-sky-100 mb-6">
+        <img src="https://placehold.co/180x220/0284c7/ffffff?text=院長" alt="院長" class="rounded-xl mx-auto md:mx-0 w-44 object-cover flex-shrink-0" />
+        <div>
+          <p class="text-sky-600 text-sm mb-1">院長 / 歯科医師</p>
+          <h3 class="text-2xl font-black text-gray-800 mb-3">森田 健太郎</h3>
+          <p class="text-sm text-gray-600 leading-loose mb-4">東京医科歯科大学歯学部卒業後、大学病院口腔外科に勤務。専門的な技術を習得したのち、地元・入間市に開院。「患者さんに寄り添い、痛みが少なく通いやすい歯科医院」を目指しています。</p>
+          <div class="flex flex-wrap gap-2">
+            {["歯科医師（国家資格）","日本歯科保存学会会員","インビザライン認定医"].map(q => (
+              <span class="bg-sky-100 text-sky-700 text-xs px-3 py-1 rounded-full">{q}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- スタッフ -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { name: "山田 さくら", role: "歯科衛生士", exp: "経験10年", desc: "予防ケア・PMTC専門。丁寧なカウンセリングが好評。" },
+          { name: "伊藤 あかね", role: "歯科衛生士", exp: "経験6年", desc: "小児歯科・矯正サポート担当。子どもが大好きなスタッフ。" },
+          { name: "中村 ゆい", role: "歯科助手・受付", exp: "経験4年", desc: "明るい笑顔でお迎え。診療のサポートと受付業務を担当。" },
+        ].map(({ name, role, exp, desc }) => (
+          <div class="bg-sky-50 rounded-xl p-5 border border-sky-100 text-center">
+            <div class="w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center text-2xl mx-auto mb-3">👩‍⚕️</div>
+            <h3 class="font-black text-gray-800 mb-1">{name}</h3>
+            <p class="text-xs text-sky-600 font-medium mb-1">{role}</p>
+            <p class="text-xs text-gray-500 mb-2">{exp}</p>
+            <p class="text-xs text-gray-600 leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 設備紹介 -->
+  <section class="py-14 px-4 bg-sky-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-4">設備・衛生管理</h2>
+      <p class="text-center text-gray-500 text-sm mb-10">患者さまの安全・安心のために、最新の設備と徹底した衛生管理を実施しています。</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {[
+          { icon: "🔬", title: "口腔内スキャナー（3Dスキャン）", desc: "型取りの不快感なし。精度の高いデジタル印象で治療の質が向上。" },
+          { icon: "📡", title: "デジタルレントゲン（被曝量90%減）", desc: "従来比で被曝量を大幅削減。安全性への配慮を徹底。" },
+          { icon: "🛁", title: "オートクレーブ滅菌器（クラスB）", desc: "器具はすべて欧州基準の高圧蒸気滅菌。院内感染リスクを最小化。" },
+          { icon: "💧", title: "ユニット給水滅菌システム", desc: "診療チェアの給水ラインに滅菌水を使用。清潔な水で治療します。" },
+        ].map(({ icon, title, desc }) => (
+          <div class="bg-white rounded-xl p-5 border border-sky-100 shadow-sm flex gap-4">
+            <span class="text-3xl flex-shrink-0">{icon}</span>
+            <div>
+              <h3 class="font-bold text-gray-800 mb-1 text-sm">{title}</h3>
+              <p class="text-xs text-gray-500 leading-relaxed">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=待合室", label: "明るい待合室" },
+          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=診療ユニット", label: "完全個室ユニット" },
+          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=キッズ", label: "キッズスペース" },
+        ].map(({ img, label }) => (
+          <div class="rounded-xl overflow-hidden shadow-sm">
+            <img src={img} alt={label} class="w-full h-40 object-cover" />
+            <p class="bg-white p-3 font-bold text-sm text-center text-gray-700 border-t border-sky-100">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金案内 -->
+  <section class="py-14 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-black text-center text-gray-800 mb-10">料金案内（自由診療）</h2>
+      <div class="space-y-4">
+        {[
+          { name: "ホワイトニング（オフィス）", price: "22,000円〜", desc: "1回の来院で白くなる院内施術。効果をすぐに実感。" },
+          { name: "マウスピース矯正（インビザライン）", price: "880,000円〜", desc: "透明なマウスピースで目立たず矯正。取り外し可能。" },
+          { name: "インプラント（1本）", price: "330,000円〜", desc: "メーカー保証10年。CT撮影・手術・上部構造込みのパック。" },
+          { name: "セラミッククラウン", price: "55,000円〜", desc: "金属不使用の白いかぶせもの。自然な見た目を実現。" },
+        ].map(({ name, price, desc }) => (
+          <div class="bg-sky-50 rounded-xl p-5 border border-sky-100 flex flex-col md:flex-row md:items-center gap-3">
+            <div class="flex-1">
+              <p class="font-bold text-gray-800 mb-1">{name}</p>
+              <p class="text-sm text-gray-500">{desc}</p>
+            </div>
+            <p class="text-sky-600 font-black text-xl flex-shrink-0">{price}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-gray-400 text-center mt-4">※ 保険診療は別途。自由診療は税込。詳細はカウンセリングにてご案内します。</p>
+    </div>
+  </section>
+
+  <!-- 診療時間・アクセス＋初診予約フォーム -->
+  <section id="booking" class="py-14 px-4 bg-sky-600 text-white">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- 診療時間・アクセス -->
+      <div>
+        <h2 class="text-xl font-black mb-6">診療時間・アクセス</h2>
+        <table class="text-sm w-full mb-6">
+          <thead>
+            <tr class="border-b border-sky-400">
+              <th class="py-2 text-left text-sky-200 font-normal w-24"></th>
+              {["月","火","水","木","金","土","日"].map(d => (
+                <th class="py-2 text-center text-sky-200 font-normal">{d}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["9:00〜13:00", "○","○","○","○","○","○","✕"],
+              ["14:30〜18:30", "○","○","✕","○","○","○","✕"],
+            ].map(([time, ...days]) => (
+              <tr class="border-b border-sky-500">
+                <td class="py-2 text-sky-200 text-xs">{time}</td>
+                {days.map(d => (
+                  <td class={`py-2 text-center text-xs font-bold ${d === "✕" ? "text-sky-400" : "text-white"}`}>{d}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div class="space-y-2 text-sm text-sky-100">
+          <p>📍 埼玉県入間市○○ 1-2-3 もりビル1F</p>
+          <p>📞 04-0000-0005（受付 9:00〜18:00）</p>
+          <p>🚗 駐車場10台完備 / 🚃 入間市駅より徒歩5分</p>
+          <p class="text-sky-300 text-xs mt-3">※ 水曜・日曜・祝日は休診</p>
+        </div>
+      </div>
+
+      <!-- 初診予約フォーム -->
+      <div>
+        <h2 class="text-xl font-black mb-6">初診のご予約</h2>
+        <div class="bg-white rounded-2xl p-6 text-gray-800">
+          <form class="space-y-3" onsubmit="return false;">
+            <input type="text" placeholder="お名前 *" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-sky-400" />
+            <input type="tel" placeholder="電話番号 *" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-sky-400" />
+            <select class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-sky-400 text-gray-600">
+              <option value="">受診希望の診療科目 *</option>
+              <option>一般歯科（虫歯・歯周病）</option>
+              <option>小児歯科</option>
+              <option>審美・ホワイトニング</option>
+              <option>矯正歯科</option>
+              <option>インプラント</option>
+              <option>その他・相談したい</option>
+            </select>
+            <input type="text" placeholder="ご希望の日時（例: 平日午前中）" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-sky-400" />
+            <textarea placeholder="症状やご相談内容（任意）" rows={3} class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-sky-400 resize-none"></textarea>
+            <button type="submit" class="w-full bg-sky-600 text-white font-black py-3 rounded-lg hover:bg-sky-700 transition-colors">
+              予約リクエストを送る（サンプル）
+            </button>
+          </form>
+          <p class="text-xs text-gray-400 mt-3 text-center">※ 確認後、電話にてご連絡いたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</SampleLayout>
