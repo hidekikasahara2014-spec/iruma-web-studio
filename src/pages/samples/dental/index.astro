@@ -121,13 +121,16 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=Waiting+Room", label: "明るい待合室" },
-          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=Private+Unit", label: "完全個室ユニット" },
-          { img: "https://placehold.co/400x250/bae6fd/0284c7?text=Kids+Space", label: "キッズスペース" },
+          { img: "/images/samples/明るい待合室.png", label: "明るい待合室" },
+          { img: "/images/samples/完全個室ユニット.png", label: "完全個室ユニット" },
+          { img: "/images/samples/キッズスペース.png", label: "キッズスペース" },
         ].map(({ img, label }) => (
-          <div class="rounded-xl overflow-hidden shadow-sm">
-            <img src={img} alt={label} width="400" height="250" class="w-full h-40 object-cover" loading="lazy" decoding="async" />
-            <p class="bg-white p-3 font-bold text-sm text-center text-gray-700 border-t border-sky-100">{label}</p>
+          <div class="rounded-xl overflow-hidden shadow-sm relative" style="height: 180px;">
+            <img src={img} alt={label} class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-sky-950/50"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 text-center">
+              <p class="font-bold text-white text-sm">{label}</p>
+            </div>
           </div>
         ))}
       </div>
