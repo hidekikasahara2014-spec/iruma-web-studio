@@ -24,14 +24,18 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <p class="text-stone-600 leading-loose mb-8">地元農家から仕入れた旬の野菜と、毎朝豊洲から届く新鮮な海の幸。素材の味を活かした調理で、お客様に本物の旨さをお届けします。</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`, label: "地元野菜", desc: "入間市内の契約農家から直送" },
-          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.46-3.44 6-7 6s-7.56-2.54-8.5-6z"/><circle cx="17" cy="12" r="1"/><path d="M6.5 12 2 7.5v9L6.5 12z"/></svg>`, label: "新鮮鮮魚", desc: "毎朝豊洲市場から仕入れ" },
-          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>`, label: "地酒", desc: "埼玉県産の日本酒を厳選" },
-        ].map(({ icon, label, desc }) => (
-          <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-sm">
-            <div class="flex justify-center mb-3 text-green-700" set:html={icon}></div>
-            <p class="font-bold text-stone-800 mb-1">{label}</p>
-            <p class="text-sm text-stone-500">{desc}</p>
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`, label: "地元野菜", desc: "入間市内の契約農家から直送", img: "/images/samples/地元野菜.jpg" },
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.46-3.44 6-7 6s-7.56-2.54-8.5-6z"/><circle cx="17" cy="12" r="1"/><path d="M6.5 12 2 7.5v9L6.5 12z"/></svg>`, label: "新鮮鮮魚", desc: "毎朝豊洲市場から仕入れ", img: "/images/samples/新鮮鮮魚.jpg" },
+          { icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>`, label: "地酒", desc: "埼玉県産の日本酒を厳選", img: "/images/samples/地酒.jpg" },
+        ].map(({ icon, label, desc, img }) => (
+          <div class="rounded-xl overflow-hidden shadow-sm relative" style="height: 180px;">
+            <img src={img} alt={label} class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-stone-900/55"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
+              <div class="flex justify-center mb-3 text-green-300" set:html={icon}></div>
+              <p class="font-bold text-white mb-1">{label}</p>
+              <p class="text-sm text-stone-200">{desc}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -44,17 +48,18 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-stone-800 mb-8">おすすめメニュー</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
-          { name: "さくら御膳", price: "1,980円", img: "https://placehold.co/400x250/8fbc8f/ffffff?text=Sakura+Gozen", desc: "本日の焼き魚・小鉢3種・ご飯・お吸い物・香の物" },
-          { name: "刺身盛り合わせ（3〜4人前）", price: "3,800円", img: "https://placehold.co/400x250/6aaa6a/ffffff?text=Sashimi+Platter", desc: "本日の鮮魚5〜6種類の盛り合わせ" },
-          { name: "旬野菜の天ぷら", price: "780円", img: "https://placehold.co/400x250/5a9a5a/ffffff?text=Tempura", desc: "地元農家の旬野菜を使ったサクサク天ぷら" },
-          { name: "炭火焼き鳥（5本）", price: "680円", img: "https://placehold.co/400x250/4a8a4a/ffffff?text=Yakitori", desc: "秘伝のタレで丁寧に焼き上げた一品" },
+          { name: "さくら御膳", price: "1,980円", img: "/images/samples/さくら御膳.png", desc: "本日の焼き魚・小鉢3種・ご飯・お吸い物・香の物" },
+          { name: "刺身盛り合わせ（3〜4人前）", price: "3,800円", img: "/images/samples/刺身盛り合わせ（3〜4人前）.png", desc: "本日の鮮魚5〜6種類の盛り合わせ" },
+          { name: "旬野菜の天ぷら", price: "780円", img: "/images/samples/旬野菜の天ぷら.png", desc: "地元農家の旬野菜を使ったサクサク天ぷら" },
+          { name: "炭火焼き鳥（5本）", price: "680円", img: "/images/samples/焼き鳥.png", desc: "秘伝のタレで丁寧に焼き上げた一品" },
         ].map(({ name, price, img, desc }) => (
-          <div class="flex gap-4 border border-stone-200 rounded-xl overflow-hidden">
-            <img src={img} alt={name} class="w-32 h-28 object-cover flex-shrink-0" />
-            <div class="p-4">
-              <p class="font-bold text-stone-800 mb-1">{name}</p>
-              <p class="text-green-700 font-bold mb-2">{price}</p>
-              <p class="text-xs text-stone-500">{desc}</p>
+          <div class="rounded-xl overflow-hidden shadow-sm relative" style="height: 200px;">
+            <img src={img} alt={name} class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-900/85 via-stone-900/30 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="font-bold text-white mb-0.5">{name}</p>
+              <p class="text-yellow-400 font-bold text-sm mb-1">{price}</p>
+              <p class="text-xs text-stone-300 leading-relaxed">{desc}</p>
             </div>
           </div>
         ))}
