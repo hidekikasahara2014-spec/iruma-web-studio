@@ -45,19 +45,21 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-stone-800 mb-10">施工事例</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
-          { title: "戸建て新築工事", loc: "入間市", img: "/images/samples/Gemini_Generated_Image_u4pl25u4pl25u4pl.png", desc: "4LDK木造2階建て。自然素材にこだわった、家族の温もりあふれる家。" },
-          { title: "キッチン・浴室リフォーム", loc: "所沢市", img: "https://placehold.co/600x350/7a6248/ffffff?text=Renovation", desc: "築30年のお宅をフルリノベーション。使い勝手を大幅に改善しました。" },
-          { title: "外壁塗装・屋根工事", loc: "狭山市", img: "https://placehold.co/600x350/8a7258/ffffff?text=Exterior+Painting", desc: "雨漏り修繕と外壁塗装を同時施工。耐久性の高い塗料で15年保証。" },
-          { title: "2世帯住宅へのリフォーム", loc: "入間市", img: "https://placehold.co/600x350/9a8268/ffffff?text=Multi-gen+Remodel", desc: "親世帯・子世帯の動線を分けた、完全分離型の2世帯住宅に改築。" },
-        ].map(({ title, loc, img, desc }) => (
-          <div class="rounded-xl overflow-hidden border border-stone-200 shadow-sm">
-            <img src={img} alt={title} width="600" height="350" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
-            <div class="p-4">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-0.5 rounded">{loc}</span>
-                <h3 class="font-bold text-stone-800">{title}</h3>
+          { title: "戸建て新築工事", eng: "New Construction", loc: "入間市", img: "/images/samples/Gemini_Generated_Image_u4pl25u4pl25u4pl.png", desc: "4LDK木造2階建て。自然素材にこだわった、家族の温もりあふれる家。" },
+          { title: "キッチン・浴室リフォーム", eng: "Kitchen & Bath Renovation", loc: "所沢市", img: "/images/samples/キッチン浴室リフォーム.png", desc: "築30年のお宅をフルリノベーション。使い勝手を大幅に改善しました。" },
+          { title: "外壁塗装・屋根工事", eng: "Exterior Painting", loc: "狭山市", img: "/images/samples/外壁リフォーム.png", desc: "雨漏り修繕と外壁塗装を同時施工。耐久性の高い塗料で15年保証。" },
+          { title: "2世帯住宅へのリフォーム", eng: "Multi-gen Remodel", loc: "入間市", img: "/images/samples/2世帯住宅.png", desc: "親世帯・子世帯の動線を分けた、完全分離型の2世帯住宅に改築。" },
+        ].map(({ title, eng, loc, img, desc }) => (
+          <div class="rounded-xl overflow-hidden shadow-md relative" style="height: 240px;">
+            <img src={img} alt={title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="text-orange-300 text-xs font-bold tracking-widest uppercase mb-1">{eng}</p>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="bg-orange-500 text-white text-xs px-2 py-0.5 rounded">{loc}</span>
+                <h3 class="font-bold text-white">{title}</h3>
               </div>
-              <p class="text-sm text-stone-600">{desc}</p>
+              <p class="text-xs text-stone-300 leading-relaxed">{desc}</p>
             </div>
           </div>
         ))}
