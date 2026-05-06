@@ -123,7 +123,8 @@ const navLinks = [
       {navLinks.map(l => (
         <a href={l.href}>{l.label}</a>
       ))}
-      <a href="/contact" class="nav-cta">無料相談</a>
+      <!-- 修正: TASK1 - メール相談に統一 -->
+      <a href="mailto:medaker.jp@gmail.com" class="nav-cta">無料相談</a>
     </nav>
 
     <button id="menu-btn" class="hamburger-btn" aria-label="メニューを開く" aria-expanded="false">
@@ -141,7 +142,8 @@ const navLinks = [
   {navLinks.map(l => (
     <a href={l.href}>{l.label}</a>
   ))}
-  <a href="/contact" class="mobile-cta">無料相談</a>
+  <!-- 修正: TASK1 - メール相談に統一 -->
+  <a href="mailto:medaker.jp@gmail.com" class="mobile-cta">無料相談</a>
 </div>
 
 <script>

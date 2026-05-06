@@ -103,7 +103,8 @@ const { title, description = title, industry } = Astro.props;
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- 修正: TASK5 - Shippori Mincho除去、Noto Sans JPに統一 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body class="min-h-screen flex flex-col">
@@ -122,10 +123,11 @@ const { title, description = title, industry } = Astro.props;
     <p class="sample-cta-title">
       このようなホームページを<span style="color: var(--color-orange);">5万円〜</span>で制作できます
     </p>
-    <p class="sample-cta-sub">いるまウェブ制作所 — SE × デザイナー × 生成AI</p>
+    <!-- 修正: TASK3 - 会社名更新 / TASK1 - メール相談に統一 -->
+    <p class="sample-cta-sub">合同会社LOTUS — SE × デザイナー × 生成AI</p>
     <div class="sample-cta-btns">
       <a href="/pricing" class="sample-btn-primary">料金プランを見る →</a>
-      <a href="/contact" class="sample-btn-secondary">無料相談を申し込む</a>
+      <a href="mailto:medaker.jp@gmail.com" class="sample-btn-secondary">メールで相談する</a>
     </div>
   </div>
 </body>

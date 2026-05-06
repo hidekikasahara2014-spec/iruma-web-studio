@@ -298,7 +298,8 @@ import MainLayout from '../layouts/MainLayout.astro';
       </p>
       <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
         <a href="/pricing" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 16px 36px; border-radius: var(--radius-pill); text-decoration: none; font-size: 15px; transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">料金を見る →</a>
-        <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(255,255,255,0.4); color: var(--color-cream); font-weight: 600; padding: 16px 36px; border-radius: var(--radius-pill); text-decoration: none; font-size: 15px; transition: all 0.25s;">無料相談</a>
+        <!-- 修正: TASK1 - mailto統一 -->
+        <a href="mailto:medaker.jp@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(255,255,255,0.4); color: var(--color-cream); font-weight: 600; padding: 16px 36px; border-radius: var(--radius-pill); text-decoration: none; font-size: 15px; transition: all 0.25s;">メールで相談</a>
       </div>
     </div>
   </section>

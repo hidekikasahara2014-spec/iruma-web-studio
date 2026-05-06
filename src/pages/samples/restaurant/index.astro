@@ -5,7 +5,8 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
 
   <!-- ヒーロー -->
   <section class="relative bg-green-950 text-white py-24 px-4 text-center overflow-hidden">
-    <div class="absolute inset-0 opacity-30" style="background-image: url('https://placehold.co/1200x600/1a3a2a/ffffff?text=料理写真'); background-size: cover; background-position: center;"></div>
+    <!-- 修正: TASK6 - AI生成テーマ画像を追加 -->
+    <img src="/images/samples/sample-restaurant.jpg" width="1200" height="600" alt="お食事処さくら 料理イメージ" class="absolute inset-0 w-full h-full object-cover opacity-30" />
     <div class="relative z-10">
       <p class="text-yellow-300 text-sm tracking-widest mb-4">入間市豊岡 / 創業1985年</p>
       <h1 class="text-4xl md:text-6xl font-black mb-4" style="font-family: 'Noto Serif JP', serif;">お食事処 さくら</h1>

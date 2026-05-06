@@ -13,7 +13,8 @@
   --color-gray-light: #E8E2DA;
   --color-sage: #6B8175;
 
-  --font-serif: 'Shippori Mincho', 'YuMincho', 'Hiragino Mincho ProN', serif;
+  /* 修正: TASK5 - tradmans.jp に合わせ、クリーンな日本語ゴシック体に統一 */
+  --font-serif: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   --font-en: 'Inter', sans-serif;
 

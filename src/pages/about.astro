@@ -92,20 +92,21 @@ import { site } from '../config/site';
               <circle cx="12" cy="7" r="4"/>
             </svg>
           </div>
-          <p style="margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--color-charcoal);">代表 〇〇 〇〇</p>
-          <p style="font-size: 12px; color: var(--color-gray);">SE出身 / 10年以上のWeb開発経験</p>
+          <!-- 修正: TASK2 - 代表者名・経歴を更新 -->
+          <p style="margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--color-charcoal);">代表 {site.representative}</p>
+          <p style="font-size: 12px; color: var(--color-gray);">SE出身 / デザイン経験30年以上</p>
         </div>
         <div class="president-body">
+          <!-- 修正: TASK2 - 代表メッセージをSE×デザイナー×AIの背景で書き直し -->
           <p>
-            はじめまして。{site.name}の代表を務めております。
-            私はシステムエンジニアとして10年以上、大企業向けのシステム開発に携わってきました。
+            はじめまして。{site.name}の代表、{site.representative}と申します。
+            SEとしてシステム開発に携わりながら、30年以上にわたりデザインの仕事も続けてきました。
           </p>
           <p>
-            転機は、身近な個人事業主の方々から「ホームページを作りたいけど高くて…」という声を繰り返し聞いたことです。
-            高い技術力があるにもかかわらず、Webに出ていないだけで新規集客できていない事業者が数多くいることに気づきました。
+            「技術もデザインも、両方わかる人間が地域のWebをつくればどれだけ変わるか」——そう気づいたのは、身近な個人事業主の方々から「ホームページを作りたいけど高くて…」という声を繰り返し聞いたことがきっかけです。
           </p>
           <p>
-            そこで、SE・デザイナー・生成AIの三位一体で、地域の事業者に寄り添ったWebサービスを提供したいと考え、この事業を立ち上げました。
+            SE × デザイン × 生成AIという三位一体の強みで、5万円からの本格的なWebサイトを実現します。
             「作って終わり」ではなく、長く伴走できるパートナーでありたいと思っています。
           </p>
         </div>
@@ -123,11 +124,12 @@ import { site } from '../config/site';
       <h2 class="section-title">会社情報</h2>
       <table class="about-table" style="margin-top: 32px;">
         <tbody>
+          {/* 修正: TASK3 - 会社情報を実際の情報に更新 */}
           {[
             ["社名", site.name],
-            ["所在地", site.address || "埼玉県入間市"],
-            ["設立", "2024年（予定）"],
-            ["代表者", "〇〇 〇〇"],
+            ["所在地", site.address],
+            ["設立", site.established],
+            ["代表者", site.representative],
             ["事業内容", "ホームページ制作・Web保守運用・Webコンサルティング"],
             ["対応エリア", "埼玉県入間市を中心に全国対応（オンライン相談可）"],
             ["電話番号", site.tel],
@@ -147,9 +149,10 @@ import { site } from '../config/site';
   <section style="background: var(--color-cream-deep); padding: 100px 80px; text-align: center;">
     <div style="max-width: 640px; margin: 0 auto;">
       <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずは無料相談から</h2>
-      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">お電話・メール・オンラインいずれでもご相談いただけます。</p>
-      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">
-        無料相談を申し込む →
+      <!-- 修正: TASK4 - CTAテキスト変更 / TASK1 - mailto統一 -->
+      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">メールでご相談いただけます。</p>
+      <a href="mailto:medaker.jp@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">
+        メールで相談する →
       </a>
     </div>
   </section>

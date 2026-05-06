@@ -819,9 +819,10 @@ const testimonials = [
               ))}
             </div>
             {note && <p class="pricing-note">{note}</p>}
+            {/* 修正: TASK1 - mailto統一 */}
             {popular
-              ? <a href="/contact" class="btn-pricing-primary">無料相談を申し込む</a>
-              : <a href="/contact" class="btn-pricing-secondary">無料相談を申し込む</a>
+              ? <a href="mailto:medaker.jp@gmail.com" class="btn-pricing-primary">メールで相談する</a>
+              : <a href="mailto:medaker.jp@gmail.com" class="btn-pricing-secondary">メールで相談する</a>
             }
           </div>
         ))}
@@ -903,12 +904,12 @@ const testimonials = [
       <h2 style="font-family: var(--font-serif); font-size: clamp(28px, 3vw, 44px); font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px; line-height: 1.4;">
         まずは、無料相談から。
       </h2>
+      <!-- 修正: TASK4 - CTAテキスト変更 / TASK1 - mailto統一 -->
       <p style="color: var(--color-gray); font-size: 16px; line-height: 1.9; margin-bottom: 40px;">
-        ご相談・お見積もりは完全無料です。<br>
-        お電話、メール、オンラインいずれでも対応しています。
+        メールでご相談いただけます。
       </p>
-      <a href="/contact" class="btn btn-primary" style="font-size: 17px; padding: 18px 48px;">
-        無料相談を申し込む
+      <a href="mailto:medaker.jp@gmail.com" class="btn btn-primary" style="font-size: 17px; padding: 18px 48px;">
+        メールで相談する
         <span class="arrow">→</span>
       </a>
     </div>
