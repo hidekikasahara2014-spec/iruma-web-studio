@@ -45,13 +45,13 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-stone-800 mb-10">施工事例</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
-          { title: "戸建て新築工事", loc: "入間市", img: "https://placehold.co/600x350/5d4e37/ffffff?text=新築工事", desc: "4LDK木造2階建て。自然素材にこだわった、家族の温もりあふれる家。" },
-          { title: "キッチン・浴室リフォーム", loc: "所沢市", img: "https://placehold.co/600x350/7a6248/ffffff?text=リフォーム", desc: "築30年のお宅をフルリノベーション。使い勝手を大幅に改善しました。" },
-          { title: "外壁塗装・屋根工事", loc: "狭山市", img: "https://placehold.co/600x350/8a7258/ffffff?text=外壁塗装", desc: "雨漏り修繕と外壁塗装を同時施工。耐久性の高い塗料で15年保証。" },
-          { title: "2世帯住宅へのリフォーム", loc: "入間市", img: "https://placehold.co/600x350/9a8268/ffffff?text=2世帯リフォーム", desc: "親世帯・子世帯の動線を分けた、完全分離型の2世帯住宅に改築。" },
+          { title: "戸建て新築工事", loc: "入間市", img: "https://placehold.co/600x350/5d4e37/ffffff?text=New+Construction", desc: "4LDK木造2階建て。自然素材にこだわった、家族の温もりあふれる家。" },
+          { title: "キッチン・浴室リフォーム", loc: "所沢市", img: "https://placehold.co/600x350/7a6248/ffffff?text=Renovation", desc: "築30年のお宅をフルリノベーション。使い勝手を大幅に改善しました。" },
+          { title: "外壁塗装・屋根工事", loc: "狭山市", img: "https://placehold.co/600x350/8a7258/ffffff?text=Exterior+Painting", desc: "雨漏り修繕と外壁塗装を同時施工。耐久性の高い塗料で15年保証。" },
+          { title: "2世帯住宅へのリフォーム", loc: "入間市", img: "https://placehold.co/600x350/9a8268/ffffff?text=Multi-gen+Remodel", desc: "親世帯・子世帯の動線を分けた、完全分離型の2世帯住宅に改築。" },
         ].map(({ title, loc, img, desc }) => (
           <div class="rounded-xl overflow-hidden border border-stone-200 shadow-sm">
-            <img src={img} alt={title} class="w-full h-44 object-cover" />
+            <img src={img} alt={title} width="600" height="350" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
             <div class="p-4">
               <div class="flex items-center gap-2 mb-2">
                 <span class="bg-orange-100 text-orange-700 text-xs px-2 py-0.5 rounded">{loc}</span>

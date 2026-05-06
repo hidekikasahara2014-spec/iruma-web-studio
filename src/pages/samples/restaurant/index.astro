@@ -44,10 +44,10 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-stone-800 mb-8">おすすめメニュー</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
-          { name: "さくら御膳", price: "1,980円", img: "https://placehold.co/400x250/8fbc8f/ffffff?text=さくら御膳", desc: "本日の焼き魚・小鉢3種・ご飯・お吸い物・香の物" },
-          { name: "刺身盛り合わせ（3〜4人前）", price: "3,800円", img: "https://placehold.co/400x250/6aaa6a/ffffff?text=刺身盛り合わせ", desc: "本日の鮮魚5〜6種類の盛り合わせ" },
-          { name: "旬野菜の天ぷら", price: "780円", img: "https://placehold.co/400x250/5a9a5a/ffffff?text=天ぷら", desc: "地元農家の旬野菜を使ったサクサク天ぷら" },
-          { name: "炭火焼き鳥（5本）", price: "680円", img: "https://placehold.co/400x250/4a8a4a/ffffff?text=焼き鳥", desc: "秘伝のタレで丁寧に焼き上げた一品" },
+          { name: "さくら御膳", price: "1,980円", img: "https://placehold.co/400x250/8fbc8f/ffffff?text=Sakura+Gozen", desc: "本日の焼き魚・小鉢3種・ご飯・お吸い物・香の物" },
+          { name: "刺身盛り合わせ（3〜4人前）", price: "3,800円", img: "https://placehold.co/400x250/6aaa6a/ffffff?text=Sashimi+Platter", desc: "本日の鮮魚5〜6種類の盛り合わせ" },
+          { name: "旬野菜の天ぷら", price: "780円", img: "https://placehold.co/400x250/5a9a5a/ffffff?text=Tempura", desc: "地元農家の旬野菜を使ったサクサク天ぷら" },
+          { name: "炭火焼き鳥（5本）", price: "680円", img: "https://placehold.co/400x250/4a8a4a/ffffff?text=Yakitori", desc: "秘伝のタレで丁寧に焼き上げた一品" },
         ].map(({ name, price, img, desc }) => (
           <div class="flex gap-4 border border-stone-200 rounded-xl overflow-hidden">
             <img src={img} alt={name} class="w-32 h-28 object-cover flex-shrink-0" />
@@ -85,10 +85,18 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
           </tbody>
         </table>
       </div>
-      <!-- マップ -->
-      <div class="bg-stone-200 h-48 rounded-xl flex items-center justify-center gap-2 text-stone-500 text-sm">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        Googleマップ埋め込み予定
+      <!-- マップ: 実際の埋め込みURLはGoogleマップで場所を開き「共有」→「地図を埋め込む」から取得 -->
+      <div class="rounded-xl overflow-hidden" style="height: 192px;">
+        <iframe
+          src="https://maps.google.com/maps?q=35.84,139.39&z=15&output=embed"
+          width="100%"
+          height="192"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="店舗地図"
+        ></iframe>
       </div>
     </div>
   </section>

@@ -28,11 +28,11 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-gray-800 mb-10">スタイリスト紹介</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {[
-          { name: "YUKI", role: "代表 / トップスタイリスト", exp: "経験15年", speciality: "カラー・パーマ・ブリーチ", img: "https://placehold.co/200x200/e8c8e8/4a2a4a?text=YUKI" },
-          { name: "HANA", role: "スタイリスト", exp: "経験8年", speciality: "カット・縮毛矯正・トリートメント", img: "https://placehold.co/200x200/f8d8f8/4a2a4a?text=HANA" },
-        ].map(({ name, role, exp, speciality, img }) => (
+          { name: "YUKI", role: "代表 / トップスタイリスト", exp: "経験15年", speciality: "カラー・パーマ・ブリーチ", img: "https://placehold.co/200x200/e8c8e8/4a2a4a?text=YUKI", w: 200, h: 200 },
+          { name: "HANA", role: "スタイリスト", exp: "経験8年", speciality: "カット・縮毛矯正・トリートメント", img: "https://placehold.co/200x200/f8d8f8/4a2a4a?text=HANA", w: 200, h: 200 },
+        ].map(({ name, role, exp, speciality, img, w, h }) => (
           <div class="bg-white rounded-2xl p-6 shadow-sm flex gap-5 border border-pink-100">
-            <img src={img} alt={name} class="w-24 h-24 rounded-full object-cover flex-shrink-0" />
+            <img src={img} alt={name} width={w} height={h} class="w-24 h-24 rounded-full object-cover flex-shrink-0" loading="lazy" decoding="async" />
             <div>
               <p class="text-xs text-pink-400 tracking-widest uppercase mb-1">{role}</p>
               <h3 class="text-2xl font-black text-gray-800 mb-1">{name}</h3>
@@ -79,7 +79,7 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-gray-800 mb-8">スタイルギャラリー</h2>
       <div class="grid grid-cols-3 md:grid-cols-4 gap-2">
         {Array.from({length: 8}, (_, i) => (
-          <img src={`https://placehold.co/300x300/e8c8e8/${40+i*10}204a?text=Style${i+1}`} alt={`スタイル${i+1}`} class="aspect-square object-cover rounded-lg" />
+          <img src={`https://placehold.co/300x300/f0e0f0/4a1a6a?text=Style${i+1}`} alt={`スタイル${i+1}`} width="300" height="300" class="aspect-square object-cover rounded-lg" loading="lazy" decoding="async" />
         ))}
       </div>
     </div>

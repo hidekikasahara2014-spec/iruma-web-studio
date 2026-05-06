@@ -9,8 +9,7 @@ interface Props {
   ctaHref?: string;
   note?: string;
 }
-// 修正: TASK1 - メール相談に統一
-const { name, price, period = "（税抜）", popular = false, features, cta = "無料相談を申し込む", ctaHref = "mailto:medaker.jp@gmail.com", note } = Astro.props;
+const { name, price, period = "（税抜）", popular = false, features, cta = "無料相談を申し込む", ctaHref = "/contact", note } = Astro.props;
 ---
 <style>
   .pricing-card {

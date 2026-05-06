@@ -71,12 +71,12 @@ import SampleLayout from '../../../layouts/SampleLayout.astro';
       <h2 class="text-2xl font-black text-center text-gray-800 mb-8">工場設備</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { img: "https://placehold.co/400x250/333/ff6600?text=整備リフト", label: "リフトアップ整備" },
-          { img: "https://placehold.co/400x250/444/ff6600?text=車検ライン", label: "自社車検ライン" },
-          { img: "https://placehold.co/400x250/555/ff6600?text=鈑金塗装", label: "鈑金塗装ブース" },
+          { img: "https://placehold.co/400x250/333333/ff6600?text=Lift+Bay", label: "リフトアップ整備" },
+          { img: "https://placehold.co/400x250/444444/ff6600?text=Inspection+Line", label: "自社車検ライン" },
+          { img: "https://placehold.co/400x250/555555/ff6600?text=Paint+Booth", label: "鈑金塗装ブース" },
         ].map(({ img, label }) => (
           <div class="rounded-xl overflow-hidden shadow-sm">
-            <img src={img} alt={label} class="w-full h-40 object-cover" />
+            <img src={img} alt={label} width="400" height="250" class="w-full h-40 object-cover" loading="lazy" decoding="async" />
             <p class="bg-white p-3 font-bold text-sm text-center text-gray-800">{label}</p>
           </div>
         ))}
