@@ -3,7 +3,7 @@ export const site = {
   nameEn: "LOTUS Co., Ltd.",
   tagline: "地域の小さな会社に、確かなホームページを。",
   description: "SE × デザイナー × 生成AI で実現する、5万円からのホームページ制作。埼玉県入間市の中小企業・個人事業主を支援します。",
-  url: "https://iruma-web.example.jp",
+  url: "https://iruma-web-studio.vercel.app",
   email: "medaker.jp@gmail.com",
   tel: "080-4116-2128",
   address: "埼玉県入間市宮寺1943-6",
@@ -12,7 +12,6 @@ export const site = {
   lineUrl: "#",
   instagram: "#",
   twitter: "#",
-  formEndpoint: "YOUR_FORM_ENDPOINT",
 };
 
 export const industries = [
