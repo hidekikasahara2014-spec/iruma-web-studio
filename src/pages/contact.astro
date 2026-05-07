@@ -207,7 +207,7 @@ import { site } from '../config/site';
           action={`https://formsubmit.co/${site.email}`}
           method="POST"
         >
-          <input type="hidden" name="_next" value={`${site.url}/contact-complete`} />
+          <input type="hidden" name="_next" value="https://iruma-web-studio.vercel.app/thanks" />
           <input type="hidden" name="_subject" value="【Iruma Web Studio】お問い合わせが届きました" />
           <input type="hidden" name="_captcha" value="false" />
           <div class="form-grid">
