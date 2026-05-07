@@ -1,6 +1,42 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { site } from '../config/site';
+
+const members = [
+  {
+    icon: "🎨",
+    role: "代表 / アートディレクター",
+    tags: ["デザイン歴35年", "コンクール入賞多数", "Adobe Creative Suite", "ブランドデザイン"],
+    bio: "幼少期から培った芸術センスと35年のデザイン経験を持つ。コンクール入賞多数の実績を誇り、いるまウェブ製作所のビジュアルクオリティを支える。",
+  },
+  {
+    icon: "💼",
+    role: "営業責任者 / DX推進アドバイザー",
+    tags: ["IT業界経歴24年", "DX推進", "Web制作", "プロジェクトマネジメント", "顧客折衝"],
+    bio: "IT企業で24年にわたりシステム開発・営業・プロジェクト管理を経験。DXとWeb制作の両面から、お客様のビジネス課題に最適な提案を行う。",
+  },
+  {
+    icon: "🛡️",
+    role: "テクニカルディレクター / セキュリティ専門家",
+    tags: ["IT業界35年", "ネットワークスペシャリスト", "セキュリティ対策", "Webシステム開発", "複数資格保有"],
+    bio: "IT業界35年のベテランエンジニア。ネットワークスペシャリスト資格をはじめ複数の国家資格を保有。セキュリティ面の盤石な体制でお客様の大切な情報を守る。",
+  },
+  {
+    icon: "✏️",
+    role: "チーフデザイナー",
+    tags: ["4歳から絵画教室", "コンクール入賞20回超", "Adobe Photoshop", "Adobe Illustrator", "Blender（3D）", "Webデザイン"],
+    bio: "4歳から絵画を学び、コンクール入賞20回超の実績を持つ若きデザイナー。PhotoshopやIllustratorに加え3DソフトBlenderも使いこなし、重厚感ある世界観のデザインを得意とする。",
+  },
+];
+
+const companyRows: [string, string][] = [
+  ["屋号", "いるまウェブ製作所"],
+  ["所在地", site.address],
+  ["電話番号", site.tel],
+  ["営業時間", "平日 10:00〜18:00"],
+  ["定休日", "土・日・祝日（緊急時対応可）"],
+  ["対応エリア", "全国対応（オンライン打ち合わせ可）"],
+];
 ---
 <style>
   .page-hero { background: var(--color-charcoal); color: var(--color-cream); padding: 80px 80px 72px; position: relative; overflow: hidden; }
@@ -15,101 +51,83 @@ import { site } from '../config/site';
   .section-label-text { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; }
   .section-title { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; }
 
-  .mission-quote {
-    font-family: var(--font-serif); font-size: clamp(22px, 3vw, 36px); font-weight: 700;
-    color: var(--color-charcoal); line-height: 1.6;
-    border-left: 4px solid var(--color-orange); padding-left: 28px; margin-bottom: 24px;
-  }
-  .mission-body { font-size: 16px; color: var(--color-gray); line-height: 1.9; }
+  /* 代表挨拶 */
+  .message-card { background: var(--color-white); border-radius: var(--radius-lg); border: 1px solid var(--color-gray-light); padding: 48px; display: flex; gap: 48px; align-items: flex-start; }
+  .message-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--color-orange-light); border: 3px solid var(--color-orange); display: flex; align-items: center; justify-content: center; font-size: 44px; line-height: 1; flex-shrink: 0; }
+  .message-body { font-size: 15px; color: var(--color-gray); line-height: 1.9; }
+  .message-body p + p { margin-top: 16px; }
 
-  .about-table { width: 100%; border-collapse: collapse; }
-  .about-table tr { border-bottom: 1px solid var(--color-gray-light); }
-  .about-table th { padding: 16px 24px 16px 0; text-align: left; font-size: 13px; font-weight: 600; color: var(--color-gray); width: 160px; vertical-align: top; font-family: var(--font-en); letter-spacing: 0.05em; }
-  .about-table td { padding: 16px 0; font-size: 15px; color: var(--color-charcoal); line-height: 1.7; }
+  /* メンバーカード */
+  .member-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+  .member-card { background: var(--color-white); border: 1px solid var(--color-gray-light); border-radius: var(--radius-lg); padding: 32px; transition: all 0.25s; }
+  .member-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--color-orange); }
+  .member-icon { font-size: 40px; margin-bottom: 12px; line-height: 1; }
+  .member-role { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; line-height: 1.4; }
+  .member-bio { font-size: 14px; color: var(--color-gray); line-height: 1.8; margin-bottom: 16px; }
+  .member-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .member-tag { font-size: 11px; font-weight: 600; color: var(--color-orange); background: var(--color-orange-light); padding: 3px 10px; border-radius: var(--radius-pill); }
 
-  .president-card {
-    background: var(--color-white); border-radius: var(--radius-lg); border: 1px solid var(--color-gray-light);
-    padding: 48px; display: flex; gap: 48px; align-items: flex-start;
-  }
-  .president-avatar {
-    width: 120px; height: 120px; border-radius: 50%;
-    background: var(--color-orange-light); border: 3px solid var(--color-orange);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .president-name { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 4px; }
-  .president-role { font-size: 13px; color: var(--color-gray); margin-bottom: 20px; font-family: var(--font-en); letter-spacing: 0.05em; }
-  .president-body { font-size: 15px; color: var(--color-gray); line-height: 1.9; }
-  .president-body p + p { margin-top: 16px; }
+  /* 会社情報テーブル */
+  .company-table { width: 100%; border-collapse: collapse; }
+  .company-table tr { border-bottom: 1px solid var(--color-gray-light); }
+  .company-table th { padding: 18px 24px 18px 0; text-align: left; font-size: 13px; font-weight: 700; color: var(--color-charcoal); width: 160px; vertical-align: top; white-space: nowrap; }
+  .company-table td { padding: 18px 0; font-size: 15px; color: var(--color-gray); line-height: 1.7; }
 
   @media (max-width: 768px) {
     .page-hero { padding: 60px 24px; }
-    .president-card { flex-direction: column; padding: 32px 24px; }
-    .president-avatar { margin: 0 auto; }
+    .message-card { flex-direction: column; padding: 32px 24px; gap: 24px; }
+    .message-avatar { margin: 0 auto; }
+    .member-grid { grid-template-columns: 1fr; }
+    .company-table th { width: 100px; font-size: 12px; padding-right: 12px; }
+    .company-table td { font-size: 14px; }
   }
 </style>
 
-<MainLayout title="会社概要" description="いるまウェブ制作所の会社概要・ミッション・代表挨拶をご紹介します。">
+<MainLayout title="わたしたちについて | いるまウェブ製作所" description="いるまウェブ製作所のチーム紹介・代表挨拶・会社情報をご紹介します。専門家チームがあなたのビジネスを本気でサポートします。">
 
+  <!-- ページヘッダー -->
   <div class="page-hero">
     <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
       <p class="page-hero-label">ABOUT</p>
-      <h1>会社概要</h1>
-      <p>地域のWebを変える、三位一体のチームです。</p>
+      <h1>わたしたちについて</h1>
+      <p>専門家チームが、あなたのビジネスを本気でサポートします</p>
     </div>
   </div>
 
-  <!-- ミッション -->
+  <!-- 代表挨拶 -->
   <section style="background: var(--color-white); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
-    <div style="max-width: 760px; margin: 0 auto;">
-      <div class="section-label">
-        <span class="section-label-line"></span>
-        <span class="section-label-text">MISSION</span>
+    <div style="max-width: 860px; margin: 0 auto;">
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">MESSAGE</span></div>
+      <h2 class="section-title">代表挨拶</h2>
+      <div class="message-card">
+        <div style="text-align: center; flex-shrink: 0;">
+          <div class="message-avatar">🎨</div>
+          <p style="margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--color-charcoal);">いるまウェブ製作所 代表</p>
+        </div>
+        <div class="message-body">
+          <p>いるまウェブ製作所は、埼玉県入間市を拠点に活動するWeb制作チームです。<br>システムエンジニア・デザイナー・ネットワークエンジニアという異なる専門性を持つメンバーが集まり、個人事業主・中小企業の皆さまに、大手に負けないクオリティのホームページをリーズナブルな価格でご提供することを使命としています。</p>
+          <p>どうぞお気軽にご相談ください。</p>
+        </div>
       </div>
-      <h2 class="section-title">ミッション</h2>
-      <p class="mission-quote">「地域の小さな会社に、<br>確かなホームページを。」</p>
-      <p class="mission-body">
-        埼玉県入間市を中心とした地域の中小企業・個人事業主が、
-        Webの力を使って新しい顧客と出会える環境をつくること。
-        それが私たちのミッションです。
-      </p>
     </div>
   </section>
 
-  <!-- 代表挨拶 -->
-  <section style="background: var(--color-cream-deep); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
-    <div style="max-width: 860px; margin: 0 auto;">
-      <div class="section-label">
-        <span class="section-label-line"></span>
-        <span class="section-label-text">MESSAGE</span>
-      </div>
-      <h2 class="section-title">代表挨拶</h2>
-      <div class="president-card">
-        <div style="text-align: center; flex-shrink: 0;">
-          <div class="president-avatar">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E97132" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
+  <!-- チームメンバー -->
+  <section style="background: var(--color-cream); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">TEAM</span></div>
+      <h2 class="section-title">チームメンバー</h2>
+      <div class="member-grid">
+        {members.map(m => (
+          <div class="member-card">
+            <div class="member-icon">{m.icon}</div>
+            <p class="member-role">{m.role}</p>
+            <p class="member-bio">{m.bio}</p>
+            <div class="member-tags">
+              {m.tags.map(tag => <span class="member-tag">{tag}</span>)}
+            </div>
           </div>
-          <!-- 修正: TASK2 - 代表者名・経歴を更新 -->
-          <p style="margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--color-charcoal);">代表 {site.representative}</p>
-          <p style="font-size: 12px; color: var(--color-gray);">SE出身 / デザイン経験30年以上</p>
-        </div>
-        <div class="president-body">
-          <!-- 修正: TASK2 - 代表メッセージをSE×デザイナー×AIの背景で書き直し -->
-          <p>
-            はじめまして。{site.name}の代表、{site.representative}と申します。
-            SEとしてシステム開発に携わりながら、30年以上にわたりデザインの仕事も続けてきました。
-          </p>
-          <p>
-            「技術もデザインも、両方わかる人間が地域のWebをつくればどれだけ変わるか」——そう気づいたのは、身近な個人事業主の方々から「ホームページを作りたいけど高くて…」という声を繰り返し聞いたことがきっかけです。
-          </p>
-          <p>
-            SE × デザイン × 生成AIという三位一体の強みで、5万円からの本格的なWebサイトを実現します。
-            「作って終わり」ではなく、長く伴走できるパートナーでありたいと思っています。
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -117,26 +135,19 @@ import { site } from '../config/site';
   <!-- 会社情報 -->
   <section style="background: var(--color-white); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
     <div style="max-width: 720px; margin: 0 auto;">
-      <div class="section-label">
-        <span class="section-label-line"></span>
-        <span class="section-label-text">COMPANY INFO</span>
-      </div>
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">COMPANY INFO</span></div>
       <h2 class="section-title">会社情報</h2>
-      <table class="about-table" style="margin-top: 32px;">
+      <table class="company-table" style="margin-top: 32px;">
         <tbody>
-          {/* 修正: TASK3 - 会社情報を実際の情報に更新 */}
-          {[
-            ["社名", site.name],
-            ["所在地", site.address],
-            ["設立", site.established],
-            ["代表者", site.representative],
-            ["事業内容", "ホームページ制作・Web保守運用・Webコンサルティング"],
-            ["対応エリア", "埼玉県入間市を中心に全国対応（オンライン相談可）"],
-            ["メール", site.email],
-          ].map(([label, value]) => (
+          {companyRows.map(([label, value]) => (
             <tr>
               <th>{label}</th>
-              <td>{value}</td>
+              <td>
+                {label === "電話番号"
+                  ? <a href={`tel:${value.replace(/-/g, '')}`} style="color: var(--color-orange); text-decoration: none;">{value}</a>
+                  : value
+                }
+              </td>
             </tr>
           ))}
         </tbody>
@@ -145,12 +156,12 @@ import { site } from '../config/site';
   </section>
 
   <!-- CTA -->
-  <section style="background: var(--color-cream-deep); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px); text-align: center;">
+  <section style="background: var(--color-cream); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px); text-align: center;">
     <div style="max-width: 640px; margin: 0 auto;">
-      <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずは無料相談から</h2>
+      <h2 style="font-family: var(--font-serif); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずはお気軽にご相談ください</h2>
       <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">ご相談・お見積もりは無料です。お気軽にどうぞ。</p>
-      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)'" onmouseout="this.style.background='var(--color-orange)'">
-        お問い合わせはこちら →
+      <a href="/contact" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 600; padding: 18px 48px; border-radius: var(--radius-pill); text-decoration: none; font-size: 17px; box-shadow: var(--shadow-md); transition: all 0.25s;" onmouseover="this.style.background='var(--color-orange-deep)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--color-orange)';this.style.transform='none'">
+        無料相談はこちら →
       </a>
     </div>
   </section>

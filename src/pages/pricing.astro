@@ -16,6 +16,23 @@ const faqItems = [
   { q: "支払い方法は？", a: "銀行振込、クレジットカード（VISA/Mastercard/JCB）に対応しています。制作費は着手金50%・納品時50%の2回払いが基本です。" },
   { q: "領収書・請求書の発行は対応していますか？", a: "もちろん対応しています。インボイス登録番号も記載した適格請求書（インボイス）を発行します。" },
 ];
+
+const compareRows = [
+  { label: "料金の目安",      large: "100万円〜",        free: "5〜20万円",             ours: "10〜30万円" },
+  { label: "デザイン品質",    large: "◎",               free: "△〜◯",                ours: "◎ 専門絵師在籍" },
+  { label: "セキュリティ対応", large: "◎",               free: "△",                   ours: "◎ 専門家在籍" },
+  { label: "保守・アフター対応", large: "◯",             free: "△ 音信不通リスクあり",   ours: "◎ 継続サポート" },
+  { label: "対応スピード",    large: "△ 組織対応で遅い",  free: "◯〜◎",               ours: "◎ 小回りが利く" },
+  { label: "生成AI活用",      large: "△",               free: "△",                   ours: "◎ 全工程フル活用" },
+  { label: "料金の透明性",    large: "△ 見積もり依頼必須", free: "△ 個人差大",          ours: "◎ 明確な定額プラン" },
+];
+
+function symStyle(s: string): string {
+  if (s.startsWith('◎')) return 'color:#16a34a;font-weight:600;';
+  if (s.startsWith('◯')) return 'color:#d97706;';
+  if (s.startsWith('△')) return 'color:#9ca3af;';
+  return '';
+}
 ---
 <style>
   .page-hero {
@@ -46,6 +63,22 @@ const faqItems = [
   .section-title { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; }
   .section-sub { color: var(--color-gray); font-size: 15px; margin-bottom: 48px; }
 
+  /* 比較テーブル */
+  .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); margin-top: 32px; }
+  .compare-table { width: 100%; min-width: 620px; border-collapse: collapse; }
+  .compare-table thead th { padding: 14px 20px; font-size: 13px; font-weight: 700; text-align: left; background: var(--color-charcoal); color: var(--color-cream); letter-spacing: 0.04em; }
+  .compare-table thead th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+  .compare-table thead th:last-child { border-radius: 0 var(--radius-lg) 0 0; }
+  .compare-table tbody td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--color-gray-light); vertical-align: middle; color: var(--color-gray); }
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody td:first-child { font-weight: 700; color: var(--color-charcoal); background: var(--color-cream-deep); min-width: 140px; }
+  .our-col-head { background: var(--color-orange) !important; color: var(--color-white) !important; }
+  .rec-badge { display: inline-block; background: var(--color-white); color: var(--color-orange); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); margin-left: 8px; vertical-align: middle; }
+  .our-col { background: rgba(233, 113, 50, 0.05) !important; border-left: 2px solid rgba(233, 113, 50, 0.35); border-right: 2px solid rgba(233, 113, 50, 0.35); }
+  .compare-table tbody tr:last-child .our-col { border-bottom: 2px solid rgba(233, 113, 50, 0.35) !important; }
+  .compare-catchcopy { text-align: center; font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: var(--color-charcoal); margin-top: 32px; line-height: 1.7; }
+
+  /* 保守プランカード */
   .maintenance-card {
     background: var(--color-white); border-radius: var(--radius-lg);
     border: 1px solid var(--color-gray-light); padding: 32px 28px;
@@ -67,6 +100,7 @@ const faqItems = [
   @media (max-width: 768px) {
     .page-hero { padding: 60px 24px; }
     .section-title { font-size: 24px; }
+    .compare-catchcopy { font-size: 15px; }
   }
 </style>
 
@@ -79,6 +113,46 @@ const faqItems = [
       <p>すべて税抜価格です。無料相談・お見積もりはお気軽に。</p>
     </div>
   </div>
+
+  <!-- 他社比較 -->
+  <section style="background: var(--color-cream-deep); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="section-label">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">COMPARISON</span>
+      </div>
+      <h2 class="section-title">なぜいるまウェブ製作所が選ばれるのか</h2>
+      <p class="section-sub" style="margin-bottom: 0;">価格だけでなく、品質・保守・安心感で選んでください</p>
+
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>比較項目</th>
+              <th>大手制作会社</th>
+              <th>フリーランス</th>
+              <th class="our-col-head">いるまウェブ製作所<span class="rec-badge">おすすめ</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareRows.map(row => (
+              <tr>
+                <td>{row.label}</td>
+                <td style={symStyle(row.large)}>{row.large}</td>
+                <td style={symStyle(row.free)}>{row.free}</td>
+                <td class="our-col" style={symStyle(row.ours)}>{row.ours}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="compare-catchcopy">
+        専門家チームがワンストップで対応。<br>
+        フリーランスの安さと制作会社の品質・安心感を、両立させました。
+      </p>
+    </div>
+  </section>
 
   <!-- 制作プラン -->
   <section style="background: var(--color-white); padding: clamp(60px, 8vw, 100px) clamp(20px, 6vw, 80px);">
@@ -93,6 +167,8 @@ const faqItems = [
         <PricingCard
           name="Starterプラン"
           price="50,000円"
+          badge="まずはここから"
+          description="AIを活用した高速制作でコストを抑えながら、プロのデザインクオリティをご提供"
           features={[
             "業種別テンプレートから1つ選択",
             "5ページまで（トップ・サービス・概要・フォーム・PP）",
@@ -109,6 +185,7 @@ const faqItems = [
           name="Standardプラン"
           price="100,000円"
           popular={true}
+          description="専門デザイナーとエンジニアが連携。集客を意識した本格サイトを制作"
           features={[
             "Starterの内容すべて",
             "初回ヒアリング（対面/オンライン 60分）",
@@ -125,6 +202,8 @@ const faqItems = [
         <PricingCard
           name="Professionalプラン"
           price="300,000円〜"
+          badge="安心の充実プラン"
+          description="セキュリティ専門家による設計・保守込み。長期運用まで見据えた最上位プラン"
           features={[
             "Standardの内容すべて",
             "フルカスタムデザイン（テンプレート非依存）",

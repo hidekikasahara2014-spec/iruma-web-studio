@@ -4,12 +4,14 @@ interface Props {
   price: string;
   period?: string;
   popular?: boolean;
+  badge?: string;
+  description?: string;
   features: string[];
   cta?: string;
   ctaHref?: string;
   note?: string;
 }
-const { name, price, period = "（税抜）", popular = false, features, cta = "無料相談を申し込む", ctaHref = "/contact", note } = Astro.props;
+const { name, price, period = "（税抜）", popular = false, badge, description, features, cta = "無料相談を申し込む", ctaHref = "/contact", note } = Astro.props;
 ---
 <style>
   .pricing-card {
@@ -77,6 +79,31 @@ const { name, price, period = "（税抜）", popular = false, features, cta = "
     padding: 6px 0;
   }
   .p-check { color: var(--color-sage); flex-shrink: 0; margin-top: 2px; }
+  .custom-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 18px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    font-family: var(--font-serif);
+    letter-spacing: 0.02em;
+  }
+  .p-description {
+    font-size: 13px;
+    color: var(--color-gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: var(--color-cream);
+    border-radius: 8px;
+    border-left: 3px solid var(--color-orange);
+  }
   .p-note { font-size: 12px; color: var(--color-gray); margin-bottom: 20px; }
   .p-btn-primary {
     display: block;
@@ -108,9 +135,11 @@ const { name, price, period = "（税抜）", popular = false, features, cta = "
 
 <div class={`pricing-card ${popular ? 'popular' : ''}`}>
   {popular && <div class="popular-badge">人気 No.1</div>}
+  {!popular && badge && <div class="custom-badge">{badge}</div>}
   <p class="p-name">{name}</p>
   <p class="p-price">{price}</p>
   <p class="p-period">{period}</p>
+  {description && <p class="p-description">{description}</p>}
   <div style="flex: 1; margin-bottom: 24px;">
     {features.map(f => (
       <div class="p-feature">
