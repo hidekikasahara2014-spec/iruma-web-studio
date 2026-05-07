@@ -251,10 +251,17 @@ import { site } from '../config/site';
               <label class="form-label" for="plan">ご希望のプラン</label>
               <select id="plan" class="form-select" name="plan">
                 <option value="">選択してください</option>
-                <option>Starter（5万円〜）</option>
-                <option>Standard（10万円〜）</option>
-                <option>Professional（30万円〜）</option>
-                <option>まずは相談したい</option>
+                <option value="undecided">まだ決まっていない</option>
+                <option value="starter">Starterプラン（5万円〜）</option>
+                <option value="standard">Standardプラン（10万円〜）</option>
+                <option value="professional">Professionalプラン（30万円〜）</option>
+                <option value="light">Light保守プラン（3,300円/月）</option>
+                <option value="basic">Basic保守プラン（8,800円/月）</option>
+                <option value="pro">Pro保守プラン（22,000円〜/月）</option>
+                <option value="annual-starter">初年度パック（120,000円）</option>
+                <option value="ticket-single">追加チケット（単発）</option>
+                <option value="ticket-5pack">追加チケット（5枚セット）</option>
+                <option value="ticket-10pack">追加チケット（10枚セット）</option>
               </select>
             </div>
             <div class="form-field full">
@@ -291,5 +298,14 @@ import { site } from '../config/site';
 
     </div>
   </section>
+
+
+<script>
+  const plan = new URLSearchParams(window.location.search).get('plan');
+  if (plan) {
+    const sel = document.getElementById('plan') as HTMLSelectElement | null;
+    if (sel) sel.value = plan;
+  }
+</script>
 
 </MainLayout>

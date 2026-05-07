@@ -1,0 +1,407 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const prodGroups = [
+  {
+    name: "基本機能",
+    rows: [
+      { label: "業種別テンプレートから1つ選択", s: "○", st: "○", p: "○" },
+      { label: "お問い合わせフォーム", s: "1つ", st: "複数", p: "複数" },
+      { label: "ドメイン設定サポート", s: "○", st: "○", p: "○" },
+      { label: "スマホ対応（レスポンシブ）", s: "○", st: "○", p: "○" },
+      { label: "SSL（HTTPS）対応", s: "○", st: "○", p: "○" },
+      { label: "ページ数", s: "5ページ", st: "10ページ", p: "20ページ" },
+    ],
+  },
+  {
+    name: "制作・カスタマイズ",
+    rows: [
+      { label: "業種別テンプレート流用", s: "○", st: "-", p: "-" },
+      { label: "色・写真・レイアウト調整", s: "-", st: "○", p: "-" },
+      { label: "フルオリジナルデザイン", s: "-", st: "-", p: "○" },
+      { label: "納期", s: "最短7日", st: "2〜3週間", p: "1〜2ヶ月" },
+      { label: "無料修正回数", s: "1回", st: "2回", p: "3〜5回" },
+    ],
+  },
+  {
+    name: "ヒアリング・サポート",
+    rows: [
+      { label: "初回ヒアリング（対面/オンライン 60分）", s: "-", st: "○", p: "○" },
+      { label: "お客様の声・事例ページ", s: "-", st: "○", p: "○" },
+    ],
+  },
+  {
+    name: "SEO・解析",
+    rows: [
+      { label: "Google Analytics設置", s: "-", st: "○", p: "○" },
+      { label: "基本SEO設定（タイトル・メタ）", s: "-", st: "○", p: "○" },
+      { label: "本格SEO対策（構造化データ）", s: "-", st: "-", p: "○" },
+      { label: "Google Business Profile連携", s: "-", st: "-", p: "○" },
+    ],
+  },
+  {
+    name: "高度な機能",
+    rows: [
+      { label: "AIチャットボット標準実装", s: "-", st: "-", p: "○" },
+      { label: "CMS構築（WordPress等）", s: "-", st: "-", p: "○" },
+      { label: "ロゴ刷新相談", s: "-", st: "-", p: "○" },
+      { label: "写真撮影サポート（10点まで）", s: "-", st: "-", p: "○" },
+      { label: "動画コンテンツ1本制作", s: "-", st: "-", p: "○" },
+    ],
+  },
+  {
+    name: "公開後サポート",
+    rows: [
+      { label: "月次アクセス解析レポート", s: "-", st: "-", p: "3ヶ月分" },
+    ],
+  },
+];
+
+const maintGroups = [
+  {
+    name: "サーバー・基本管理",
+    rows: [
+      { label: "サーバー監視", l: "○", b: "○", p: "○" },
+      { label: "ドメイン管理", l: "○", b: "○", p: "○" },
+      { label: "SSL証明書管理", l: "○", b: "○", p: "○" },
+      { label: "セキュリティアップデート", l: "○", b: "○", p: "○" },
+      { label: "バックアップ", l: "-", b: "月1回", p: "週1回" },
+      { label: "WAF（Webアプリファイアウォール）", l: "-", b: "-", p: "○" },
+    ],
+  },
+  {
+    name: "修正対応（チケット制）",
+    rows: [
+      { label: "月次付与チケット数", l: "0枚", b: "2枚", p: "5枚" },
+      { label: "チケット繰越", l: "-", b: "翌月まで可", p: "翌月まで可" },
+      { label: "1チケットの作業時間目安", l: "-", b: "0.5時間", p: "0.5時間" },
+      { label: "1チケットの単価相当", l: "-", b: "2,000円相当", p: "2,000円相当" },
+    ],
+  },
+  {
+    name: "アクセス解析・レポート",
+    rows: [
+      { label: "月次アクセスレポート", l: "-", b: "○", p: "○" },
+      { label: "SEO継続施策", l: "-", b: "-", p: "○" },
+      { label: "月次戦略相談（30分）", l: "-", b: "-", p: "○" },
+    ],
+  },
+  {
+    name: "コンテンツ更新",
+    rows: [
+      { label: "画像差し替え", l: "-", b: "○", p: "○（月3回まで）" },
+      { label: "文言修正", l: "-", b: "○", p: "○" },
+      { label: "新規ページ追加", l: "-", b: "-", p: "○" },
+    ],
+  },
+];
+
+function cc(v: string) { return v === "○" ? "check" : v === "-" ? "dash" : ""; }
+function cv(v: string) { return v === "-" ? "−" : v; }
+---
+<style>
+  .page-hero { background: var(--color-charcoal); color: var(--color-cream); padding: 72px 80px 64px; position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, var(--color-orange-tint) 0%, transparent 70%); border-radius: 50%; opacity: 0.15; pointer-events: none; }
+  .page-hero-label { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .page-hero-label::before { content: ''; width: 32px; height: 1px; background: var(--color-orange); }
+  .page-hero h1 { font-family: var(--font-serif); font-size: clamp(26px, 3vw, 44px); font-weight: 700; margin-bottom: 12px; color: var(--color-cream); }
+  .page-hero p { font-size: 15px; color: var(--color-gray-light); margin-bottom: 20px; }
+  .back-link { font-size: 13px; color: var(--color-gray-light); text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
+  .back-link:hover { opacity: 1; color: var(--color-orange); }
+
+  .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .section-label-line { width: 40px; height: 1px; background: var(--color-orange); flex-shrink: 0; }
+  .section-label-text { font-family: var(--font-en); font-size: 12px; font-weight: 600; color: var(--color-orange); letter-spacing: 0.25em; text-transform: uppercase; }
+  .section-title { font-family: var(--font-serif); font-size: 28px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 8px; }
+  .section-sub { font-size: 15px; color: var(--color-gray); margin-bottom: 28px; }
+
+  /* 比較テーブル */
+  .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); box-shadow: 0 4px 16px rgba(42,37,32,0.06); }
+  .compare-table { width: 100%; min-width: 580px; border-collapse: collapse; background: var(--color-white); }
+  .compare-table thead tr th { padding: 20px 16px; font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-charcoal); text-align: center; background: var(--color-cream-deep); border-bottom: 2px solid var(--color-gray-light); }
+  .compare-table thead tr th.feature-col { text-align: left; font-size: 13px; font-weight: 600; color: var(--color-gray); font-family: inherit; width: 38%; }
+  .compare-table thead tr th.popular-head { background: var(--color-orange-light); color: var(--color-orange-deep); }
+  .plan-badge { display: inline-block; background: var(--color-orange); color: var(--color-white); font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: 6px; font-family: var(--font-en); letter-spacing: 0.04em; }
+  .plan-name-th { display: block; font-size: 18px; }
+  .plan-price-th { display: block; font-family: var(--font-en); font-size: 20px; font-weight: 600; color: var(--color-orange); margin-top: 6px; }
+  .group-header td { background: var(--color-orange-light); padding: 10px 16px; font-size: 13px; font-weight: 700; color: var(--color-orange-deep); border-top: 3px solid var(--color-orange-tint); letter-spacing: 0.03em; }
+  .compare-table tbody tr { border-bottom: 1px solid var(--color-gray-light); transition: background 0.15s; }
+  .compare-table tbody tr:not(.group-header):hover { background: var(--color-cream); }
+  .compare-table td { padding: 12px 16px; font-size: 14px; text-align: center; color: var(--color-gray); vertical-align: middle; }
+  .compare-table td:first-child { text-align: left; color: var(--color-charcoal); font-weight: 500; }
+  .popular-col { background: rgba(233,113,50,0.04) !important; }
+  .check { color: var(--color-orange); font-weight: 700; font-size: 17px; }
+  .dash { color: var(--color-gray-light); font-size: 13px; }
+  .cta-row td { padding: 20px 16px; background: var(--color-cream-deep); text-align: center; }
+  .cta-btn { display: inline-block; padding: 11px 22px; background: var(--color-orange); color: var(--color-white); border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+  .cta-btn:hover { background: var(--color-orange-deep); transform: translateY(-1px); }
+  .cta-btn-sub { background: transparent; border: 1.5px solid var(--color-charcoal); color: var(--color-charcoal); }
+  .cta-btn-sub:hover { background: var(--color-charcoal); color: var(--color-white); }
+
+  /* チケットカード */
+  .ticket-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .ticket-card { background: var(--color-cream); padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-gray-light); position: relative; transition: all 0.25s; text-align: center; }
+  .ticket-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
+  .ticket-card.featured { background: var(--color-white); border: 2px solid var(--color-orange); }
+  .ticket-card.best { background: var(--color-orange-light); border: 2px solid var(--color-orange-deep); }
+  .tc-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--color-orange); color: var(--color-white); font-size: 11px; font-weight: 700; padding: 3px 14px; border-radius: 999px; white-space: nowrap; }
+  .ticket-card.best .tc-badge { background: var(--color-orange-deep); }
+  .tc-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 12px; }
+  .tc-price-num { font-family: var(--font-en); font-size: 36px; font-weight: 600; color: var(--color-orange); }
+  .tc-price-unit { font-size: 13px; color: var(--color-gray); margin-left: 2px; }
+  .tc-per { font-size: 13px; font-weight: 600; color: var(--color-orange-deep); margin: 6px 0 14px; }
+  .tc-list { list-style: none; padding: 0; }
+  .tc-list li { font-size: 13px; color: var(--color-gray); padding: 6px 0; border-bottom: 1px solid var(--color-gray-light); }
+  .tc-list li:last-child { border-bottom: none; }
+  .tc-list li::before { content: "✓ "; color: var(--color-sage); font-weight: 700; }
+  .ticket-notes { margin-top: 24px; background: var(--color-cream-deep); border-radius: var(--radius-md); padding: 16px 20px; font-size: 13px; color: var(--color-gray); line-height: 1.8; }
+
+  /* 初年度パック */
+  .annual-card { max-width: 680px; margin: 32px auto 0; background: var(--color-white); border: 2px solid var(--color-orange); border-radius: var(--radius-lg); padding: 48px 40px; position: relative; box-shadow: 0 12px 40px rgba(233,113,50,0.10); text-align: center; }
+  .annual-badge { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: var(--color-orange); color: var(--color-white); font-size: 14px; font-weight: 700; padding: 8px 24px; border-radius: 999px; white-space: nowrap; }
+  .annual-title { font-family: var(--font-serif); font-size: 24px; font-weight: 700; color: var(--color-charcoal); margin: 16px 0 28px; }
+  .price-breakdown { background: var(--color-cream); border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 24px; text-align: left; }
+  .price-br-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--color-gray); }
+  .price-br-row.total { border-top: 1px solid var(--color-gray-light); margin-top: 8px; padding-top: 14px; font-weight: 600; color: var(--color-charcoal); }
+  .strike { text-decoration: line-through; color: var(--color-gray); }
+  .price-arrow-label { color: var(--color-orange); font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin: 20px 0 12px; }
+  .annual-price-big { font-family: var(--font-en); font-size: 52px; font-weight: 700; color: var(--color-orange); line-height: 1; }
+  .annual-price-unit { font-size: 18px; color: var(--color-charcoal); margin-left: 4px; }
+  .annual-discount { display: block; font-size: 14px; color: var(--color-orange-deep); font-weight: 700; margin-top: 8px; }
+  .annual-includes { text-align: left; margin: 24px 0; }
+  .annual-includes h4 { font-family: var(--font-serif); font-size: 15px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 10px; border-left: 3px solid var(--color-orange); padding-left: 12px; }
+  .annual-includes ul { list-style: none; padding: 0 0 0 4px; }
+  .annual-includes li { font-size: 14px; color: var(--color-charcoal); padding: 4px 0; font-weight: 500; }
+  .annual-includes li::before { content: "✓ "; color: var(--color-sage); font-weight: 700; }
+  .annual-recommend { text-align: left; margin-bottom: 28px; }
+  .annual-recommend h4 { font-family: var(--font-serif); font-size: 15px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 10px; border-left: 3px solid var(--color-orange); padding-left: 12px; }
+  .annual-recommend li { font-size: 14px; color: var(--color-gray); padding: 4px 0; list-style: none; }
+  .annual-recommend li::before { content: "・"; color: var(--color-orange); font-weight: 700; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--color-orange); color: var(--color-white); font-weight: 700; padding: 16px 48px; border-radius: 999px; text-decoration: none; font-size: 16px; box-shadow: var(--shadow-md); transition: all 0.25s; }
+  .btn-primary:hover { background: var(--color-orange-deep); transform: translateY(-2px); }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 60px 24px; }
+    .section-title { font-size: 22px; }
+    .ticket-grid { grid-template-columns: 1fr; }
+    .annual-card { padding: 40px 24px; }
+    .annual-price-big { font-size: 40px; }
+  }
+</style>
+
+<MainLayout title="料金プラン比較 | いるまウェブ製作所" description="Starter・Standard・Professionalの3プランの違いを一覧で比較。保守プラン・追加チケット・初年度パックも確認できます。">
+
+  <!-- ページヘッダー -->
+  <div class="page-hero">
+    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+      <p class="page-hero-label">PLAN COMPARISON</p>
+      <h1>プランを比較する</h1>
+      <p>お客様の事業規模・目的に合わせて、最適なプランをお選びいただけます。</p>
+      <a href="/pricing" class="back-link">← 料金プランページに戻る</a>
+    </div>
+  </div>
+
+  <!-- 制作プラン比較表 -->
+  <section style="background: var(--color-white); padding: clamp(60px,8vw,100px) clamp(20px,6vw,80px);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">PRODUCTION PLAN</span></div>
+      <h2 class="section-title">制作プラン比較</h2>
+      <p class="section-sub">業種別テンプレートをベースに、ご予算と目的に合わせてお選びください。</p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="feature-col">機能・仕様</th>
+              <th>
+                <span class="plan-name-th">Starter</span>
+                <span class="plan-price-th">50,000円</span>
+              </th>
+              <th class="popular-head">
+                <span class="plan-badge">人気 No.1</span>
+                <span class="plan-name-th">Standard</span>
+                <span class="plan-price-th">100,000円</span>
+              </th>
+              <th>
+                <span class="plan-name-th">Professional</span>
+                <span class="plan-price-th">300,000円〜</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {prodGroups.map(group => (
+              <>
+                <tr class="group-header"><td colspan="4">■ {group.name}</td></tr>
+                {group.rows.map(row => (
+                  <tr>
+                    <td>{row.label}</td>
+                    <td class={cc(row.s)}>{cv(row.s)}</td>
+                    <td class={`${cc(row.st)} popular-col`}>{cv(row.st)}</td>
+                    <td class={cc(row.p)}>{cv(row.p)}</td>
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="cta-row">
+              <td></td>
+              <td><a href="/contact?plan=starter" class="cta-btn cta-btn-sub">Starterを選ぶ</a></td>
+              <td class="popular-col"><a href="/contact?plan=standard" class="cta-btn">Standardを選ぶ</a></td>
+              <td><a href="/contact?plan=professional" class="cta-btn cta-btn-sub">Professionalを選ぶ</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 保守プラン比較表 -->
+  <section style="background: var(--color-cream); padding: clamp(60px,8vw,100px) clamp(20px,6vw,80px);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">MAINTENANCE PLAN</span></div>
+      <h2 class="section-title">保守プラン比較</h2>
+      <p class="section-sub">チケット制で柔軟に運用。すべて月額・税抜です。</p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="feature-col">機能・仕様</th>
+              <th>
+                <span class="plan-name-th">Light</span>
+                <span class="plan-price-th">3,300円/月</span>
+              </th>
+              <th class="popular-head">
+                <span class="plan-badge">おすすめ</span>
+                <span class="plan-name-th">Basic</span>
+                <span class="plan-price-th">8,800円/月</span>
+              </th>
+              <th>
+                <span class="plan-name-th">Pro</span>
+                <span class="plan-price-th">22,000円〜/月</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {maintGroups.map(group => (
+              <>
+                <tr class="group-header"><td colspan="4">■ {group.name}</td></tr>
+                {group.rows.map(row => (
+                  <tr>
+                    <td>{row.label}</td>
+                    <td class={cc(row.l)}>{cv(row.l)}</td>
+                    <td class={`${cc(row.b)} popular-col`}>{cv(row.b)}</td>
+                    <td class={cc(row.p)}>{cv(row.p)}</td>
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="cta-row">
+              <td></td>
+              <td><a href="/contact?plan=light" class="cta-btn cta-btn-sub">Lightを選ぶ</a></td>
+              <td class="popular-col"><a href="/contact?plan=basic" class="cta-btn">Basicを選ぶ</a></td>
+              <td><a href="/contact?plan=pro" class="cta-btn cta-btn-sub">Proを選ぶ</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 追加チケット販売 -->
+  <section style="background: var(--color-white); padding: clamp(60px,8vw,100px) clamp(20px,6vw,80px);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="section-label"><span class="section-label-line"></span><span class="section-label-text">ADDITIONAL TICKETS</span></div>
+      <h2 class="section-title">追加チケット販売</h2>
+      <p class="section-sub">月額保守のチケットでは足りない場合、追加で購入いただけます。</p>
+      <div class="ticket-grid">
+        <div class="ticket-card">
+          <p class="tc-title">単発 1チケット</p>
+          <p><span class="tc-price-num">2,500</span><span class="tc-price-unit">円（税抜）</span></p>
+          <ul class="tc-list">
+            <li>即購入・即利用可</li>
+            <li>有効期限12ヶ月</li>
+          </ul>
+        </div>
+        <div class="ticket-card featured">
+          <div class="tc-badge">おすすめ</div>
+          <p class="tc-title">5枚セット</p>
+          <p><span class="tc-price-num">10,000</span><span class="tc-price-unit">円（税抜）</span></p>
+          <p class="tc-per">1枚あたり 2,000円</p>
+          <ul class="tc-list">
+            <li>20%お得</li>
+            <li>有効期限12ヶ月</li>
+          </ul>
+        </div>
+        <div class="ticket-card best">
+          <div class="tc-badge">最大お得</div>
+          <p class="tc-title">10枚セット</p>
+          <p><span class="tc-price-num">18,000</span><span class="tc-price-unit">円（税抜）</span></p>
+          <p class="tc-per">1枚あたり 1,800円</p>
+          <ul class="tc-list">
+            <li>28%お得</li>
+            <li>有効期限12ヶ月</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ticket-notes">
+        ※ チケットは購入から12ヶ月有効です。<br>
+        ※ 1チケット = 0.5時間程度の修正作業（2,000円相当）<br>
+        ※ 1回の修正指示で複数箇所をまとめてご依頼いただいた場合、1チケットとしてカウントします。
+      </div>
+    </div>
+  </section>
+
+  <!-- 初年度パック -->
+  <section style="background: var(--color-cream-deep); padding: clamp(60px,8vw,100px) clamp(20px,6vw,80px);">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <div class="section-label" style="justify-content: center;"><span class="section-label-line"></span><span class="section-label-text">ANNUAL PACKAGE</span><span class="section-label-line"></span></div>
+      <h2 class="section-title">初年度パック</h2>
+      <p class="section-sub">1年間の長期契約で、お得にスタートできます。</p>
+      <div class="annual-card">
+        <div class="annual-badge">🎁 一括契約 23%OFF</div>
+        <h3 class="annual-title">Starter + 12ヶ月保守パック</h3>
+        <div class="price-breakdown">
+          <div class="price-br-row"><span>Starterプラン</span><span>50,000円</span></div>
+          <div class="price-br-row"><span>Basic保守 12ヶ月（8,800円×12）</span><span>105,600円</span></div>
+          <div class="price-br-row total"><span>通常合計</span><span class="strike">155,600円</span></div>
+        </div>
+        <p class="price-arrow-label">▼ 一括契約特別価格 ▼</p>
+        <p>
+          <span class="annual-price-big">120,000</span>
+          <span class="annual-price-unit">円（税抜）</span>
+          <span class="annual-discount">35,600円OFF</span>
+        </p>
+        <div class="annual-includes" style="margin-top: 32px;">
+          <h4>含まれる内容</h4>
+          <ul>
+            <li>Starterプラン本体</li>
+            <li>Basic保守12ヶ月分（月2チケット）</li>
+            <li>年間チケット24枚分（48,000円相当）</li>
+            <li>月次アクセスレポート12ヶ月分</li>
+          </ul>
+        </div>
+        <div class="annual-recommend">
+          <h4>こんな方におすすめ</h4>
+          <ul>
+            <li>しっかり1年運用したい</li>
+            <li>毎月の支払い管理を簡素化したい</li>
+            <li>最安で始めたい</li>
+          </ul>
+        </div>
+        <a href="/contact?plan=annual-starter" class="btn-primary">このパックで申し込む →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--color-white); padding: clamp(60px,8vw,100px) clamp(20px,6vw,80px); text-align: center;">
+    <div style="max-width: 640px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(24px,3vw,36px); font-weight: 700; color: var(--color-charcoal); margin-bottom: 16px;">まずは無料相談から</h2>
+      <p style="color: var(--color-gray); font-size: 15px; margin-bottom: 40px; line-height: 1.9;">ご相談・お見積もりは無料です。お気軽にどうぞ。</p>
+      <a href="/contact" class="btn-primary">無料相談はこちら →</a>
+    </div>
+  </section>
+
+</MainLayout>
