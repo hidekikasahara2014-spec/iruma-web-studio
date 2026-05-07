@@ -11,8 +11,9 @@ import { site } from '../config/site';
   .page-hero p { font-size: 16px; color: var(--color-gray-light); }
 
   .method-cards {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     margin-bottom: 64px;
   }
   .method-card {
@@ -146,6 +147,7 @@ import { site } from '../config/site';
     .method-cards { grid-template-columns: 1fr; }
     .contact-form-wrap { padding: 32px 24px; }
     .form-grid { grid-template-columns: 1fr; }
+    .method-value a { word-break: break-all; }
   }
 </style>
 
@@ -164,7 +166,7 @@ import { site } from '../config/site';
 
       <!-- 連絡手段 -->
       <div class="method-cards">
-        <div class="method-card" style="max-width: 360px; width: 100%;">
+        <div class="method-card">
           <div class="method-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"/>
@@ -174,6 +176,27 @@ import { site } from '../config/site';
           <p class="method-label">メール</p>
           <p class="method-value" style="font-size: 13px;">{site.email}</p>
           <p class="method-note">24時間受付<br>2営業日以内に返信</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.96a16 16 0 006.13 6.13l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <p class="method-label">電話</p>
+          <p class="method-value"><a href={`tel:${site.tel.replace(/-/g, '')}`} style="color: inherit; text-decoration: none;">{site.tel}</a></p>
+          <p class="method-note">平日 10:00〜18:00<br>お気軽にどうぞ</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <p class="method-label">所在地</p>
+          <p class="method-value" style="font-size: 13px; line-height: 1.5;">{site.address}</p>
+          <p class="method-note">※ 事前にご連絡ください</p>
         </div>
       </div>
 

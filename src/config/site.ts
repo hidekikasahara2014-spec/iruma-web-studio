@@ -5,7 +5,7 @@ export const site = {
   description: "SE × デザイナー × 生成AI で実現する、5万円からのホームページ制作。埼玉県入間市の中小企業・個人事業主を支援します。",
   url: "https://iruma-web-studio.vercel.app",
   email: "medaker.jp@gmail.com",
-  tel: "080-4116-2128",
+  tel: "050-1793-0491",
   address: "埼玉県入間市宮寺1943-6",
   established: "2019年7月",
   representative: "笠原真奈美",

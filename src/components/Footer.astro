@@ -86,6 +86,7 @@ import { site } from '../config/site';
         <p class="footer-tagline">{site.tagline}</p>
         <p class="footer-info">
           {site.address && <>{site.address}<br /></>}
+          <a href={`tel:${site.tel.replace(/-/g, '')}`} style="color: inherit; text-decoration: none;">{site.tel}</a><br />
           {site.email}
         </p>
       </div>
@@ -95,7 +96,7 @@ import { site } from '../config/site';
         {[
           ["/","ホーム"],["/service","サービス"],["/pricing","料金プラン"],
           ["/samples","業種別サンプル"],["/about","会社概要"],["/contact","お問い合わせ"],
-          ["/privacy","プライバシーポリシー"]
+          ["/privacy","プライバシーポリシー"],["/tokushoho","特定商取引法に基づく表記"]
         ].map(([href, label]) => (
           <a href={href} class="footer-link">{label}</a>
         ))}
