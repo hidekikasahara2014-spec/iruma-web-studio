@@ -157,6 +157,8 @@ function symStyle(s: string): string {
   .option-label { font-size: 14px; font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px; }
   .option-price { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: var(--color-orange); }
 
+  .coverage-mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
   @media (max-width: 768px) {
     .page-hero { padding: 60px 24px; }
     .section-title { font-size: 24px; }
@@ -164,6 +166,7 @@ function symStyle(s: string): string {
     .annual-card { padding: 40px 24px; }
     .annual-price-big { font-size: 40px; }
     .compare-catchcopy { font-size: 15px; }
+    .coverage-mini-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 
@@ -331,12 +334,37 @@ function symStyle(s: string): string {
       <div class="ticket-notes">
         <p><strong>※ チケット制について</strong></p>
         <ul>
-          <li>1チケット = 0.5時間程度の修正作業（2,000円相当）</li>
           <li>未使用チケットは翌月まで繰越可（2ヶ月目で消滅）</li>
           <li>不足分は追加チケット購入で対応可能</li>
           <li>修正対応1件 = 1回のフィードバック（複数箇所まとめて指示は1件）</li>
         </ul>
         <p style="margin-top: 12px;"><a href="/pricing/compare" class="link-arrow">詳しい比較表を見る →</a></p>
+      </div>
+
+      <!-- チケット対応範囲サマリー -->
+      <div style="margin-top: 40px;">
+        <h3 style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 20px; border-left: 3px solid var(--color-orange); padding-left: 14px;">1チケットで、こんなことができます</h3>
+        <div class="coverage-mini-grid">
+          <div style="background: #f0f7f4; border: 1px solid #a7c9b8; border-radius: var(--radius-md); padding: 20px 16px;">
+            <p style="font-size: 13px; font-weight: 700; color: #2d7a56; margin-bottom: 8px;">無料対応</p>
+            <p style="font-size: 12px; color: var(--color-gray); line-height: 1.7;">軽微な誤字修正<br>操作方法のご案内<br>メールでのご相談</p>
+          </div>
+          <div style="background: var(--color-white); border: 2px solid var(--color-orange); border-radius: var(--radius-md); padding: 20px 16px;">
+            <p style="font-size: 13px; font-weight: 700; color: var(--color-orange-deep); margin-bottom: 8px;">1チケット</p>
+            <p style="font-size: 12px; color: var(--color-gray); line-height: 1.7;">文章の書き換え<br>画像の差し替え<br>テキスト・リンク更新</p>
+          </div>
+          <div style="background: var(--color-cream); border: 1px solid var(--color-gray-light); border-radius: var(--radius-md); padding: 20px 16px;">
+            <p style="font-size: 13px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 8px;">2チケット</p>
+            <p style="font-size: 12px; color: var(--color-gray); line-height: 1.7;">新規セクション追加<br>デザイン微調整<br>スタッフ紹介追加</p>
+          </div>
+          <div style="background: var(--color-cream-deep); border: 1px solid var(--color-gray-light); border-radius: var(--radius-md); padding: 20px 16px;">
+            <p style="font-size: 13px; font-weight: 700; color: var(--color-charcoal); margin-bottom: 8px;">3チケット〜</p>
+            <p style="font-size: 12px; color: var(--color-gray); line-height: 1.7;">新規ページ追加<br>フォーム再設計<br>アニメーション追加</p>
+          </div>
+        </div>
+        <p style="text-align: right; margin-top: 12px;">
+          <a href="/pricing/compare#ticket-coverage" class="link-arrow" style="font-size: 13px;">対応範囲の詳細を見る →</a>
+        </p>
       </div>
     </div>
   </section>
@@ -379,7 +407,6 @@ function symStyle(s: string): string {
       </div>
       <div class="ticket-purchase-notes">
         ※ チケットは購入から12ヶ月有効です。<br>
-        ※ 1チケット = 0.5時間程度の修正作業（2,000円相当）<br>
         ※ 1回の修正指示で複数箇所をまとめてご依頼いただいた場合、1チケットとしてカウントします。
       </div>
     </div>
